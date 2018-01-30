@@ -1,0 +1,6 @@
+<div class='text-center'>
+  <% if content_for?(:back_link_path) %>
+    <span class='left'> <%= fa_link_to 'chevron-left', (t 'navigation.back_link_label'), yield(:back_link_path), size: 32 %> </span>
+  <% end%>
+  <h2> <%= yield(:form_title) %> </h2>
+</div>

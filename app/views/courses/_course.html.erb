@@ -1,0 +1,5 @@
+<tr>
+  <td><%= course.year %></td>
+  <td><%= fa_link_to 'gear', (t 'courses.actions.show'), course, size: 24 %></td>
+  <td><%= fa_link_to 'trash-o', (t 'courses.actions.destroy'), course, size: 24,  method: :delete, data: { confirm: (t 'courses.actions.destroy_prompt') } %></td>
+</tr>

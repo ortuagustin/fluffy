@@ -1,0 +1,30 @@
+<%= form_title (t 'tests.index.title', year: course.year) %>
+<%= back_link_path course_path(course) %>
+<%= render 'title' %>
+
+<%= fa_link_to 'plus', (t 'tests.actions.new'), new_course_test_path(course_id), size: 35 %>
+</br></br>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t 'tests.fields.title' %></th>
+      <th><%= t 'tests.fields.evaluated_at' %></th>
+      <th><%= t 'tests.fields.passing_score' %></th>
+      <th colspan='3'></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @tests.each do |test| %>
+      <tr>
+        <td><%= test.title %></td>
+        <td><%= (l Date.parse(test.evaluated_at)) + '  -  ' + (l Time.parse(test.evaluated_at), format: '%H:%M') %></td>
+        <td><%= test.passing_score %></td>
+        <td><%= fa_link_to 'info-circle', (t 'tests.actions.show'), course_test_path(course_id, test), size: 18 %></td>
+        <td><%= fa_link_to 'pencil', (t 'tests.actions.edit'), edit_course_test_path(course_id, test), size: 18 %></td>
+        <td><%= fa_link_to 'trash-o', (t 'tests.actions.destroy'), course_test_path(course_id, test), size: 18, method: :delete, data: { confirm: (t 'tests.actions.destroy_prompt') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

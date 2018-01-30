@@ -1,0 +1,17 @@
+<%= form_title (t 'courses.index.title') %>
+<%= render 'title' %>
+
+<table>
+  <thead>
+    <tr>
+      <th><%= t 'courses.fields.year' %></th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <%= render partial: 'course', collection: @courses %>
+  </tbody>
+</table>
+
+<%= render 'new_course' %>

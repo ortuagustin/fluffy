@@ -1,0 +1,7 @@
+<% if user_signed_in? %>
+  <li><%= fa_link_to 'user-circle-o', (t 'navigation.profile_link_label'), edit_user_registration_path, size: 20 %></li>
+  <li><%= fa_link_to 'sign-out', (t 'navigation.logout_link_label'), destroy_user_session_path, size: 20, :method => 'delete' %></li>
+<% else %>
+  <li><%= fa_link_to 'sign-in', (t 'navigation.login_link_label'), new_user_session_path, size: 20 %></li>
+  <li><%= fa_link_to 'id-card-o', (t 'navigation.register_link_label'), new_user_registration_path, size: 20%></li>
+<% end %>

@@ -1,0 +1,17 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+me:
+  name: 'Agustin'
+  surname: 'Ortu'
+  dni: 37058719
+  email: 'ortu.agustin@gmail.com'
+  file_number: '11329/6'
+  course: current_course
+
+foo_bar:
+  name: 'Foo'
+  surname: 'Bar'
+  dni: 12345678
+  email: 'foo.bar@gmail.com'
+  file_number: '12345/6'
+  course: current_course

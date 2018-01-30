@@ -1,0 +1,71 @@
+en:
+  navigation:
+    back_link_label: "Back"
+    home_link_label: "Home"
+    login_link_label: "Log In"
+    logout_link_label: "Log Out"
+    register_link_label: "Sign In"
+    profile_link_label: "Profile"
+  login_form:
+    title: "Log In"
+    username_field: "Username"
+    password_field: "Password"
+    forgot_password_link_label: "Forgot password?"
+    submit: "Log In"
+  registration_form:
+    title: "New Account"
+    username_field: "Username"
+    password_field: "Password"
+    password_confirmation_field: "Confirm your password"
+    email_field: "Email"
+    email_confirmation_field: "Confirm your email"
+    submit: "Create Account"
+  tests:
+    actions:
+      new: "Add a New Test for this Course"
+      show: "View Test Details"
+      edit: "Edit Test"
+      destroy: "Delete"
+      destroy_prompt: "Deleting the Test will also delete all it's related Results\n\nContinue?"
+    fields:
+      title: "Title"
+      evaluated_at: "Evaluation Date"
+      evaluated_at_date: "Evaluation Date"
+      evaluated_at_time: "Evaluation Time"
+      passing_score: "Passing Score"
+    index:
+      title: "Tests for the %{year} Course"
+    new_form:
+      title: "New Test"
+    edit_form:
+      title: "Edit Test"
+  courses:
+    actions:
+      new: "Create a New Course"
+      show: "Manage Course"
+      destroy: "Delete"
+      destroy_prompt: "Deleting the Course will also delete all it's related Tests, Students and Results Data\n\nContinue?"
+    fields:
+      year: "Year"
+    new_form:
+      title: "New Course"
+    index:
+      title: "Courses Management"
+  students:
+    actions:
+      edit: "Edit"
+      destroy: "Delete"
+      destroy_prompt: "Deleting the Student will also delete it's Test Results\n\nContinue?"
+      new: "Add a New Student for this Course"
+    fields:
+      name: "Name"
+      surname: "Surname"
+      dni: "DNI"
+      email: "Email"
+      file_number: "File Number"
+    index:
+      title: "Students of the %{year} Course"
+    edit_form:
+      title: "Edit Student"
+    new_form:
+      title: "New Student"

@@ -1,0 +1,11 @@
+<div class="authform">
+  <%= simple_form_for(resource, :as => resource_name, :url => session_path(resource_name), :html => { :role => 'form'}) do |f| %>
+    <h4 class="text-center"> <%= t 'login_form.title' %> </h4>
+      <%= devise_error_messages! %>
+      <%= f.input :username, required: false, input_html: { :autofocus => true, class: 'form-control' }, label: (t 'login_form.username_field') %>
+      <%= f.input :password, input_html: { class: 'form-control' }, label: (t 'login_form.password_field') %>
+      <%= f.input :remember_me, :as => :boolean, :label => false, :inline_label => true if devise_mapping.rememberable? %>
+      <%= f.submit (t 'login_form.submit'), class: 'button expand' %>
+      <%= link_to (t 'login_form.forgot_password_link_label'), new_password_path(resource_name), class: 'right' if devise_mapping.recoverable? %>
+  <% end %>
+</div>

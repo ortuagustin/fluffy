@@ -1,0 +1,19 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+first_test:
+  title: 'Ruby First Test'
+  evaluated_at: 2017-10-05 19:00:00
+  passing_score: 5
+  course: current_course
+
+second_test:
+  title: 'Ruby Second Test'
+  evaluated_at: 2017-11-23 19:00:00
+  passing_score: 6.5
+  course: current_course
+
+float_test:
+  title: 'Ruby Float Test'
+  evaluated_at: 2017-12-18 19:00:00
+  passing_score: 9
+  course: current_course

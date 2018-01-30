@@ -1,0 +1,13 @@
+<nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
+  <ul class="title-area">
+     <li class="name"><%= link_to (t 'navigation.home_link_label'), root_path %></li>
+  </ul>
+  <section class="top-bar-section">
+    <ul class="right">
+      <%= render 'layouts/nav_links_for_auth' %>
+    </ul>
+    <ul class="left">
+      <%= render 'layouts/navigation_links' %>
+    </ul>
+  </section>
+</nav>
