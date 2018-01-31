@@ -57,4 +57,11 @@ class CourseSummaryTest < ActiveSupport::TestCase
     students(:foo_bar).test_results << TestResult.create(test: @first_test_from_current, score: 1)
     assert_equal 0.5, @first_test_from_current.passed_average
   end
+
+  test "it returns passed_average formatted as percentage" do
+    students(:foo_bar).test_results << TestResult.create(test: @first_test_from_current, score: 1)
+    expected = '50.00%'
+    actual = @first_test_from_current.passed_average_percentage
+    assert_equal expected, actual
+  end
 end

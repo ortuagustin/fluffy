@@ -34,5 +34,9 @@ module Summary
       return 0 if attended_count.zero?
       passed_count.fdiv attended_count
     end
+
+    def passed_average_percentage
+      (passed_average * 100).to_s(:percentage, precision: 2)
+    end
   end
 end
