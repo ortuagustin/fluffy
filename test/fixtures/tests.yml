@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 first_test:
-  id: 1
   title: 'Ruby First Test'
   evaluated_at: 2017-10-05 19:00:00
   passing_score: 5
@@ -18,3 +17,10 @@ float_test:
   evaluated_at: 2017-12-18 19:00:00
   passing_score: 9
   course: current_course
+
+test_with_id_1:
+  id: 1
+  title: 'Foo'
+  evaluated_at: 2017-10-05 19:00:00
+  passing_score: 5
+  course: foo_course

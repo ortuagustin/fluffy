@@ -7,3 +7,7 @@ prior_course:
 current_course:
   year: 2017
   students_count: 2
+
+foo_course:
+  year: 2015
+  students_count: 1

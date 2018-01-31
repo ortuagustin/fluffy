@@ -1,7 +1,6 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 me:
-  id: 1
   name: 'Agustin'
   surname: 'Ortu'
   dni: 37058719
@@ -10,10 +9,18 @@ me:
   course: current_course
 
 foo_bar:
-  id: 2
   name: 'Foo'
   surname: 'Bar'
   dni: 12345678
   email: 'foo.bar@gmail.com'
   file_number: '12345/6'
   course: current_course
+
+student_with_id_1:
+  id: 1
+  name: 'First'
+  surname: 'Student'
+  dni: 12345687
+  email: 'first.student@gmail.com'
+  file_number: '15329/6'
+  course: foo_course

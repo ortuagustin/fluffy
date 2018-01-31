@@ -77,24 +77,28 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test "it returns correct student when the given student id belongs to the course" do
-    actual = @current_course.student 1
-    assert_equal @me, actual
+    course = courses(:foo_course)
+    actual = course.student 1
+    expected = students(:student_with_id_1)
+    assert_equal expected, actual
   end
 
   test "it raises exception when the given student id doest not exist in the course" do
     assert_raises(ActiveRecord::RecordNotFound) do
-       @current_course.student 12345
+      courses(:foo_course).student 12345
     end
   end
 
   test "it returns correct test when the given test id belongs to the course" do
-    actual = @current_course.test 1
-    assert_equal @first_test, actual
+    course = courses(:foo_course)
+    actual = course.test 1
+    expected = tests(:test_with_id_1)
+    assert_equal expected, actual
   end
 
   test "it raises exception when the given test id doest not exist in the course" do
     assert_raises(ActiveRecord::RecordNotFound) do
-       @current_course.test 12345
+      courses(:foo_course).test 12345
     end
   end
 end
