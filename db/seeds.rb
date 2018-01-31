@@ -1,5 +1,11 @@
 require 'faker'
 
+# delete all users
+User.destroy_all
+
+# create admin user
+User.create(:username => 'admin', :password => 'admin', :email => 'admin@test.com')
+
 # empty database
 Course.destroy_all
 
