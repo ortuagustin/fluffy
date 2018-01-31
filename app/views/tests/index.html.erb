@@ -19,7 +19,7 @@
     <% @tests.each do |test| %>
       <tr>
         <td><%= test.title %></td>
-        <td><%= (l Date.parse(test.evaluated_at)) + '  -  ' + (l Time.parse(test.evaluated_at), format: '%H:%M') %></td>
+        <td><%= l test.evaluated_at, format: :long %></td>
         <td><%= test.passing_score %></td>
         <td><%= fa_link_to 'info-circle', (t 'tests.actions.show'), course_test_path(course_id, test), size: 18 %></td>
         <td><%= fa_link_to 'pencil', (t 'tests.actions.edit'), edit_course_test_path(course_id, test), size: 18 %></td>
