@@ -6,7 +6,7 @@ Rails.application.routes.draw do
     resources :students, except: [:show] do
       resources :test_results
     end
-    resources :tests
+    resources :tests, except: [:show]
   end
 
   authenticated :user do
