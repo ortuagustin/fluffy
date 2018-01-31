@@ -107,4 +107,20 @@ class TestTest < ActiveSupport::TestCase
     assert tests_from_my_course.exists? @second_test.id
     assert tests_from_my_course.exists? @float_test.id
   end
+
+  test "it returns the amount of students that passed a test" do
+    assert_equal 1, @first_test.passed_count
+  end
+
+  test "it returns the amount of students that were present on a test" do
+    assert_equal 1, @first_test.attended_count
+  end
+
+  test "it returns the amount of students that were missing on a test" do
+    assert_equal 1, @first_test.missing_count
+  end
+
+  test "it returns the amount of students that failed a test" do
+    assert_equal 0, @first_test.failed_count
+  end
 end

@@ -36,5 +36,3 @@ module Summary
     end
   end
 end
-
-Test.include Summary::TestSummary
