@@ -22,6 +22,7 @@ en:
     submit: "Create Account"
   tests:
     actions:
+      view: "View Test Results"
       new: "Add a New Test for this Course"
       edit: "Edit Test"
       destroy: "Delete"
@@ -29,8 +30,6 @@ en:
     fields:
       title: "Title"
       evaluated_at: "Evaluation Date"
-      evaluated_at_date: "Evaluation Date"
-      evaluated_at_time: "Evaluation Time"
       passing_score: "Passing Score"
     index:
       title: "Tests for the %{year} Course"
@@ -38,6 +37,22 @@ en:
       title: "New Test"
     edit_form:
       title: "Edit Test"
+  test_results:
+    show:
+      title: "Results for the %{test} test"
+      test_title: "%{test} test"
+      evaluated_at: "The test was evaluated on:"
+      passing_score: "The minimun required score is %{passing_score}"
+    fields:
+      passing_score: "Passing Score"
+      score: "Score"
+      passed?: "Passed?"
+    summary:
+      passed_count: "Students that passed"
+      failed_count: "Students that failed"
+      attended_count: "Students that were present"
+      missing_count: "Students that were missing"
+      passed_average: "Passed average ratio"
   courses:
     actions:
       new: "Create a New Course"

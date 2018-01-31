@@ -1,0 +1,22 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= t 'test_results.summary.passed_count' %></th>
+      <th><%= t 'test_results.summary.failed_count' %></th>
+      <th><%= t 'test_results.summary.attended_count' %></th>
+      <th><%= t 'test_results.summary.missing_count' %></th>
+      <th><%= t 'test_results.summary.passed_average' %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <tr>
+      <td><%= @test.passed_count %></td>
+      <td><%= @test.failed_count %></td>
+      <td><%= @test.attended_count %></td>
+      <td><%= @test.missing_count %></td>
+      <td><%= @test.passed_average_percentage %></td>
+    </tr>
+  </tbody>
+</table>
+

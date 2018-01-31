@@ -3,10 +3,11 @@ Rails.application.routes.draw do
 
   resources :courses, except: [:edit, :update, :new] do
     get 'summary', to: 'courses#summary', as: :summary
-    resources :students, except: [:show] do
-      resources :test_results
+    resources :students, except: [:show]
+
+    resources :tests, except: [:show] do
+      get 'results', to: 'test_results#show', on: :member
     end
-    resources :tests, except: [:show]
   end
 
   authenticated :user do

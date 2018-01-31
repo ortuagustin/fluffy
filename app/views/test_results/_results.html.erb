@@ -1,0 +1,29 @@
+<table>
+  <thead>
+    <tr>
+      <th><%= t 'students.fields.name' %></th>
+      <th><%= t 'students.fields.surname' %></th>
+      <th><%= t 'students.fields.dni' %></th>
+      <th><%= t 'students.fields.email' %></th>
+      <th><%= t 'students.fields.file_number' %></th>
+      <th><%= t 'test_results.fields.passing_score' %></th>
+      <th><%= t 'test_results.fields.score' %></th>
+      <th><%= t 'test_results.fields.passed?' %></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.name %></td>
+        <td><%= student.surname %></td>
+        <td><%= student.dni %></td>
+        <td><%= student.email %></td>
+        <td><%= student.file_number %></td>
+        <td><%= @test.passing_score %></td>
+        <td><%= student.score_for(@test) %></td>
+        <td><%= boolean_to_glyph(student.passed?(@test)) %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -1,0 +1,14 @@
+<%= form_title (t 'test_results.show.title', test: @test.title) %>
+<%= back_link_path course_tests_path(@course) %>
+<%= render 'title' %>
+
+<br>
+
+<div class="panel radius">
+  <p><%= t 'test_results.show.test_title', test: @test.title %></p>
+  <p><%= t('test_results.show.evaluated_at') + ' ' + l(@test.evaluated_at, format: "%d-%m-%Y")%></p>
+  <p><%= t 'test_results.show.passing_score', passing_score: @test.passing_score %></p>
+</div>
+
+<%= render 'results' %>
+<%= render 'summary' %>
