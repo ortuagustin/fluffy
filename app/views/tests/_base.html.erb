@@ -1,13 +1,10 @@
 <%= back_link_path course_tests_path(course_id) %>
 <%= render 'title' %>
 
-<%= minimal_form_for [course, @test] do |f| %>
+<%= simple_form_for [course, @test] do |f| %>
   <%= f.error_notification %>
   <%= f.input :title, required: true %>
-  <%= f.label :evaluated_at_date, (t 'tests.fields.evaluated_at_date') %>
-  <%= f.input :evaluated_at_date, as: :date, required: true, html5: true, start_year: start_year %>
-  <%= f.label :evaluated_at_time, (t 'tests.fields.evaluated_at_time') %>
-  <%= f.input :evaluated_at_time, as: :time, required: true, html5: true %>
-  <%= f.input :passing_score, as: :integer, collection: 1..10, input_html: { min: 0, max: 10 } %>
+  <%= f.date_select :evaluated_at, { :order => [ :day, :month ], discard_year: true } %>
+  <%= f.input :passing_score, required: true, as: :integer, collection: 1..10, input_html: { min: 0, max: 10 } %>
   <%= f.button :submit %>
 <% end %>
