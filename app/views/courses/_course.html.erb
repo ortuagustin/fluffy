@@ -1,5 +1,6 @@
 <tr>
   <td><%= course.year %></td>
-  <td><%= fa_link_to 'gear', (t 'courses.actions.show'), course, size: 24 %></td>
+  <td><%= fa_link_to 'users', (t 'courses.actions.students'), course_students_path(course), size: 24 %></td>
+  <td><%= fa_link_to 'gear', (t 'courses.actions.tests'),  course_tests_path(course), size: 24 %></td>
   <td><%= fa_link_to 'trash-o', (t 'courses.actions.destroy'), course, size: 24,  method: :delete, data: { confirm: (t 'courses.actions.destroy_prompt') } %></td>
 </tr>

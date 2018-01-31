@@ -23,7 +23,6 @@ en:
   tests:
     actions:
       new: "Add a New Test for this Course"
-      show: "View Test Details"
       edit: "Edit Test"
       destroy: "Delete"
       destroy_prompt: "Deleting the Test will also delete all it's related Results\n\nContinue?"
@@ -42,8 +41,9 @@ en:
   courses:
     actions:
       new: "Create a New Course"
-      show: "Manage Course"
-      destroy: "Delete"
+      students: "Manage Students"
+      tests: "Manage Tests"
+      destroy: "Delete Course"
       destroy_prompt: "Deleting the Course will also delete all it's related Tests, Students and Results Data\n\nContinue?"
     fields:
       year: "Year"
