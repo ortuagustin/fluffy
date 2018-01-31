@@ -18,4 +18,8 @@ class Course < ApplicationRecord
   def student(student_id)
     students.find(student_id)
   end
+
+  def test(test_id)
+    tests.find(test_id)
+  end
 end
