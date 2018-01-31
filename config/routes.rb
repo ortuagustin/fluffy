@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :courses, except: [:edit, :update, :new] do
     get 'summary', to: 'courses#summary', as: :summary
-    resources :students do
+    resources :students, except: [:show] do
       resources :test_results
     end
     resources :tests
