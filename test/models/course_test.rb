@@ -5,6 +5,7 @@ class CourseTest < ActiveSupport::TestCase
     @current_course = courses(:current_course)
     @prior_course = courses(:prior_course)
     @me = students(:me)
+    @first_test = tests(:first_test)
   end
 
   test "should not accept a blank year" do
@@ -75,14 +76,25 @@ class CourseTest < ActiveSupport::TestCase
     assert tests.empty?
   end
 
-  test "it returns correct Student when the given Student Id belongs to the course" do
+  test "it returns correct student when the given student id belongs to the course" do
     actual = @current_course.student 1
     assert_equal @me, actual
   end
 
-  test "it raises exception when the given Student Id doest not exist in the course" do
+  test "it raises exception when the given student id doest not exist in the course" do
     assert_raises(ActiveRecord::RecordNotFound) do
        @current_course.student 12345
+    end
+  end
+
+  test "it returns correct test when the given test id belongs to the course" do
+    actual = @current_course.test 1
+    assert_equal @first_test, actual
+  end
+
+  test "it raises exception when the given test id doest not exist in the course" do
+    assert_raises(ActiveRecord::RecordNotFound) do
+       @current_course.test 12345
     end
   end
 end
