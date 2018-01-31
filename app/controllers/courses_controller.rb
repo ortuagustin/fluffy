@@ -49,6 +49,10 @@ private
     @courses = Course.all
   end
 
+  def course_id
+    params.require(:id)
+  end
+
   def course_params
     params.require(:course).permit(:year)
   end
