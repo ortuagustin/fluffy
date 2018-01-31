@@ -57,4 +57,4 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
 
 ### Heroku
 
-Ésta aplicación fue desplegada a la plataforma [Heroku](http://heroku.com), podés verla siguiendo [este link](https://fluffy-app.herokuapp.com/)
+Ésta aplicación fue desplegada a la plataforma [Heroku](http://heroku.com), podés verla siguiendo [este link](https://fluffy-app.herokuapp.com/). Si no querés registrarte, podes ingresar con el usuario `admin`, `admin` :)
