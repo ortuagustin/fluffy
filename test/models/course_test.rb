@@ -74,4 +74,15 @@ class CourseTest < ActiveSupport::TestCase
     tests = Test.where(course_id: course_id)
     assert tests.empty?
   end
+
+  test "it returns correct Student when the given Student Id belongs to the course" do
+    actual = @current_course.student 1
+    assert_equal @me, actual
+  end
+
+  test "it raises exception when the given Student Id doest not exist in the course" do
+    assert_raises(ActiveRecord::RecordNotFound) do
+       @current_course.student 12345
+    end
+  end
 end

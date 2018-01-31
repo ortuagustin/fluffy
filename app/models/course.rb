@@ -14,4 +14,8 @@ class Course < ApplicationRecord
   def attendants_for(test)
     students.select { |each| each.attended_to? test }.count
   end
+
+  def student(student_id)
+    students.find(student_id)
+  end
 end

@@ -1,6 +1,7 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
 me:
+  id: 1
   name: 'Agustin'
   surname: 'Ortu'
   dni: 37058719
@@ -9,6 +10,7 @@ me:
   course: current_course
 
 foo_bar:
+  id: 2
   name: 'Foo'
   surname: 'Bar'
   dni: 12345678
