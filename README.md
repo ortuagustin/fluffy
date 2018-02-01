@@ -14,7 +14,6 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
   - [Figaro](https://github.com/laserlemon/figaro)
   - [Devise](https://github.com/plataformatec/devise)
   - [SimpleForm](https://github.com/plataformatec/simple_form)
-  - [Foundation](https://github.com/zurb/foundation-rails)
   - [FontAwesome](https://github.com/bokmann/font-awesome-rails)
   - PostgreSQL para producción; SQLite3 para desarrollo y tests
 
