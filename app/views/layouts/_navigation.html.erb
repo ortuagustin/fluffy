@@ -1,15 +1,9 @@
 <nav class="navbar">
   <div class="navbar-brand">
   <%= link_to (t 'navigation.home_link_label'), root_path, :class => 'navbar-item is-active' %>
-
-      <span class="navbar-burger" data-target="navbar-menu">
-        <span></span>
-        <span></span>
-        <span></span>
-      </span>
   </div>
 
-  <div id="navbar-menu" class="navbar-menu">
+  <div class="navbar-menu">
     <div class="navbar-end">
       <% unless user_signed_in? %>
         <%= fa_link_to 'sign-in', html_spacing + (t 'navigation.login_link_label'), new_user_session_path, size: 20, :class => 'navbar-item' %>
@@ -24,7 +18,3 @@
   </div>
 
 </nav>
-
-<% content_for :scripts do %>
-    <script src="/js/navbar.js"></script>
-<% end %>
