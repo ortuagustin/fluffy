@@ -24,8 +24,6 @@
         <h2 class="subtitle"><%= content_for?(:description) ? yield(:description) : "Fluffy" %></h2>
       </div>
     </div>
-
-      <%= render 'layouts/navigation_footer' %>
   </section>
 
   <section class="section">
@@ -36,7 +34,7 @@
     <%= yield %>
   </section>
 
-  <footer class="footer" style="padding-bottom: 0;">
+  <footer class="footer" style="padding-bottom: 0; padding-top: 0; position: absolute; width: 100%; bottom: 0;">
     <%= render 'layouts/footer' %>
   </footer>
 
