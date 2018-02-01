@@ -6,4 +6,8 @@ module LayoutHelper
   def back_link_path(url)
     content_for(:back_link_path) { url }
   end
+
+  def html_spacing(times = 1)
+    ("&nbsp;" * times).html_safe
+  end
 end

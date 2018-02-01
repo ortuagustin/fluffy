@@ -1,22 +1,47 @@
 <!DOCTYPE html>
 <html>
-  <head>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title><%= content_for?(:title) ? yield(:title) : "Fluffy" %></title>
-    <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Fluffy" %>">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
-    <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
-    <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
-    <%= csrf_meta_tags %>
-  </head>
-  <body>
-    <header>
+
+<head>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title><%= content_for?(:title) ? yield(:title) : "Fluffy" %></title>
+  <meta name="description" content="<%= content_for?(:description) ? yield(:description) : "Fluffy" %>">
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bulma/0.6.2/css/bulma.min.css">
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+  <%= csrf_meta_tags %>
+</head>
+
+<body>
+  <section class="hero is-primary is-small">
+    <div class="hero-head">
       <%= render 'layouts/navigation' %>
+    </div>
+
+    <div class="hero-body">
+      <div class="container has-text-centered">
+        <h1 class="title"><%= content_for?(:title) ? yield(:title) : "Fluffy" %></h1>
+        <h2 class="subtitle"><%= content_for?(:description) ? yield(:description) : "Fluffy" %></h2>
+      </div>
+    </div>
+
+      <%= render 'layouts/navigation_footer' %>
+  </section>
+
+  <section class="section">
+    <div class="container">
       <%= render 'alerts' %>
-    </header>
-    <main role="main">
-       <%= yield %>
-    </main>
-  </body>
+    </div>
+
+    <%= yield %>
+  </section>
+
+  <footer class="footer" style="padding-bottom: 0;">
+    <%= render 'layouts/footer' %>
+  </footer>
+
+  <%= yield(:scripts) %>
+
+</body>
+
 </html>

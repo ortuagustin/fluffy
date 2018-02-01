@@ -1,13 +1,30 @@
-<nav class="top-bar" data-topbar role="navigation" data-options="is_hover: false">
-  <ul class="title-area">
-     <li class="name"><%= link_to (t 'navigation.home_link_label'), root_path %></li>
-  </ul>
-  <section class="top-bar-section">
-    <ul class="right">
-      <%= render 'layouts/nav_links_for_auth' %>
-    </ul>
-    <ul class="left">
-      <%= render 'layouts/navigation_links' %>
-    </ul>
-  </section>
+<nav class="navbar">
+  <div class="navbar-brand">
+  <%= link_to (t 'navigation.home_link_label'), root_path, :class => 'navbar-item is-active' %>
+
+      <span class="navbar-burger" data-target="navbar-menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </span>
+  </div>
+
+  <div id="navbar-menu" class="navbar-menu">
+    <div class="navbar-end">
+      <% unless user_signed_in? %>
+        <%= fa_link_to 'sign-in', html_spacing + (t 'navigation.login_link_label'), new_user_session_path, size: 20, :class => 'navbar-item' %>
+        <%= fa_link_to 'id-card-o', html_spacing + (t 'navigation.register_link_label'), new_user_registration_path, size: 20, :class => 'navbar-item' %>
+      <% else %>
+        <div class="navbar-item">
+            <p> Welcome, <%= current_user.username %></p>
+        </div>
+        <%= fa_link_to 'sign-out', html_spacing + (t 'navigation.logout_link_label'), destroy_user_session_path, size: 20, :method => 'delete', :class => 'navbar-item' %>
+      <% end %>
+    </div>
+  </div>
+
 </nav>
+
+<% content_for :scripts do %>
+    <script src="/js/navbar.js"></script>
+<% end %>
