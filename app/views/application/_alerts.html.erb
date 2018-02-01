@@ -1,12 +1,14 @@
 <% unless notice.blank? %>
-  <div data-alert class="alert-box success radius">
+  <div class="notification is-success">
+    <a href="" class="delete"></a>
+
     <%= notice %>
-    <a href="#" class="close">&times;</a>
   </div>
 <% end %>
 <% unless alert.blank? %>
-  <div data-alert class="alert-box aler radiust">
+  <div class="notification is-danger">
+    <a href="" class="delete"></a>
+
     <%= alert %>
-    <a href="#" class="close">&times;</a>
   </div>
 <% end %>
