@@ -4,7 +4,7 @@ en:
     home_link_label: "Home"
     login_link_label: "Log In"
     logout_link_label: "Log Out"
-    register_link_label: "Sign In"
+    register_link_label: "Register"
     profile_link_label: "Profile"
   login_form:
     title: "Login"
