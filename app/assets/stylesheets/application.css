@@ -15,10 +15,12 @@
  *= require font-awesome
  */
 
- .footer {
-  padding-bottom: 0;
-  padding-top: 0;
-  position: absolute;
-  width: 100%;
-  bottom: 0;
+ body {
+  display: flex;
+  min-height: 100vh;
+  flex-direction: column;
+}
+
+#wrapper {
+  flex: 1;
 }

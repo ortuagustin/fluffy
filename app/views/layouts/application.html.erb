@@ -9,7 +9,6 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
   <%= csrf_meta_tags %>
-  <%= yield(:styles) %>
 </head>
 
 <body>
@@ -21,20 +20,19 @@
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title"><%= content_for?(:title) ? yield(:title) : "Fluffy" %></h1>
-        <h2 class="subtitle"><%= content_for?(:description) ? yield(:description) : '' %></h2>
+        <h2 class="subtitle"><%= content_for?(:subtitle) ? yield(:subtitle) : '' %></h2>
       </div>
     </div>
   </section>
 
-  <%= render 'alerts' %>
-  <%= yield %>
+  <div id="wrapper">
+    <%= render 'alerts' %>
+    <%= yield %>
+  </div>
 
-  <footer class="footer">
+  <footer class="footer" style="padding: 0;">
     <%= render 'layouts/footer' %>
   </footer>
-
-  <%= yield(:scripts) %>
-
 </body>
 
 </html>
