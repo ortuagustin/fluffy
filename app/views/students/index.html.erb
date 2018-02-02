@@ -1,4 +1,5 @@
 <%= form_subtitle (t 'students.index.title', year: course.year) %>
+
 <%= render layout: 'box', locals: { link_path: courses_path } do %>
   <div class="level-right">
     <div class="level-item">
@@ -7,29 +8,31 @@
   </div>
 <% end %>
 
-<table>
-  <thead>
-    <tr>
-      <th><%= t 'students.fields.name' %></th>
-      <th><%= t 'students.fields.surname' %></th>
-      <th><%= t 'students.fields.dni' %></th>
-      <th><%= t 'students.fields.email' %></th>
-      <th><%= t 'students.fields.file_number' %></th>
-      <th colspan='2'></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @students.each do |student| %>
+<div class="box">
+  <table class="table is-striped is-fullwidth">
+    <thead>
       <tr>
-        <td><%= student.name %></td>
-        <td><%= student.surname %></td>
-        <td><%= student.dni %></td>
-        <td><%= student.email %></td>
-        <td><%= student.file_number %></td>
-        <td><%= fa_link_to 'pencil', (t 'students.actions.edit'), edit_course_student_path(course_id, student) %></td>
-        <td><%= fa_link_to 'trash-o', (t 'students.actions.destroy'), course_student_path(course_id, student), method: :delete, data: { confirm: (t 'students.actions.destroy_prompt') } %></td>
+        <th><%= t 'students.fields.name' %></th>
+        <th><%= t 'students.fields.surname' %></th>
+        <th><%= t 'students.fields.dni' %></th>
+        <th><%= t 'students.fields.email' %></th>
+        <th><%= t 'students.fields.file_number' %></th>
+        <th colspan='2'></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
+
+    <tbody>
+      <% @students.each do |student| %>
+        <tr>
+          <td><%= student.name %></td>
+          <td><%= student.surname %></td>
+          <td><%= student.dni %></td>
+          <td><%= student.email %></td>
+          <td><%= student.file_number %></td>
+          <td><%= fa_link_to 'pencil', (t 'students.actions.edit'), edit_course_student_path(course_id, student) %></td>
+          <td><%= fa_link_to 'trash-o', (t 'students.actions.destroy'), course_student_path(course_id, student), method: :delete, data: { confirm: (t 'students.actions.destroy_prompt') } %></td>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+</div>
