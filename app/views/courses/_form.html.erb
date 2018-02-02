@@ -1,4 +1,4 @@
-<div class="container has-text-centered" style="width: 300px;">
+<div class="box column is-5 is-offset-4 has-text-centered">
   <%= form_for(@course) do |f| %>
     <p class="title is-4"> <%= t 'courses.actions.new' %> </p>
 
@@ -9,9 +9,8 @@
         <%= f.number_field :year, placeholder: (t 'courses.fields.year'), class: 'input', min: min_year, max: max_year %>
       </div>
 
-      <%= f.submit (t 'courses.new_form.submit'), class: 'button is-primary' %>
+      <%= f.submit (t 'courses.form.submit'), class: 'button is-primary' %>
     </div>
+
   <% end %>
 </div>
-
-</br>
