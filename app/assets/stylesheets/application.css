@@ -24,3 +24,8 @@
 #wrapper {
   flex: 1;
 }
+
+.box {
+  margin-bottom: 0;
+  margin-top: 0;
+}
