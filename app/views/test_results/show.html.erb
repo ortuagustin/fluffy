@@ -1,8 +1,5 @@
-<%= form_title (t 'test_results.show.title', test: @test.title) %>
-<%= back_link_path course_tests_path(@course) %>
-<%= render 'title' %>
-
-<br>
+<%= form_subtitle (t 'test_results.show.title', test: @test.title) %>
+<%= render 'box', locals: { link_path: course_tests_path(@course) } %>
 
 <div class="panel radius">
   <p><%= t 'test_results.show.test_title', test: @test.title %></p>

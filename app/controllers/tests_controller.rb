@@ -11,7 +11,6 @@ class TestsController < ApplicationController
   def new
     @test = Test.new
     @test.evaluated_at = Time.current
-    @test.evaluated_at.year = course.year
   end
 
   # GET /courses/:course_id/tests/:test_id/edit
@@ -21,7 +20,6 @@ class TestsController < ApplicationController
   # POST /courses/:course_id/tests
   def create
     @test = Test.new(test_params)
-    die
     if @test.save
       redirect_to course_tests_path(course_id), notice: 'Test was successfully created.'
     else

@@ -1,9 +1,11 @@
-<%= form_title (t 'tests.index.title', year: course.year) %>
-<%= back_link_path courses_path %>
-<%= render 'title' %>
-
-<%= fa_link_to 'plus', (t 'tests.actions.new'), new_course_test_path(course_id), size: 35 %>
-</br></br>
+<%= form_subtitle (t 'tests.index.title', year: course.year) %>
+<%= render layout: 'box', locals: { link_path: courses_path } do %>
+  <div class="level-right">
+    <div class="level-item">
+      <%= fa_link_to 'plus', (t 'tests.actions.new'), new_course_test_path(course_id), size: 35, class: 'has-text-success' %>
+    </div>
+  </div>
+<% end %>
 
 <table>
   <thead>

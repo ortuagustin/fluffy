@@ -1,5 +1,4 @@
-<%= back_link_path course_students_path(course_id) %>
-<%= render 'title' %>
+<%= render partial: 'box', locals: { link_path: course_students_path(course_id) } %>
 
 <%= simple_form_for [course, @student] do |f| %>
   <%= f.error_notification %>

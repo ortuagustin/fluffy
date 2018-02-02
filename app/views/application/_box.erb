@@ -1,0 +1,11 @@
+<% if defined? link_path %>
+  <div class="box level" style="margin: 1em;">
+    <div class="level-left">
+      <div class="level-item">
+        <%= fa_link_to 'chevron-left', (t 'navigation.back_link_label'), link_path, size: 32, class: 'has-text-info' %>
+      </div>
+    </div>
+
+  <%= yield %>
+  </div>
+<% end %>
