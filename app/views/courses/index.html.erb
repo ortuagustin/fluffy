@@ -1,17 +1,14 @@
 <%= form_subtitle (t 'courses.index.title') %>
 <%= render 'box' %>
 
-<table>
-  <thead>
-    <tr>
-      <th><%= t 'courses.fields.year' %></th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <%= render partial: 'course', collection: @courses %>
-  </tbody>
-</table>
+<section class="section">
+  <% @courses.each_slice(3) do |slice| %>
+    <div class="tile is-ancestor">
+      <div class="tile">
+        <%= render partial: 'course', collection: slice %>
+      </div>
+    </div>
+  <% end %>
+</section>
 
 <%= render 'new_course' %>

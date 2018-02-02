@@ -58,8 +58,8 @@ en:
   courses:
     actions:
       new: "Create a New Course"
-      students: "Manage Students"
-      tests: "Manage Tests"
+      students: "Students"
+      tests: "Tests"
       destroy: "Delete Course"
       destroy_prompt: "Deleting the Course will also delete all it's related Tests, Students and Results Data\n\nContinue?"
     fields:
@@ -68,6 +68,7 @@ en:
       title: "New Course"
     index:
       title: "Courses Management"
+      tile: "%{year} Course"
   students:
     actions:
       edit: "Edit"

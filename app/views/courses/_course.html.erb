@@ -1,6 +1,34 @@
-<tr>
-  <td><%= course.year %></td>
-  <td><%= fa_link_to 'users', (t 'courses.actions.students'), course_students_path(course), size: 24 %></td>
-  <td><%= fa_link_to 'gear', (t 'courses.actions.tests'),  course_tests_path(course), size: 24 %></td>
-  <td><%= fa_link_to 'trash-o', (t 'courses.actions.destroy'), course, size: 24,  method: :delete, data: { confirm: (t 'courses.actions.destroy_prompt') } %></td>
-</tr>
+<div class="tile is-parent">
+  <article class=<%= tile_class(course_counter) %>>
+    <div class="content">
+      <span class="icon is-large">
+        <%= fa_icon 'graduation-cap', class: 'fa-5x' %>
+      </span>
+    </div>
+
+    <p class="title"> <%= t 'courses.index.tile', year: course.year %> </p>
+    <div class="level">
+      <div class="level-left">
+        <div class="level-item">
+          <p>
+            <%= fa_link_to 'users', (t 'courses.actions.students'), course_students_path(course), size: 32 %>
+          </p>
+        </div>
+
+        <div class="level-item">
+          <p>
+            <%= fa_link_to 'gear', (t 'courses.actions.tests'),  course_tests_path(course), size: 32 %>
+          </p>
+        </div>
+      </div>
+
+      <div class="level-right">
+        <div class="level-item">
+          <p>
+            <%= fa_link_to 'trash-o', (t 'courses.actions.destroy'), course_path(course), size: 32,  method: :delete, data: { confirm: (t 'courses.actions.destroy_prompt') } %>
+          </p>
+        </div>
+      </div>
+    </div>
+  </article>
+</div>
