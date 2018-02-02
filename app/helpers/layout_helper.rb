@@ -1,6 +1,10 @@
 module LayoutHelper
   def form_title(title)
-    content_for(:form_title) { h(title) }
+    content_for(:title) { h(title) }
+  end
+
+  def form_subtitle(subtitle)
+    content_for(:subtitle) { h(subtitle) }
   end
 
   def back_link_path(url)

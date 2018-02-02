@@ -1,7 +1,7 @@
-<div class="column is-4 is-offset-4 has-text-centered">
-  <p class="title has-text-grey"><%= t 'registration_form.title' %></p>
-  <p class="subtitle has-text-grey"><%= t 'registration_form.subtitle' %></p>
+<%= form_title (t 'registration_form.title') %>
+<%= form_subtitle (t 'registration_form.subtitle') %>
 
+<div class="column is-4 is-offset-4 has-text-centered">
   <div class="box">
     <%= render 'form' %>
   </div>

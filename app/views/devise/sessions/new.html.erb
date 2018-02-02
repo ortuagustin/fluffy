@@ -1,12 +1,9 @@
-<% content_for :scripts do %>
-  <%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track' => 'reload' %>
-<% end %>
+<%= form_title (t 'login_form.title') %>
+<%= form_subtitle (t 'login_form.subtitle') %>
 
 <div class="container has-text-centered">
 
   <div class="column is-4 is-offset-4">
-    <h3 class="title has-text-grey"><%= t 'login_form.title' %></h3>
-    <p class="subtitle has-text-grey"> <%= t 'login_form.subtitle' %> </p>
 
     <div class="box">
       <figure class="avatar"> <img src="https://avatars2.githubusercontent.com/u/5290146?s=200&v=4"> </figure>
