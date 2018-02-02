@@ -37,6 +37,7 @@ en:
       title: "Tests for the %{year} Course"
     new_form:
       title: "New Test"
+      submit: "Save"
     edit_form:
       title: "Edit Test"
   test_results:

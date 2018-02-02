@@ -1,9 +1,37 @@
 <%= render partial: 'box', locals: { link_path: course_tests_path(course_id) } %>
 
-<%= simple_form_for [course, @test] do |f| %>
-  <%= f.error_notification %>
-  <%= f.input :title, required: true %>
-  <%= f.date_select :evaluated_at, { :order => [ :day, :month ], discard_year: true } %>
-  <%= f.input :passing_score, required: true, as: :integer, collection: 1..10, input_html: { min: 0, max: 10 } %>
-  <%= f.button :submit %>
-<% end %>
+<div class="column is-4 is-offset-4">
+
+  <%= custom_form_for [course, @test] do |f| %>
+    <%= render partial: 'errors', locals: {obj: @test} %>
+
+    <div class="field">
+      <%= f.label t 'tests.fields.title' %>
+      <div class="control">
+        <%= f.text_field :title, class: 'input', autofocus: true, placeholder: (t 'tests.fields.title') %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label t 'tests.fields.evaluated_at' %>
+      <div class="control">
+        <%= f.date_select :evaluated_at, class: 'select' %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label t 'tests.fields.passing_score' %>
+      <div class="control">
+        <%= f.number_field :passing_score, min: 0, max: 10, class: 'input', placeholder: (t 'tests.fields.passing_score') %>
+      </div>
+    </div>
+
+    <div class="field">
+      <div class="control has-text-centered">
+        <%= f.submit (t 'tests.new_form.submit'), class: 'button is-primary is-medium' %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
