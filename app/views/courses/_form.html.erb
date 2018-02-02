@@ -1,0 +1,17 @@
+<div class="container has-text-centered" style="width: 300px;">
+  <%= form_for(@course) do |f| %>
+    <p class="title is-4"> <%= t 'courses.actions.new' %> </p>
+
+    <%= render partial: 'errors', locals: {obj: @course} %>
+
+    <div class="field is-grouped">
+      <div class="control">
+        <%= f.number_field :year, placeholder: (t 'courses.fields.year'), class: 'input', min: min_year, max: max_year %>
+      </div>
+
+      <%= f.submit (t 'courses.new_form.submit'), class: 'button is-primary' %>
+    </div>
+  <% end %>
+</div>
+
+</br>

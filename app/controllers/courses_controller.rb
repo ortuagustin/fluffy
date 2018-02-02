@@ -2,11 +2,11 @@ class CoursesController < ApplicationController
   before_action :set_colours
   before_action :set_course, only: [:show, :destroy]
   before_action :fetch_courses, only: [:index, :create]
-  helper_method :tile_class
+  helper_method :tile_class, :min_year, :max_year
 
   # GET /courses
   def index
-    @course = Course.new
+    @course = Course.new(year: Date.current.year)
   end
 
   # GET /courses/1
@@ -61,5 +61,13 @@ private
 
   def course_params
     params.require(:course).permit(:year)
+  end
+
+  def min_year
+    2.years.ago.year
+  end
+
+  def max_year
+    5.years.since.year
   end
 end
