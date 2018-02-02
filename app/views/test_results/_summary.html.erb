@@ -1,22 +1,38 @@
-<table>
-  <thead>
-    <tr>
-      <th><%= t 'test_results.summary.passed_count' %></th>
-      <th><%= t 'test_results.summary.failed_count' %></th>
-      <th><%= t 'test_results.summary.attended_count' %></th>
-      <th><%= t 'test_results.summary.missing_count' %></th>
-      <th><%= t 'test_results.summary.passed_average' %></th>
-    </tr>
-  </thead>
+<div class="level">
 
-  <tbody>
-    <tr>
-      <td><%= @test.passed_count %></td>
-      <td><%= @test.failed_count %></td>
-      <td><%= @test.attended_count %></td>
-      <td><%= @test.missing_count %></td>
-      <td><%= @test.passed_average_percentage %></td>
-    </tr>
-  </tbody>
-</table>
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading has-text-weight-semibold"><%= t 'test_results.summary.passed_count' %></p>
+      <p class="title"><%= @test.passed_count %></p>
+    </div>
+  </div>
 
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading has-text-weight-semibold"><%= t 'test_results.summary.failed_count' %></p>
+      <p class="title"><%= @test.failed_count %></p>
+    </div>
+  </div>
+
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading has-text-weight-semibold"><%= t 'test_results.summary.attended_count' %></p>
+      <p class="title"><%= @test.attended_count %></p>
+    </div>
+  </div>
+
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading has-text-weight-semibold"><%= t 'test_results.summary.missing_count' %></p>
+      <p class="title"><%= @test.missing_count %></p>
+    </div>
+  </div>
+
+  <div class="level-item has-text-centered">
+    <div>
+      <p class="heading has-text-weight-semibold"><%= t 'test_results.summary.passed_average' %></p>
+      <p class="title"><%= @test.passed_average_percentage %></p>
+    </div>
+  </div>
+
+</div>
