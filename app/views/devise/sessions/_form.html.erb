@@ -2,12 +2,20 @@
   <div class="field">
     <div class="control has-icons-left">
       <%= f.text_field :username, class: 'input is-medium', autofocus: true, placeholder: (t 'login_form.username_field') %>
+
+      <span class='icon is-left'>
+        <%= fa_icon 'user' %>
+      </span>
     </div>
   </div>
 
   <div class="field">
     <div class="control has-icons-left">
       <%= f.password_field :password, class: 'input is-medium', placeholder: (t 'login_form.password_field') %>
+
+      <span class='icon is-left'>
+        <%= fa_icon 'key' %>
+      </span>
     </div>
   </div>
 
