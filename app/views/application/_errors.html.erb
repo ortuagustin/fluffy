@@ -1,7 +1,5 @@
 <% if obj.errors.any? %>
   <div class="notification is-danger">
-    <a href="" class="delete"></a>
-
     <ul>
       <% obj.errors.full_messages.each do |error| %>
         <li> · <%= error %> </li>
