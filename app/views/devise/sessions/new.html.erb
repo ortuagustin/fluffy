@@ -17,10 +17,6 @@
 
       <p class="field">
         <%= link_to (t 'navigation.register_link_label'), new_user_registration_path, :class => 'has-text-grey has-text-weight-bold' %>
-        <% if devise_mapping.recoverable? %>
-          &nbsp;·&nbsp;
-          <%= link_to (t 'login_form.forgot_password_link_label'), new_password_path(resource_name), :class => 'has-text-grey has-text-weight-bold' %>
-        <% end %>
       </p>
     </div>
   </div>
