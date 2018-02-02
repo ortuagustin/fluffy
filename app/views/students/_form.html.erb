@@ -1,0 +1,55 @@
+<%= render partial: 'box', locals: { link_path: course_students_path(course_id) } %>
+
+<div class="box column is-4 is-offset-4">
+
+  <p class="title is-4 has-text-grey has-text-centered"> <%= t 'students.actions.new' %> </p>
+
+  <%= custom_form_for [course, @student] do |f| %>
+    <%= render partial: 'errors', locals: {obj: @student} %>
+
+    <div class="field">
+      <%= f.label t 'students.fields.name' %>
+      <div class="control">
+        <%= f.text_field :name, class: 'input', autofocus: true, placeholder: (t 'students.fields.name') %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label t 'students.fields.surname' %>
+      <div class="control">
+        <%= f.text_field :surname, class: 'input', placeholder: (t 'students.fields.surname') %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label t 'students.fields.dni' %>
+      <div class="control">
+        <%= f.text_field :dni, class: 'input', placeholder: (t 'students.fields.dni') %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label t 'students.fields.email' %>
+      <div class="control">
+        <%= f.email_field :email, class: 'input', placeholder: (t 'students.fields.email') %>
+      </div>
+    </div>
+
+    <div class="field">
+      <%= f.label t 'students.fields.file_number' %>
+      <div class="control">
+        <%= f.text_field :file_number, class: 'input', placeholder: (t 'students.fields.file_number') %>
+      </div>
+    </div>
+
+      </br>
+
+    <div class="field">
+      <div class="control has-text-centered">
+        <%= f.submit (t 'students.form.submit'), class: 'button is-primary is-medium' %>
+      </div>
+    </div>
+
+  <% end %>
+
+</div>
