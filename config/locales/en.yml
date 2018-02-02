@@ -57,7 +57,7 @@ en:
       passed_average: "Passed average ratio"
   courses:
     actions:
-      new: "Create a New Course"
+      new: " New Course"
       students: "Students"
       tests: "Tests"
       destroy: "Delete Course"
@@ -66,6 +66,7 @@ en:
       year: "Year"
     new_form:
       title: "New Course"
+      submit: "Create Course"
     index:
       title: "Courses Management"
       tile: "%{year} Course"
@@ -87,3 +88,11 @@ en:
       title: "Edit Student"
     new_form:
       title: "New Student"
+  activerecord:
+    errors:
+      messages:
+        invalid_email: "'%{value}' is not a valid %{attribute}"
+        invalid_course_year: "should be a four-digit number"
+        already_belongs_to_course: "A %{model} with %{value} already belongs to that course"
+        test_date_already_passed: "%{value} is not a valid Date; it should be greater than or equal to today"
+        duplicated_test_result: "already has a %{model} for the given Test"
