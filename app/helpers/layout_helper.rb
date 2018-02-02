@@ -10,4 +10,9 @@ module LayoutHelper
   def html_spacing(times = 1)
     ("&nbsp;" * times).html_safe
   end
+
+  def custom_form_for(record, options = {}, &block)
+    options.merge! builder: FormBuilder
+    form_for record, options, &block
+  end
 end
