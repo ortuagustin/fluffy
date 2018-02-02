@@ -13,13 +13,15 @@ en:
     password_field: "Password"
     submit: "Log In"
   registration_form:
-    title: "New Account"
+    title: "Register"
+    subtitle: "Create a new User"
     username_field: "Username"
     password_field: "Password"
     password_confirmation_field: "Confirm your password"
     email_field: "Email"
     email_confirmation_field: "Confirm your email"
-    submit: "Create Account"
+    submit: "Create User"
+    have_an_account?: "Have an account? Log In"
   tests:
     actions:
       view: "View Test Results"
