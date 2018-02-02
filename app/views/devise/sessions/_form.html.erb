@@ -1,0 +1,26 @@
+<%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <div class="field">
+    <div class="control has-icons-left">
+      <%= f.text_field :username, class: 'input is-medium', autofocus: true, placeholder: (t 'login_form.username_field') %>
+    </div>
+  </div>
+
+  <div class="field">
+    <div class="control has-icons-left">
+      <%= f.password_field :password, class: 'input is-medium', placeholder: (t 'login_form.password_field') %>
+    </div>
+  </div>
+
+  <div class="field">
+    <label class="checkbox">
+      <%= f.check_box :remember_me %>
+      Remember Me?
+    </label>
+  </div>
+
+  <div class="field">
+    <div class="control has-text-centered">
+      <%= f.submit (t 'login_form.submit'), class: 'button is-info is-medium' %>
+    </div>
+  </div>
+<% end %>

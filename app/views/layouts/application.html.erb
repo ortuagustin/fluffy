@@ -10,6 +10,7 @@
   <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
   <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
   <%= csrf_meta_tags %>
+  <%= yield(:styles) %>
 </head>
 
 <body>
@@ -26,12 +27,10 @@
     </div>
   </section>
 
-  <section class="section">
-    <%= render 'alerts' %>
-    <%= yield %>
-  </section>
+  <%= render 'alerts' %>
+  <%= yield %>
 
-  <footer class="footer" style="padding-bottom: 0; padding-top: 0; position: absolute; width: 100%; bottom: 0;">
+  <footer class="footer">
     <%= render 'layouts/footer' %>
   </footer>
 

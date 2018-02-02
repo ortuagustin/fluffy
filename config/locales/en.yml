@@ -7,7 +7,8 @@ en:
     register_link_label: "Sign In"
     profile_link_label: "Profile"
   login_form:
-    title: "Log In"
+    title: "Login"
+    subtitle: "Please login to proceed."
     username_field: "Username"
     password_field: "Password"
     forgot_password_link_label: "Forgot password?"
