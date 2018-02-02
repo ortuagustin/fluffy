@@ -2,25 +2,23 @@
   <%= stylesheet_link_tag 'login', media: 'all', 'data-turbolinks-track' => 'reload' %>
 <% end %>
 
-<section class="section">
+<div class="container has-text-centered">
 
-  <div class="container has-text-centered">
-    <div class="column is-4 is-offset-4">
-      <h3 class="title has-text-grey"><%= t 'login_form.title' %></h3>
-      <p class="subtitle has-text-grey"> <%= t 'login_form.subtitle' %> </p>
+  <div class="column is-4 is-offset-4">
+    <h3 class="title has-text-grey"><%= t 'login_form.title' %></h3>
+    <p class="subtitle has-text-grey"> <%= t 'login_form.subtitle' %> </p>
 
-      <div class="box">
-        <figure class="avatar"> <img src="https://avatars2.githubusercontent.com/u/5290146?s=200&v=4"> </figure>
+    <div class="box">
+      <figure class="avatar"> <img src="https://avatars2.githubusercontent.com/u/5290146?s=200&v=4"> </figure>
 
-        <%= render 'form' %>
-      </div>
-
-      <p class="field">
-        <%= link_to (t 'navigation.register_link_label'), new_user_registration_path, :class => 'has-text-grey has-text-weight-bold' %>
-      </p>
+      <%= render 'form' %>
     </div>
+
+    <p class="field">
+      <%= link_to (t 'navigation.register_link_label'), new_user_registration_path, :class => 'has-text-grey has-text-weight-bold' %>
+    </p>
   </div>
 
-</section>
+</div>
 
 
