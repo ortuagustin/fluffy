@@ -13,7 +13,8 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
   - [Contracts](https://github.com/egonSchiele/contracts.ruby)
   - [Devise](https://github.com/plataformatec/devise)
   - [FontAwesome](https://github.com/bokmann/font-awesome-rails)
-  - PostgreSQL para producción; SQLite3 para desarrollo y tests
+  - [Bulma](https://bulma.io)
+  - **PostgreSQL** para producción; **SQLite3** para desarrollo y tests
 
 1. Clonar el repositorio:
 
