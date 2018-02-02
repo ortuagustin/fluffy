@@ -1,4 +1,6 @@
 <%= form_for(resource, :as => resource_name, :url => session_path(resource_name)) do |f| %>
+  <%= render partial: 'errors', locals: {obj: resource} %>
+
   <div class="field">
     <div class="control has-icons-left">
       <%= f.text_field :username, class: 'input is-medium', autofocus: true, placeholder: (t 'login_form.username_field') %>
