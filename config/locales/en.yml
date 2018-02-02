@@ -37,9 +37,10 @@ en:
       title: "Tests for the %{year} Course"
     new_form:
       title: "New Test"
-      submit: "Save"
     edit_form:
       title: "Edit Test"
+    form:
+      submit: "Save"
   test_results:
     show:
       title: "Results for the %{test} test"
@@ -65,7 +66,7 @@ en:
       destroy_prompt: "Deleting the Course will also delete all it's related Tests, Students and Results Data\n\nContinue?"
     fields:
       year: "Year"
-    new_form:
+    form:
       title: "New Course"
       submit: "Create Course"
     index:
@@ -89,6 +90,8 @@ en:
       title: "Edit Student"
     new_form:
       title: "New Student"
+    form:
+      submit: "Save"
   activerecord:
     errors:
       messages:
