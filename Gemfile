@@ -63,7 +63,6 @@ end
 
 gem "contracts", "~> 0.16.0"
 gem "faker", "~> 1.8"
-gem "figaro", "~> 1.1"
 gem "devise", "~> 4.3"
 gem "jquery-rails", "~> 4.3"
 gem "font-awesome-rails", "~> 4.7"

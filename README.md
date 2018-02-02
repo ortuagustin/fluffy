@@ -11,7 +11,6 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
   - [Validates](https://github.com/kaize/validates/)
   - [Faker](https://github.com/stympy/faker)
   - [Contracts](https://github.com/egonSchiele/contracts.ruby)
-  - [Figaro](https://github.com/laserlemon/figaro)
   - [Devise](https://github.com/plataformatec/devise)
   - [FontAwesome](https://github.com/bokmann/font-awesome-rails)
   - PostgreSQL para producción; SQLite3 para desarrollo y tests
