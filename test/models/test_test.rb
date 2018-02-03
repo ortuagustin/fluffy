@@ -123,4 +123,36 @@ class TestTest < ActiveSupport::TestCase
   test "it returns the amount of students that failed a test" do
     assert_equal 0, @first_test.failed_count
   end
+
+  test "it creates the TestResult for a Student" do
+    student = students(:foo_bar)
+    @first_test.save_test_results({ student.id => 10 })
+    assert_equal 10, (student.score_for @first_test)
+  end
+
+  test "it updates existing TestResult for a Student" do
+    student = students(:me)
+    @first_test.save_test_results({ student.id => 10 })
+    assert_equal 10, (student.score_for @first_test)
+  end
+
+  test "it creates TestResult for a collection of Students" do
+    student_one = students(:foo_bar)
+    student_two = students(:student_with_id_1)
+    scores = { student_one.id => 10, student_two.id => 5 }
+    @first_test.save_test_results(scores)
+    assert_equal 10, (student_one.score_for @first_test)
+    assert_equal 5, (student_two.score_for @first_test)
+  end
+
+  test "it creates or updates TestResult for a collection of Students" do
+    me = students(:me)
+    student_one = students(:foo_bar)
+    student_two = students(:student_with_id_1)
+    scores = { student_one.id => 10, student_two.id => 5, me.id => 7 }
+    @first_test.save_test_results(scores)
+    assert_equal 10, (student_one.score_for @first_test)
+    assert_equal 5, (student_two.score_for @first_test)
+    assert_equal 7, (me.score_for @first_test)
+  end
 end

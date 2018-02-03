@@ -12,6 +12,16 @@ class Test < ApplicationRecord
   validates :passing_score, inclusion: { in: 1..10 }
   validate :test_date_cannot_be_in_the_past
 
+  def save_test_results(califications)
+    califications.each do |student_id, score|
+      result = test_results.find_or_initialize_by(student_id: student_id)
+      result.score = score
+      result.save
+    end
+
+    self
+  end
+
 private
   def test_date_cannot_be_in_the_past
     return if evaluated_at.blank? || course.try(:year).blank?
