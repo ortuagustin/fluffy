@@ -12,8 +12,8 @@
   <table class="table is-striped is-fullwidth">
     <thead>
       <tr>
-        <th><%= t 'students.fields.name' %></th>
         <th><%= t 'students.fields.surname' %></th>
+        <th><%= t 'students.fields.name' %></th>
         <th><%= t 'students.fields.dni' %></th>
         <th><%= t 'students.fields.email' %></th>
         <th><%= t 'students.fields.file_number' %></th>
@@ -24,8 +24,8 @@
     <tbody>
       <% @students.each do |student| %>
         <tr>
-          <td><%= student.name %></td>
           <td><%= student.surname %></td>
+          <td><%= student.name %></td>
           <td><%= student.dni %></td>
           <td><%= student.email %></td>
           <td><%= student.file_number %></td>
