@@ -155,4 +155,11 @@ class TestTest < ActiveSupport::TestCase
     assert_equal 5, (student_two.score_for @first_test)
     assert_equal 7, (me.score_for @first_test)
   end
+
+  test "it marks the student as absent if the score is '-' when saving test results" do
+    student = students(:me)
+    @first_test.save_test_results({ student.id => '-' })
+    assert_equal '-', (student.score_for @first_test)
+    assert student.missed? @first_test
+  end
 end

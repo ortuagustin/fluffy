@@ -15,16 +15,31 @@ class Test < ApplicationRecord
   def save_test_results(califications)
     Test.transaction do
       califications.each do |student_id, score|
-        result = test_results.find_or_initialize_by(student_id: student_id)
-        result.score = score
-        result.save
+        process_calification(student_id, score)
       end
     end
-
     self
   end
 
 private
+  def process_calification(student_id, score)
+    if score != '-'
+      save_calification(student_id, score)
+    else
+      destroy_calification(student_id)
+    end
+  end
+
+  def save_calification(student_id, score)
+    result = test_results.find_or_initialize_by(student_id: student_id)
+    result.score = score
+    result.save
+  end
+
+  def destroy_calification(student_id)
+    test_results.where(:student_id => student_id).delete_all
+  end
+
   def test_date_cannot_be_in_the_past
     return if evaluated_at.blank? || course.try(:year).blank?
     if evaluated_at.year < course.year
