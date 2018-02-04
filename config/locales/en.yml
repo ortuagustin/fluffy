@@ -105,6 +105,8 @@ en:
   califications:
     fields:
       passed_course?: "Passed Course?"
+    summary:
+      passed_course_count: "Students that passed the Course"
   activerecord:
     errors:
       messages:

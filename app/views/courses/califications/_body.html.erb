@@ -1,0 +1,15 @@
+<tbody>
+  <% @students.each do |student| %>
+    <tr>
+      <td><%= student.surname %></td>
+      <td><%= student.name %></td>
+      <td><%= student.file_number %></td>
+      <% @tests.each do |test| %>
+        <td class="has-text-centered"><%= student.score_for(test) %></td>
+        <td class="has-text-centered"><%= boolean_to_glyph(student.passed?(test)) %></td>
+      <% end %>
+      <td class="has-text-centered"><%= boolean_to_glyph(student.passed?(@course)) %></td>
+    </tr>
+  <% end %>
+</tbody>
+

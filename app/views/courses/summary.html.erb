@@ -1,5 +1,7 @@
 <%= form_subtitle (t 'courses.summary.title', year: @course.year) %>
 
-<%= render 'califications' %>
-
-<%= render 'califications_footer' %>
+<table class="table is-striped is-fullwidth is-narrow is-bordered">
+  <%= render 'courses/califications/header' %>
+  <%= render 'courses/califications/body' %>
+  <%= render 'courses/califications/footer' %>
+</table>

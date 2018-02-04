@@ -28,6 +28,6 @@ class Course < ApplicationRecord
   end
 
   def passed_count
-    students.reduce(0) { |sum, each| sum + each.passed?(self) }
+    students.select { |each| each.passed?(self) }.count
   end
 end

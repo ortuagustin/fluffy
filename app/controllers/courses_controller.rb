@@ -16,8 +16,7 @@ class CoursesController < ApplicationController
 
   # GET /courses/:id/summary
   def summary
-    @summary = @course.summary
-    @tests = @summary.tests
+    @tests = @course.tests
     @students = @course.students
   end
 

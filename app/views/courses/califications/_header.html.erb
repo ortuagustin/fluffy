@@ -1,0 +1,17 @@
+<thead>
+  <tr>
+    <th rowspan="2"><%= t 'students.fields.surname' %></th>
+    <th rowspan="2"><%= t 'students.fields.name' %></th>
+    <th rowspan="2"><%= t 'students.fields.file_number' %></th>
+    <% @tests.each do |test| %>
+      <th class="has-text-centered" colspan="2"><%= test.title %></th>
+    <% end %>
+    <th class="has-text-centered" rowspan="2"><%= t 'califications.fields.passed_course?' %></th>
+  </tr>
+  <tr>
+    <% @tests.count.times do |x| %>
+      <th class="has-text-centered"><%= t 'test_results.fields.score' %></th>
+      <th class="has-text-centered"><%= t 'test_results.fields.passed?' %></th>
+    <% end %>
+  </tr>
+</thead>

@@ -1,0 +1,6 @@
+<% @tests.each do |test| %>
+  <th class="has-text-centered" colspan="2">
+    <%= test.send(method.to_sym) %>
+  </th>
+<% end %>
+<th></th>
