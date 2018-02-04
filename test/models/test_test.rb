@@ -126,23 +126,26 @@ class TestTest < ActiveSupport::TestCase
 
   test "it creates the TestResult for a Student" do
     student = students(:foo_bar)
-    @first_test.save_test_results({ student.id => 10 })
+    result = @first_test.save_test_results({ student.id => 10 })
     assert_equal 10, (student.score_for @first_test)
+    assert result
   end
 
   test "it updates existing TestResult for a Student" do
     student = students(:me)
-    @first_test.save_test_results({ student.id => 10 })
+    result = @first_test.save_test_results({ student.id => 10 })
     assert_equal 10, (student.score_for @first_test)
+    assert result
   end
 
   test "it creates TestResult for a collection of Students" do
     student_one = students(:foo_bar)
     student_two = students(:student_with_id_1)
     scores = { student_one.id => 10, student_two.id => 5 }
-    @first_test.save_test_results(scores)
+    result = @first_test.save_test_results(scores)
     assert_equal 10, (student_one.score_for @first_test)
     assert_equal 5, (student_two.score_for @first_test)
+    assert result
   end
 
   test "it creates or updates TestResult for a collection of Students" do
@@ -150,16 +153,24 @@ class TestTest < ActiveSupport::TestCase
     student_one = students(:foo_bar)
     student_two = students(:student_with_id_1)
     scores = { student_one.id => 10, student_two.id => 5, me.id => 7 }
-    @first_test.save_test_results(scores)
+    result = @first_test.save_test_results(scores)
     assert_equal 10, (student_one.score_for @first_test)
     assert_equal 5, (student_two.score_for @first_test)
     assert_equal 7, (me.score_for @first_test)
+    assert result
   end
 
   test "it marks the student as absent if the score is '-' when saving test results" do
     student = students(:me)
-    @first_test.save_test_results({ student.id => '-' })
+    result = @first_test.save_test_results({ student.id => '-' })
     assert_equal '-', (student.score_for @first_test)
     assert student.missed? @first_test
+    assert result
+  end
+
+  test "it returns false if an invalid score is passed" do
+    student = students(:me)
+    result = @first_test.save_test_results({ student.id => '100' })
+    assert_not result
   end
 end

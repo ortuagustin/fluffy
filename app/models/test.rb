@@ -15,10 +15,11 @@ class Test < ApplicationRecord
   def save_test_results(califications)
     Test.transaction do
       califications.each do |student_id, score|
-        process_calification(student_id, score)
+        return false unless process_calification(student_id, score)
       end
     end
-    self
+
+    true
   end
 
 private
