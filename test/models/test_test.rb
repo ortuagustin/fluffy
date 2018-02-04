@@ -165,4 +165,43 @@ class TestTest < ActiveSupport::TestCase
     result = @first_test.save_test_results({ student.id => '100' })
     assert_not result
   end
+
+  test "test attended_count returns expected result" do
+    assert_equal 0, @float_test.attended_count
+    assert_equal 1, @first_test.attended_count
+
+    students(:foo_bar).test_results << TestResult.create(test: @first_test, score: 1)
+    assert_equal 2, @first_test.attended_count
+  end
+
+  test "test passed_count returns expected result" do
+    assert_equal 0, @float_test.passed_count
+    assert_equal 1, @first_test.passed_count
+  end
+
+  test "test failed_count returns expected result" do
+    assert_equal 0, @float_test.failed_count
+    assert_equal 1, @second_test.failed_count
+  end
+
+  test "test missing_count returns expected result" do
+    students(:foo_bar).test_results << TestResult.create(test: @first_test, score: 1)
+    assert_equal 0, @first_test.missing_count
+    assert_equal 1, @second_test.missing_count
+    assert_equal 2, @float_test.missing_count
+  end
+
+  test "test passed_average returns expected result" do
+    assert_equal 1, @first_test.passed_average
+    assert_equal 0, @float_test.passed_average
+    students(:foo_bar).test_results << TestResult.create(test: @first_test, score: 1)
+    assert_equal 0.5, @first_test.passed_average
+  end
+
+  test "it returns passed_average formatted as percentage" do
+    students(:foo_bar).test_results << TestResult.create(test: @first_test, score: 1)
+    expected = '50.00%'
+    actual = @first_test.passed_average_percentage
+    assert_equal expected, actual
+  end
 end

@@ -7,10 +7,6 @@ class Course < ApplicationRecord
   validates :year, uniqueness: true
   validates :year, format: { with: /(19|20)\d{2}/i, message: :invalid_course_year }
 
-  def summary
-    @summary ||= Summary::CourseSummary.new(self)
-  end
-
   def students
     super.order(:surname, :name)
   end
@@ -29,5 +25,9 @@ class Course < ApplicationRecord
 
   def test(test_id)
     tests.find(test_id)
+  end
+
+  def passed_count
+    students.reduce(0) { |sum, each| sum + each.passed?(self) }
   end
 end
