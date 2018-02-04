@@ -13,8 +13,11 @@ class TestResultsController < ApplicationController
 
   # PUT /courses/:course_id/tests/:test_id/results
   def store
-    @test.save_test_results(students_with_scores)
-    render :show
+    if @test.save_test_results(students_with_scores)
+      redirect_to results_course_test_path(course_id, test_id), notice: (I18n.t 'test_results.flash.stored_successfully')
+    else
+      redirect_to load_results_course_test_path(course_id, test_id), alert: (I18n.t 'test_results.flash.store_failed')
+    end
   end
 private
   def fetch_course

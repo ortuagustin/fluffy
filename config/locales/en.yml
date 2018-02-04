@@ -43,6 +43,9 @@ en:
     form:
       submit: "Save"
   test_results:
+    flash:
+      stored_successfully: "Califications were saved succesfully."
+      store_failed: "There was an error in your input and the califications couldn't be saved."
     form:
       submit: "Save"
     show:
