@@ -48,6 +48,7 @@ en:
       store_failed: "There was an error in your input and the califications couldn't be saved."
     form:
       submit: "Save"
+      title: "Editing califications for the %{test} test"
     show:
       title: "Califications for the %{test} test"
       test_title: "%{test} test"
