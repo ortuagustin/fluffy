@@ -1,0 +1,32 @@
+<table class="table is-striped is-fullwidth is-narrow is-bordered">
+  <thead>
+    <tr>
+      <th rowspan="2"><%= t 'students.fields.surname' %></th>
+      <th rowspan="2"><%= t 'students.fields.name' %></th>
+      <th rowspan="2"><%= t 'students.fields.file_number' %></th>
+      <% @tests.each do |test| %>
+        <th class="has-text-centered" colspan="2"><%= test.title %></th>
+      <% end %>
+    </tr>
+    <tr>
+      <% @tests.count.times do |x| %>
+        <th class="has-text-centered"><%= t 'test_results.fields.score' %></th>
+        <th class="has-text-centered"><%= t 'test_results.fields.passed?' %></th>
+      <% end %>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.surname %></td>
+        <td><%= student.name %></td>
+        <td><%= student.file_number %></td>
+        <% @tests.each do |test| %>
+          <td class="has-text-centered"><%= student.score_for(test) %></td>
+          <td class="has-text-centered"><%= boolean_to_glyph(student.passed?(test)) %></td>
+        <% end %>
+      </tr>
+    <% end %>
+  </tbody>
+</table>

@@ -2,7 +2,7 @@ Rails.application.routes.draw do
   devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
 
   resources :courses, except: [:edit, :update, :new] do
-    get 'summary', to: 'courses#summary', as: :summary
+    get 'summary', to: 'courses#summary', on: :member, as: :summary
     resources :students, except: [:show]
 
     resources :tests, except: [:show] do

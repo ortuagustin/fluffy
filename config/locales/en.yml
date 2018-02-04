@@ -66,7 +66,8 @@ en:
       passed_average: "Passed average ratio"
   courses:
     actions:
-      new: " New Course"
+      summary: "Summary"
+      new: "New Course"
       students: "Students"
       tests: "Tests"
       destroy: "Delete Course"
@@ -79,6 +80,8 @@ en:
     index:
       title: "Courses Management"
       tile: "%{year} Course"
+    summary:
+      title: "Summary for the %{year} Course"
   students:
     actions:
       edit: "Edit"

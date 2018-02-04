@@ -1,7 +1,7 @@
 class CoursesController < ApplicationController
   before_action :set_colours
-  before_action :set_course, only: [:show, :destroy]
-  before_action :fetch_courses, only: [:index, :create]
+  before_action :set_course, only: [:destroy, :summary]
+  before_action :fetch_all_courses, only: [:index, :create]
   helper_method :tile_class, :min_year, :max_year
 
   # GET /courses
@@ -9,9 +9,16 @@ class CoursesController < ApplicationController
     @course = Course.new(year: Date.current.year)
   end
 
-  # GET /courses/1
+  # GET /courses/:id
   def show
     redirect_to course_students_path(course_id)
+  end
+
+  # GET /courses/:id/summary
+  def summary
+    @summary = @course.summary
+    @tests = @summary.tests
+    @students = @course.students
   end
 
   # POST /courses
@@ -25,7 +32,7 @@ class CoursesController < ApplicationController
     end
   end
 
-  # DELETE /courses/1
+  # DELETE /courses/:id
   def destroy
     @course.destroy
     redirect_to courses_url, notice: 'Course was successfully destroyed.'
@@ -51,7 +58,7 @@ private
     @course = Course.find(params[:id])
   end
 
-  def fetch_courses
+  def fetch_all_courses
     @courses = Course.order(year: :desc)
   end
 

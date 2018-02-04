@@ -17,7 +17,13 @@
 
         <div class="level-item">
           <p>
-            <%= fa_link_to 'gear', (t 'courses.actions.tests'),  course_tests_path(course), size: 32 %>
+            <%= fa_link_to 'gear', (t 'courses.actions.tests'), course_tests_path(course), size: 32 %>
+          </p>
+        </div>
+
+        <div class="level-item">
+          <p>
+            <%= fa_link_to 'line-chart', (t 'courses.actions.summary'), summary_course_path(course), size: 32 %>
           </p>
         </div>
       </div>
@@ -25,7 +31,7 @@
       <div class="level-right">
         <div class="level-item">
           <p>
-            <%= fa_link_to 'trash-o', (t 'courses.actions.destroy'), course_path(course), size: 32,  method: :delete, data: { confirm: (t 'courses.actions.destroy_prompt') } %>
+            <%= fa_link_to 'trash-o', (t 'courses.actions.destroy'), course_path(course), size: 32, method: :delete, data: { confirm: (t 'courses.actions.destroy_prompt') } %>
           </p>
         </div>
       </div>
