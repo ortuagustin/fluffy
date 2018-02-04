@@ -221,14 +221,7 @@ class StudentTest < ActiveSupport::TestCase
   end
 
   test "test getting Students from a Course" do
-    students_from_my_course = Student.from_course(@me.course)
-    assert_equal 2, students_from_my_course.count
-    assert students_from_my_course.exists? @me.id
-    assert students_from_my_course.exists? @another_student.id
-  end
-
-  test "test getting Students from a Course given it's id" do
-    students_from_my_course = Student.from_course_id(@me.course_id)
+    students_from_my_course = @me.course.students
     assert_equal 2, students_from_my_course.count
     assert students_from_my_course.exists? @me.id
     assert students_from_my_course.exists? @another_student.id

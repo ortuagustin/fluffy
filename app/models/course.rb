@@ -11,6 +11,10 @@ class Course < ApplicationRecord
     @summary ||= Summary::CourseSummary.new(self)
   end
 
+  def students
+    super.order(:surname, :name)
+  end
+
   def attendants_for(test)
     students.select { |each| each.attended_to? test }.count
   end

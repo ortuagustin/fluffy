@@ -4,9 +4,6 @@ class Student < ApplicationRecord
   has_many :test_results, dependent: :destroy
   has_many :tests, through: :test_results
 
-  scope :from_course, ->(course) { where(course_id: course.id) }
-  scope :from_course_id, ->(course_id) { where(course_id: course_id) }
-
   validates :name, :surname, :email, :file_number, :dni, presence: true
   validates :name, :surname, :email, length: { maximum: 255 }
   validates :file_number, length: { maximum: 7 }
