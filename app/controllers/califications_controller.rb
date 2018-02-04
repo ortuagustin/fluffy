@@ -29,7 +29,7 @@ private
   end
 
   def fetch_students
-    @students = Student.from_course_id(course_id)
+    @students = @course.students
   end
 
   def course_id
