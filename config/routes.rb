@@ -7,6 +7,8 @@ Rails.application.routes.draw do
 
     resources :tests, except: [:show] do
       get 'results', to: 'test_results#show', on: :member
+      get 'load_results', to: 'test_results#load', on: :member
+      put 'results', to: 'test_results#store', on: :member
     end
   end
 

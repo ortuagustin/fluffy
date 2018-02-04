@@ -1,0 +1,38 @@
+<%= form_tag results_course_test_path(@course), method: :put do %>
+
+  <div class="box">
+    <table class="table is-striped is-fullwidth">
+      <thead>
+        <tr>
+          <th><%= t 'students.fields.name' %></th>
+          <th><%= t 'students.fields.surname' %></th>
+          <th><%= t 'students.fields.dni' %></th>
+          <th><%= t 'students.fields.email' %></th>
+          <th><%= t 'students.fields.file_number' %></th>
+          <th><%= t 'test_results.fields.score' %></th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @students.each do |student| %>
+          <tr>
+            <td><%= student.name %></td>
+            <td><%= student.surname %></td>
+            <td><%= student.dni %></td>
+            <td><%= student.email %></td>
+            <td><%= student.file_number %></td>
+            <%= hidden_field_tag 'students[]', student.id %>
+            <td><%= text_field_tag 'scores[]', student.score_for(@test), class: 'input' %></td>
+          </tr>
+        <% end %>
+      </tbody>
+    </table>
+
+    <div class="field">
+      <div class="control has-text-centered">
+        <%= submit_tag (t 'test_results.form.submit'), class: 'button is-primary is-medium' %>
+      </div>
+    </div>
+
+  </div>
+<% end %>

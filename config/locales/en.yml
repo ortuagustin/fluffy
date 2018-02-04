@@ -24,9 +24,10 @@ en:
     have_an_account?: "Have an account? Log In"
   tests:
     actions:
+      load: "Load Test Results"
       view: "View Test Results"
       new: "Add a New Test for this Course"
-      edit: "Edit Test"
+      edit: "Edit"
       destroy: "Delete"
       destroy_prompt: "Deleting the Test will also delete all it's related Results\n\nContinue?"
     fields:
@@ -42,6 +43,8 @@ en:
     form:
       submit: "Save"
   test_results:
+    form:
+      submit: "Save"
     show:
       title: "Results for the %{test} test"
       test_title: "%{test} test"
