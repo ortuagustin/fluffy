@@ -102,6 +102,9 @@ en:
       title: "New Student"
     form:
       submit: "Save"
+  califications:
+    fields:
+      passed_course?: "Passed Course?"
   activerecord:
     errors:
       messages:
