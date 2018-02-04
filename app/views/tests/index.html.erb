@@ -25,7 +25,7 @@
           <td><%= test.title %></td>
           <td><%= l test.evaluated_at, format: "%d-%m-%Y" %></td>
           <td><%= test.passing_score %></td>
-          <td><%= fa_link_to 'upload', (t 'tests.actions.load'), edit_califications_course_test_path(course_id, test), size: 18 %></td>
+          <td><%= fa_link_to 'table', (t 'tests.actions.edit_califications'), edit_califications_course_test_path(course_id, test), size: 18 %></td>
           <td><%= fa_link_to 'list-ol', (t 'tests.actions.view'), califications_course_test_path(course_id, test), size: 18 %></td>
           <td><%= fa_link_to 'pencil', (t 'tests.actions.edit'), edit_course_test_path(course_id, test), size: 18 %></td>
           <td><%= fa_link_to 'trash-o', (t 'tests.actions.destroy'), course_test_path(course_id, test), size: 18, method: :delete, data: { confirm: (t 'tests.actions.destroy_prompt') } %></td>

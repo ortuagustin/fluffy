@@ -24,7 +24,7 @@ en:
     have_an_account?: "Have an account? Log In"
   tests:
     actions:
-      load: "Edit Califications"
+      edit_califications: "Edit Califications"
       view: "View Califications"
       new: "Add a New Test for this Course"
       edit: "Edit"
