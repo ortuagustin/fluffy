@@ -226,4 +226,19 @@ class StudentTest < ActiveSupport::TestCase
     assert students_from_my_course.exists? @me.id
     assert students_from_my_course.exists? @another_student.id
   end
+
+  test "it should pass the course if passed all the course tests" do
+    course = courses(:current_course)
+    course.tests.each do |test|
+      test.save_test_results({ @me.id => test.passing_score })
+    end
+    assert @me.passed? course
+    assert_not @me.failed? course
+  end
+
+  test "it should fail the course if failed any of the course tests" do
+    course = courses(:current_course)
+    assert_not @me.passed? course
+    assert @me.failed? course
+  end
 end

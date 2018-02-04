@@ -28,16 +28,28 @@ class Student < ApplicationRecord
     !attended_to? test
   end
 
+  Contract Or[Num, String, Test] => Bool
   def passed?(test)
     attended_to?(test) ? result_for(test).passed? : false
   end
 
+  Contract Or[Num, String, Test] => Bool
   def failed?(test)
     attended_to?(test) ? result_for(test).failed? : false
   end
 
   def score_for(test)
     attended_to?(test) ? result_for(test).score : '-'
+  end
+
+  Contract Course => Bool
+  def passed?(course)
+    course.tests.all? { |test| passed? test }
+  end
+
+  Contract Course => Bool
+  def failed?(course)
+    course.tests.any? { |test| failed? test }
   end
 private
   Contract Or[Num, String] => TestResult
