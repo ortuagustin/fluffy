@@ -93,15 +93,7 @@ class TestTest < ActiveSupport::TestCase
   end
 
   test "test getting Tests from a Course" do
-    tests_from_my_course = Test.from_course(@current_course)
-    assert_equal 3, tests_from_my_course.count
-    assert tests_from_my_course.exists? @first_test.id
-    assert tests_from_my_course.exists? @second_test.id
-    assert tests_from_my_course.exists? @float_test.id
-  end
-
-  test "test getting Tests from a Course given it's id" do
-    tests_from_my_course = Test.from_course_id(@current_course.id)
+    tests_from_my_course = @current_course.tests
     assert_equal 3, tests_from_my_course.count
     assert tests_from_my_course.exists? @first_test.id
     assert tests_from_my_course.exists? @second_test.id

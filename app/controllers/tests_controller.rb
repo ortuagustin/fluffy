@@ -4,7 +4,7 @@ class TestsController < ApplicationController
 
   # GET /courses/:course_id/tests
   def index
-    @tests = Test.from_course_id(course_id).page(params[:page])
+    @tests = course.tests.page(params[:page])
   end
 
   # GET /courses/:course_id/tests/new

@@ -2,14 +2,11 @@ module Summary
   class CourseSummary
     attr_reader :course
     delegate :empty?, :count, to: :tests
+    delegate :tests, to: :course
     alias_method :test_count, :count
 
     def initialize(course)
       @course = course
-    end
-
-    def tests
-      course.tests.order(evaluated_at: :asc)
     end
   end
 

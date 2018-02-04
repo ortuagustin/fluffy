@@ -2,9 +2,6 @@ class Test < ApplicationRecord
   belongs_to :course
   has_many :test_results, dependent: :destroy
 
-  scope :from_course, ->(course) { where(course_id: course.id) }
-  scope :from_course_id, ->(course_id) { where(course_id: course_id) }
-
   alias_attribute :results, :test_results
 
   validates :title, :evaluated_at, presence: true
