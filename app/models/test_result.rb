@@ -1,6 +1,4 @@
 class TestResult < ApplicationRecord
-  Test.include Summary::TestSummary
-
   belongs_to :test
   belongs_to :student
   delegate :passing_score, to: :test

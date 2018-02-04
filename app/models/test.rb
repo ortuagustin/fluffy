@@ -1,4 +1,6 @@
 class Test < ApplicationRecord
+  include Summary::TestSummary
+
   belongs_to :course
   has_many :test_results, dependent: :destroy
 
