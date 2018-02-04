@@ -9,7 +9,7 @@ module Summary
     end
 
     def tests
-      course.tests.order(evaluated_at: :desc)
+      course.tests.order(evaluated_at: :asc)
     end
   end
 
