@@ -13,10 +13,12 @@ class Test < ApplicationRecord
   validate :test_date_cannot_be_in_the_past
 
   def save_test_results(califications)
-    califications.each do |student_id, score|
-      result = test_results.find_or_initialize_by(student_id: student_id)
-      result.score = score
-      result.save
+    Test.transaction do
+      califications.each do |student_id, score|
+        result = test_results.find_or_initialize_by(student_id: student_id)
+        result.score = score
+        result.save
+      end
     end
 
     self
