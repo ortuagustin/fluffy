@@ -6,9 +6,9 @@ Rails.application.routes.draw do
     resources :students, except: [:show]
 
     resources :tests, except: [:show] do
-      get 'results', to: 'test_results#show', on: :member
-      get 'load_results', to: 'test_results#load', on: :member
-      put 'results', to: 'test_results#store', on: :member
+      get 'califications', to: 'califications#show', on: :member
+      put 'califications', to: 'califications#update', on: :member
+      get 'edit_califications', to: 'califications#edit', on: :member
     end
   end
 

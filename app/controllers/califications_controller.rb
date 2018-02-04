@@ -1,22 +1,22 @@
-class TestResultsController < ApplicationController
+class CalificationsController < ApplicationController
   before_action :fetch_course
   before_action :fetch_test
   before_action :fetch_students
 
-  # GET /courses/:course_id/tests/:test_id/results
+  # GET /courses/:course_id/tests/:test_id/califications
   def show
   end
 
-  # GET /courses/:course_id/tests/:test_id/load_results
-  def load
+  # GET /courses/:course_id/tests/:test_id/edit_califications
+  def edit
   end
 
-  # PUT /courses/:course_id/tests/:test_id/results
-  def store
+  # PATCH/PUT /courses/:course_id/tests/:test_id/califications
+  def update
     if @test.save_test_results(students_with_scores)
-      redirect_to results_course_test_path(course_id, test_id), notice: (I18n.t 'test_results.flash.stored_successfully')
+      redirect_to califications_course_test_path(course_id, test_id), notice: (I18n.t 'test_results.flash.stored_successfully')
     else
-      redirect_to load_results_course_test_path(course_id, test_id), alert: (I18n.t 'test_results.flash.store_failed')
+      redirect_to edit_califications_course_test_path(course_id, test_id), alert: (I18n.t 'test_results.flash.store_failed')
     end
   end
 private

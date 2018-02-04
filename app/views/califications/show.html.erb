@@ -1,4 +1,4 @@
-<%= form_subtitle (t 'test_results.load.title', test: @test.title) %>
+<%= form_subtitle (t 'test_results.show.title', test: @test.title) %>
 
 <%= render partial: 'box', locals: { link_path: course_tests_path(@course) } %>
 
@@ -6,4 +6,6 @@
 <p class="subtitle is-6 has-text-grey has-text-weight-bold"><%= t('test_results.show.evaluated_at') + ' ' + l(@test.evaluated_at, format: "%d-%m-%Y")%></p>
 <p class="subtitle is-6 has-text-grey has-text-weight-bold"><%= t 'test_results.show.passing_score', passing_score: @test.passing_score %></p>
 
-<%= render 'results_spreadsheet' %>
+<%= render 'califications' %>
+
+<%= render 'summary' %>

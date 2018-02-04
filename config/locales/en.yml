@@ -24,8 +24,8 @@ en:
     have_an_account?: "Have an account? Log In"
   tests:
     actions:
-      load: "Load Test Results"
-      view: "View Test Results"
+      load: "Edit Califications"
+      view: "View Califications"
       new: "Add a New Test for this Course"
       edit: "Edit"
       destroy: "Delete"
@@ -49,7 +49,7 @@ en:
     form:
       submit: "Save"
     show:
-      title: "Results for the %{test} test"
+      title: "Califications for the %{test} test"
       test_title: "%{test} test"
       evaluated_at: "The test was evaluated on:"
       passing_score: "The minimun required score is %{passing_score}"
