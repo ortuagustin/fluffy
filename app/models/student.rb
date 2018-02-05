@@ -1,5 +1,6 @@
 class Student < ApplicationRecord
   include Contracts
+
   belongs_to :course, counter_cache: true
   has_many :test_results, dependent: :destroy
   has_many :tests, through: :test_results
