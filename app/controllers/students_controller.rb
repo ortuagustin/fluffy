@@ -17,7 +17,7 @@ class StudentsController < ApplicationController
     @student = Student.new(student_params)
 
     if @student.save
-      redirect_to course_students_path(course_id), notice: 'Student was successfully created.'
+      redirect_to course_students_path(course_id), notice: (I18n.t 'students.flash.created')
     else
       render :new
     end
@@ -30,7 +30,7 @@ class StudentsController < ApplicationController
   # PATCH/PUT /courses/:course_id/students/:student_id
   def update
     if @student.update(student_params)
-      redirect_to course_students_path(course_id), notice: 'Student was successfully updated.'
+      redirect_to course_students_path(course_id), notice: (I18n.t 'students.flash.updated')
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class StudentsController < ApplicationController
   # DELETE /courses/:course_id/students/:student_id
   def destroy
     @student.destroy
-    redirect_to course_students_path(course_id), notice: 'Student was successfully destroyed.'
+    redirect_to course_students_path(course_id), notice: (I18n.t 'students.flash.deleted')
   end
 private
   def courses

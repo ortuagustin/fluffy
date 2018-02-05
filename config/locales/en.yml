@@ -24,6 +24,10 @@ en:
     submit: "Create User"
     have_an_account?: "Have an account? Log In"
   tests:
+    flash:
+      created: "Test successfully created."
+      updated: "Test successfully updated."
+      deleted: "Test successfully deleted."
     actions:
       edit_califications: "Edit Califications"
       view: "View Califications"
@@ -66,6 +70,9 @@ en:
       missing_count: "Students that were missing"
       passed_average: "Passed average ratio"
   courses:
+    flash:
+      created: "Course successfully created."
+      deleted: "Course successfully deleted."
     actions:
       summary: "Summary"
       new: "New Course"
@@ -84,6 +91,10 @@ en:
     summary:
       title: "Summary for the %{year} Course"
   students:
+    flash:
+      created: "Student successfully created."
+      updated: "Student successfully updated."
+      deleted: "Student successfully deleted."
     actions:
       edit: "Edit"
       destroy: "Delete"

@@ -24,6 +24,10 @@ es:
     submit: "Crear Usuario"
     have_an_account?: "Ya tenés cuenta? Ingresá"
   tests:
+    flash:
+      created: "Examen creado."
+      updated: "Examen actualizado."
+      deleted: "Examen eliminado."
     actions:
       edit_califications: "Modificar Notas"
       view: "Ver Notas"
@@ -33,8 +37,8 @@ es:
       destroy_prompt: "Al Eliminar el Examen también se eliminarán las Notas del mismo\n\nContinuar?"
     fields:
       title: "Nombre"
-      evaluated_at: "Fecha de Evaluación"
-      passing_score: "Nota min. de aprobación"
+      evaluated_at: "Fecha de evaluación"
+      passing_score: "Nota min de aprobación"
     index:
       title: "Examenes de la Cursada %{year}"
     new_form:
@@ -45,7 +49,7 @@ es:
       submit: "Guardar"
   test_results:
     flash:
-      stored_successfully: "Las notas fueron guardadas exitosamente."
+      stored_successfully: "Las notas fueron guardadas."
       store_failed: "Hubo un error en los datos ingresados y las notas no se han modificado."
     form:
       submit: "Guardar"
@@ -66,6 +70,9 @@ es:
       missing_count: "Alumnos ausentes"
       passed_average: "Porcentaje de aprobación"
   courses:
+    flash:
+      created: "Cursada creada."
+      deleted: "Cursada eliminada."
     actions:
       summary: "Vista resumida"
       new: "Nueva cursada"
@@ -79,11 +86,15 @@ es:
       title: "Nueva Cursada"
       submit: "Crear"
     index:
-      title: "Gestión de Cursada"
+      title: "Gestión de Cursadas"
       tile: "Cursada %{year}"
     summary:
       title: "Resumen para la Cursada %{year}"
   students:
+    flash:
+      created: "Alumno creado."
+      updated: "Alumno actualizado."
+      deleted: "Alumno eliminado."
     actions:
       edit: "Modificar"
       destroy: "Eliminar"
@@ -116,3 +127,52 @@ es:
         already_belongs_to_course: "Ya existe un %{model} con %{value} en esta Cursada"
         test_date_already_passed: "%{value} no es una Fecha válida; debe ser posterior o igual a Hoy"
         duplicated_test_result: "El %{model} ya tiene una Nota cargada para ese Examen"
+  date:
+    abbr_day_names:
+    - dom
+    - lun
+    - mar
+    - mié
+    - jue
+    - vie
+    - sáb
+    abbr_month_names:
+    -
+    - ene
+    - feb
+    - mar
+    - abr
+    - may
+    - jun
+    - jul
+    - ago
+    - sep
+    - oct
+    - nov
+    - dic
+    day_names:
+    - Domingo
+    - Lunes
+    - Martes
+    - Miércoles
+    - Jueves
+    - Viernes
+    - Sábado
+    month_names:
+    -
+    - Enero
+    - Febrero
+    - Marzo
+    - Abril
+    - Mayo
+    - Junio
+    - Julio
+    - Agosto
+    - Septiembre
+    - Octubre
+    - Noviembre
+    - Diciembre
+    order:
+    - :day
+    - :month
+    - :year
