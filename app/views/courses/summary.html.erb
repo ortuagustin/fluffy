@@ -1,5 +1,19 @@
 <%= form_subtitle (t 'courses.summary.title', year: @course.year) %>
 
+<%= render layout: 'box', locals: { link_path: courses_path } do %>
+  <div class="level-right">
+    <div class="level-item">
+      <%= fa_link_to 'users', (t 'navigation.go_to') + ' ' +(t 'courses.actions.students'), course_students_path(@course), size: 35 %>
+    </div>
+
+    <div class="is-divider-vertical"></div>
+
+    <div class="level-item">
+      <%= fa_link_to 'gear', (t 'navigation.go_to') + ' ' + (t 'courses.actions.tests'), course_tests_path(@course), size: 35 %>
+    </div>
+  </div>
+<% end %>
+
 <table class="table is-striped is-fullwidth is-narrow is-bordered">
   <%= render 'courses/califications/header' %>
   <%= render 'courses/califications/body' %>
