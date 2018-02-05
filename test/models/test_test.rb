@@ -171,6 +171,7 @@ class TestTest < ActiveSupport::TestCase
     assert_equal 1, @first_test.attended_count
 
     students(:foo_bar).test_results << TestResult.create(test: @first_test, score: 1)
+    @first_test.reload
     assert_equal 2, @first_test.attended_count
   end
 
@@ -195,6 +196,7 @@ class TestTest < ActiveSupport::TestCase
     assert_equal 1, @first_test.passed_average
     assert_equal 0, @float_test.passed_average
     students(:foo_bar).test_results << TestResult.create(test: @first_test, score: 1)
+    @first_test.reload
     assert_equal 0.5, @first_test.passed_average
   end
 
