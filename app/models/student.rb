@@ -16,7 +16,7 @@ class Student < ApplicationRecord
   validates :id, uniqueness: { scope: :course_id, message: :already_belongs_to_course }
   validates :file_number, uniqueness: { scope: :course_id, message: :already_belongs_to_course }
 
-  Contract Or[Num, String] => Bool
+  Contract Num => Bool
   def attended_to?(test_id)
     attended_to?(Test.find_by_id test_id)
   end
@@ -30,12 +30,12 @@ class Student < ApplicationRecord
     !attended_to? test
   end
 
-  Contract Or[Num, String, Test] => Bool
+  Contract Or[Num, Test] => Bool
   def passed?(test)
     attended_to?(test) ? result_for(test).passed? : false
   end
 
-  Contract Or[Num, String, Test] => Bool
+  Contract Or[Num, Test] => Bool
   def failed?(test)
     attended_to?(test) ? result_for(test).failed? : false
   end
@@ -54,7 +54,7 @@ class Student < ApplicationRecord
     course.tests.any? { |test| failed? test }
   end
 private
-  Contract Or[Num, String] => TestResult
+  Contract Num => TestResult
   def result_for(test_id)
     test_results.detect { |each| each.test_id == test_id }
   end

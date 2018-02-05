@@ -197,23 +197,6 @@ class StudentTest < ActiveSupport::TestCase
     assert_equal '-', (@me.score_for @float_test.id)
   end
 
-  test "i neither failed nor passed 2017 course float test because i missed it given it's id  as string" do
-    assert_not @me.failed? @float_test.id.to_s
-    assert_not @me.passed? @float_test.id.to_s
-  end
-
-  test "score_for test_id as string returns correct result when i passed" do
-    assert_equal 5, (@me.score_for @first_test.id.to_s)
-  end
-
-  test "score_for test_id as string returns correct result when i failed" do
-    assert_equal 4, (@me.score_for @second_test.id.to_s)
-  end
-
-  test "score_for test_id as string returns correct result when i missed" do
-    assert_equal '-', (@me.score_for @float_test.id.to_s)
-  end
-
   test "test attended_to? with arbitrary test_id" do
     Test.delete 5
     assert @me.missed? 5
@@ -240,5 +223,15 @@ class StudentTest < ActiveSupport::TestCase
     course = courses(:current_course)
     assert_not @me.passed? course
     assert @me.failed? course
+  end
+
+  test "it eager loads test results" do
+    student = Student.first
+    assert student.association(:test_results).loaded?
+  end
+
+  test "it eager loads tests" do
+    student = Student.first
+    assert student.association(:tests).loaded?
   end
 end
