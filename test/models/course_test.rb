@@ -83,6 +83,13 @@ class CourseTest < ActiveSupport::TestCase
     assert_equal expected, actual
   end
 
+  test "it returns correct student even if the given student id is passed as string" do
+    course = courses(:foo_course)
+    actual = course.student '1'
+    expected = students(:student_with_id_1)
+    assert_equal expected, actual
+  end
+
   test "it raises exception when the given student id doest not exist in the course" do
     assert_raises(ActiveRecord::RecordNotFound) do
       courses(:foo_course).student 12345

@@ -1,4 +1,6 @@
 class Course < ApplicationRecord
+  include Contracts
+
   has_many :students, -> { order(:surname, :name) }, dependent: :destroy
   has_many :tests, -> { order('evaluated_at ASC') }, dependent: :destroy
 
@@ -12,8 +14,14 @@ class Course < ApplicationRecord
     students.select { |each| each.attended_to? test }.count
   end
 
+  Contract Num => Student
   def student(student_id)
     students.detect { |each| each.id == student_id } || students.raise_record_not_found_exception!(student_id)
+  end
+
+  Contract String => Student
+  def student(student_id)
+    student(student_id.to_i)
   end
 
   def test(test_id)
