@@ -20,4 +20,7 @@ Rails.application.routes.draw do
   end
 
   root to: redirect("#{I18n.locale}/users/login")
+
+  get '/*path', to: redirect("/#{I18n.default_locale}/%{path}"),
+    constraints: lambda { |req| I18n.available_locales.none? { |locale| req.path.starts_with? locale.to_s } }
 end
