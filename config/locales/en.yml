@@ -5,7 +5,7 @@ en:
     login_link_label: "Log In"
     logout_link_label: "Log Out"
     register_link_label: "Register"
-    profile_link_label: "Profile"
+    welcome: "Welcome, %{username}"
     go_to: "Go to"
   login_form:
     title: "Login"

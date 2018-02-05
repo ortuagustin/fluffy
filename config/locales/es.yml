@@ -1,0 +1,118 @@
+es:
+  navigation:
+    back_link_label: "Atrás"
+    home_link_label: "Inicio"
+    login_link_label: "Iniciar Sesión"
+    logout_link_label: "Cerrar Sesión"
+    register_link_label: "Registrarse"
+    welcome: "Bienvenido, %{username}"
+    go_to: "Ir a"
+  login_form:
+    title: "Login"
+    subtitle: "Inicia sesión para continuar."
+    username_field: "Usuario"
+    password_field: "Contraseña"
+    submit: "Ingresar"
+  registration_form:
+    title: "Registrarse"
+    subtitle: "Crear un nuevo Usuario"
+    username_field: "Usuario"
+    password_field: "Contraseña"
+    password_confirmation_field: "Confirma tu contraseña"
+    email_field: "Mail"
+    email_confirmation_field: "Confirma tu mail"
+    submit: "Crear Usuario"
+    have_an_account?: "Ya tenés cuenta? Ingresá"
+  tests:
+    actions:
+      edit_califications: "Modificar Notas"
+      view: "Ver Notas"
+      new: "Agregar un nuevo Examen a esta Cursada"
+      edit: "Modificar"
+      destroy: "Eliminar"
+      destroy_prompt: "Al Eliminar el Examen también se eliminarán las Notas del mismo\n\nContinuar?"
+    fields:
+      title: "Nombre"
+      evaluated_at: "Fecha de Evaluación"
+      passing_score: "Nota min. de aprobación"
+    index:
+      title: "Examenes de la Cursada %{year}"
+    new_form:
+      title: "Nuevo Examen"
+    edit_form:
+      title: "Modificar Examen"
+    form:
+      submit: "Guardar"
+  test_results:
+    flash:
+      stored_successfully: "Las notas fueron guardadas exitosamente."
+      store_failed: "Hubo un error en los datos ingresados y las notas no se han modificado."
+    form:
+      submit: "Guardar"
+      title: "Modificando las notas del examen %{test}"
+    show:
+      title: "Notas del examen %{test}"
+      test_title: "Examen: %{test}"
+      evaluated_at: "El examen fue tomado el:"
+      passing_score: "La nota mínima para aprobar es: %{passing_score}"
+    fields:
+      passing_score: "Nota min."
+      score: "Nota"
+      passed?: "Aprobado?"
+    summary:
+      passed_count: "Alumnos aprobados"
+      failed_count: "Alumnos desaprobados"
+      attended_count: "Alumnos que se presentaron"
+      missing_count: "Alumnos ausentes"
+      passed_average: "Porcentaje de aprobación"
+  courses:
+    actions:
+      summary: "Vista resumida"
+      new: "Nueva cursada"
+      students: "Alumnos"
+      tests: "Examenes"
+      destroy: "Eliminar cursada"
+      destroy_prompt: "Al eliminar la Cursada, también se eliminarán los datos relacionados: Alumnos, Examenes y Notas\n\nContinuar?"
+    fields:
+      year: "Año"
+    form:
+      title: "Nueva Cursada"
+      submit: "Crear"
+    index:
+      title: "Gestión de Cursada"
+      tile: "Cursada %{year}"
+    summary:
+      title: "Resumen para la Cursada %{year}"
+  students:
+    actions:
+      edit: "Modificar"
+      destroy: "Eliminar"
+      destroy_prompt: "Al eliminar el Alumno también se eliminarán las Notas que obtuvo en los diferentes Examenes\n\nContinuar?"
+      new: "Agregar un nuevo Alumno a la Cursada"
+    fields:
+      name: "Nombre"
+      surname: "Apellido"
+      dni: "DNI"
+      email: "Mail"
+      file_number: "Nro. de legajo"
+    index:
+      title: "Alumnos de la Cursada %{year}"
+    edit_form:
+      title: "Modificar Alumno"
+    new_form:
+      title: "Nuevo Alumno"
+    form:
+      submit: "Guardar"
+  califications:
+    fields:
+      passed_course?: "Cursada aprobada?"
+    summary:
+      passed_course_count: "Alumnos que aprobaron la Cursada"
+  activerecord:
+    errors:
+      messages:
+        invalid_email: "'%{value}' no es un %{attribute} valido"
+        invalid_course_year: "Debe ser un número de 4 digitos"
+        already_belongs_to_course: "Ya existe un %{model} con %{value} en esta Cursada"
+        test_date_already_passed: "%{value} no es una Fecha válida; debe ser posterior o igual a Hoy"
+        duplicated_test_result: "El %{model} ya tiene una Nota cargada para ese Examen"
