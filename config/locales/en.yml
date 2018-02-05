@@ -6,6 +6,7 @@ en:
     logout_link_label: "Log Out"
     register_link_label: "Register"
     profile_link_label: "Profile"
+    go_to: "Go to"
   login_form:
     title: "Login"
     subtitle: "Please login to proceed."
