@@ -16,13 +16,13 @@
         <div class="level-item">
           <%= fa_link_to 'gear', (t 'courses.actions.tests'), course_tests_path(course), size: 30 %>
         </div>
-      </div>
 
-      <div class="level-right">
         <div class="level-item">
           <%= fa_link_to 'line-chart', (t 'courses.actions.summary'), summary_course_path(course), size: 30 %>
         </div>
+      </div>
 
+      <div class="level-right">
         <div class="level-item">
           <%= fa_link_to 'trash-o', (t 'courses.actions.destroy'), course_path(course), size: 30, method: :delete, data: { confirm: (t 'courses.actions.destroy_prompt') } %>
         </div>

@@ -1,6 +1,6 @@
 <%= form_subtitle (t 'courses.index.title') %>
 
-<% @courses.each_slice(3) do |slice| %>
+<% @courses.each_slice(2) do |slice| %>
   <div class="tile is-ancestor">
     <div class="tile">
       <%= render partial: 'course', collection: slice %>
