@@ -24,8 +24,14 @@ class Course < ApplicationRecord
     student(student_id.to_i)
   end
 
+  Contract Num => Test
   def test(test_id)
     tests.detect { |each| each.id == test_id } || tests.raise_record_not_found_exception!(test_id)
+  end
+
+  Contract String => Test
+  def test(test_id)
+    test(test_id.to_i)
   end
 
   def passed_count
