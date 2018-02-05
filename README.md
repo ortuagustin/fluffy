@@ -49,10 +49,7 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
 
 5. Ejecución: Correr el servidor: `rails s` y acceder a la [aplicación](http://localhost:3000)
 
-6. Correr los tests:
-  - `rails test` ejecutará todos los tests de unidad (modelos) y de funcionales (controladores)
-  - `rails test test/models` ejecutará sólo los test de unidad (modelos)
-  - `rails test test/controllers` ejecutará sólo los test funcionales (controladores)
+6. Para correr los tests: `rails t`
 
 ### Heroku
 
