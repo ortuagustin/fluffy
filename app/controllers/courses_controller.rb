@@ -25,7 +25,7 @@ class CoursesController < ApplicationController
     @course = Course.new(course_params)
 
     if @course.save
-      redirect_to @course, notice: (I18n.t 'courses.flash.created')
+      redirect_to @course, notice: (t 'courses.flash.created')
     else
       render :index
     end
@@ -34,7 +34,7 @@ class CoursesController < ApplicationController
   # DELETE /courses/:id
   def destroy
     @course.destroy
-    redirect_to courses_url, notice: (I18n.t 'courses.flash.delete')
+    redirect_to courses_url, notice: (t 'courses.flash.deleted')
   end
 private
   def set_colours
