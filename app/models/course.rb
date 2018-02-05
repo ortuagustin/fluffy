@@ -13,11 +13,11 @@ class Course < ApplicationRecord
   end
 
   def student(student_id)
-    students.find(student_id)
+    students.detect { |each| each.id == student_id } || students.raise_record_not_found_exception!(student_id)
   end
 
   def test(test_id)
-    tests.find(test_id)
+    tests.detect { |each| each.id == test_id } || tests.raise_record_not_found_exception!(test_id)
   end
 
   def passed_count

@@ -18,7 +18,7 @@ class Student < ApplicationRecord
 
   Contract Num => Bool
   def attended_to?(test_id)
-    attended_to?(Test.find_by_id test_id)
+    tests.any? { |test| test.id == test_id }
   end
 
   Contract Any => Bool
