@@ -14,9 +14,9 @@ class CalificationsController < ApplicationController
   # PATCH/PUT /courses/:course_id/tests/:test_id/califications
   def update
     if @test.save_test_results(students_with_scores)
-      redirect_to califications_course_test_path(course_id, test_id), notice: (I18n.t 'test_results.flash.stored_successfully')
+      redirect_to califications_course_test_path(course_id, test_id), notice: (t 'test_results.flash.stored_successfully')
     else
-      redirect_to edit_califications_course_test_path(course_id, test_id), alert: (I18n.t 'test_results.flash.store_failed')
+      redirect_to edit_califications_course_test_path(course_id, test_id), alert: (t 'test_results.flash.store_failed')
     end
   end
 private

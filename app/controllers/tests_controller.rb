@@ -21,7 +21,7 @@ class TestsController < ApplicationController
   def create
     @test = Test.new(test_params)
     if @test.save
-      redirect_to course_tests_path(course_id), notice: (I18n.t 'tests.flash.created')
+      redirect_to course_tests_path(course_id), notice: (t 'tests.flash.created')
     else
       render :new
     end
@@ -30,7 +30,7 @@ class TestsController < ApplicationController
   # PATCH/PUT /courses/:course_id/tests/:test_id
   def update
     if @test.update(test_params)
-      redirect_to course_tests_path(course_id), notice: (I18n.t 'tests.flash.updated')
+      redirect_to course_tests_path(course_id), notice: (t 'tests.flash.updated')
     else
       render :edit
     end
@@ -39,7 +39,7 @@ class TestsController < ApplicationController
   # DELETE /courses/:course_id/tests/:test_id
   def destroy
     @test.destroy
-    redirect_to course_tests_path(course_id), notice: (I18n.t 'tests.flash.deleted')
+    redirect_to course_tests_path(course_id), notice: (t 'tests.flash.deleted')
   end
 private
   def start_year
