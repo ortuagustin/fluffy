@@ -4,6 +4,8 @@ class Student < ApplicationRecord
   has_many :test_results, dependent: :destroy
   has_many :tests, through: :test_results
 
+  default_scope { includes(:tests, :test_results) }
+
   validates :name, :surname, :email, :file_number, :dni, presence: true
   validates :name, :surname, :email, length: { maximum: 255 }
   validates :file_number, length: { maximum: 7 }
@@ -54,7 +56,7 @@ class Student < ApplicationRecord
 private
   Contract Or[Num, String] => TestResult
   def result_for(test_id)
-    test_results.find_by_test_id(test_id)
+    test_results.detect { |each| each.test_id == test_id }
   end
 
   Contract Test => TestResult
