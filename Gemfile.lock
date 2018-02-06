@@ -1,3 +1,10 @@
+GIT
+  remote: https://github.com/oelmekki/activerecord_any_of.git
+  revision: 22b3bfb4614c2223242dc496328356923a239bed
+  specs:
+    activerecord_any_of (1.4)
+      activerecord (>= 3.2.13, < 6)
+
 GEM
   remote: https://rubygems.org/
   remote: https://rails-assets.org/
@@ -193,6 +200,7 @@ PLATFORMS
   ruby
 
 DEPENDENCIES
+  activerecord_any_of!
   byebug
   coffee-rails (~> 4.2)
   contracts (~> 0.16.0)

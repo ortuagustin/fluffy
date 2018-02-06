@@ -15,6 +15,7 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
   - [FontAwesome](https://github.com/bokmann/font-awesome-rails)
   - [Kaminari](https://github.com/kaminari/kaminari)
   - [Bulma](https://bulma.io)
+  - [ActiverecordAnyOf](https://github.com/oelmekki/activerecord_any_of)
   - **PostgreSQL** para producción; **SQLite3** para desarrollo y tests
 
 1. Clonar el repositorio:
