@@ -3,6 +3,11 @@ module SortableHelper
     link_to column_title(attribute, title), args(attribute), options
   end
 
+  def sort_form_inputs
+    (hidden_field_tag :sort, sort_column) if sort_column?
+    (hidden_field_tag :direction, sort_direction) if sort_direction?
+  end
+private
   def column_title(attribute, title)
     return title unless attribute == sort_column
     "#{title} #{sort_icon(attribute)}".html_safe
