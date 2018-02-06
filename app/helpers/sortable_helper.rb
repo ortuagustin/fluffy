@@ -1,6 +1,6 @@
 module SortableHelper
   def sortable(attribute, title, options = {})
-    link_to column_title(attribute, title), { q: filter, sort: attribute, direction: direction(attribute) }, options
+    link_to column_title(attribute, title), args(attribute), options
   end
 
   def column_title(attribute, title)
@@ -14,5 +14,10 @@ module SortableHelper
 
   def direction(attribute)
     attribute == sort_column && sort_direction == "asc" ? "desc" : "asc"
+  end
+
+  def args(attribute)
+    p = params.permit(:sort, :direction)
+    p.merge(sort: attribute, direction: direction(attribute))
   end
 end
