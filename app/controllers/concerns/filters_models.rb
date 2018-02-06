@@ -6,6 +6,10 @@ module FiltersModels
   end
 
   def filter
-    params[:q]
+    filter_params[:q]
+  end
+
+  def filter_params
+    params.permit(:q)
   end
 end
