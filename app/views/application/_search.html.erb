@@ -1,0 +1,13 @@
+<%= form_tag @url, method: :get, id: 'search' do %>
+  <div class="field has-addons">
+    <div class="control has-icons-right">
+      <%= text_field_tag :q, filter, autofocus: true, placeholder: (t 'views.search.prompt'), class: 'input' %>
+
+      <span class='icon is-right'>
+        <%= fa_icon 'search' %>
+      </span>
+    </div>
+  </div>
+
+  <%= yield %>
+<% end %>

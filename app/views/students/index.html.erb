@@ -8,6 +8,10 @@
   </div>
 <% end %>
 
-<div id="students" class="box">
-  <%= render 'students' %>
+<div class="box">
+  <%= search_form course_tests_path(course_id) do %>
+    <div id="students">
+      <%= render 'students' %>
+    </div>
+  <% end %>
 </div>

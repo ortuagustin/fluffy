@@ -15,6 +15,8 @@ es:
       next: Siguiente &rsaquo;
       previous: "&lsaquo; Anterior"
       truncate: "&hellip;"
+    search:
+      prompt: "Tipea para filtrar el listado"
   navigation:
     back_link_label: "Atrás"
     home_link_label: "Inicio"

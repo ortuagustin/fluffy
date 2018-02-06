@@ -1,4 +1,7 @@
 en:
+  views:
+    search:
+      prompt: "Start typing to filter the list"
   navigation:
     back_link_label: "Back"
     home_link_label: "Home"
