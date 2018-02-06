@@ -1,10 +1,12 @@
 class StudentsController < ApplicationController
+  include SortsModels
+
   before_action :set_student, except: [:index, :create, :new]
   helper_method :course_id, :course, :courses
 
   # GET /courses/:course_id/students
   def index
-    @students = course.students.page(params[:page])
+    @students = course.students(sort_params).page(params[:page])
   end
 
   # GET /courses/:course_id/students/new
@@ -68,5 +70,9 @@ private
 
   def student_params
     params.require(:student).permit(:name, :surname, :dni, :email, :file_number).merge(course_params)
+  end
+
+  def sortable_columns
+    %w[name surname dni email file_number]
   end
 end

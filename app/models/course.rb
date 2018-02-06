@@ -1,14 +1,24 @@
 class Course < ApplicationRecord
   include Contracts
 
-  has_many :students, -> { order(:surname, :name) }, dependent: :destroy
-  has_many :tests, -> { order('evaluated_at ASC') }, dependent: :destroy
+  has_many :students, dependent: :destroy
+  has_many :tests, dependent: :destroy
 
   validates_associated :students
   validates_associated :tests
   validates :year, presence: true
   validates :year, uniqueness: true
   validates :year, format: { with: /(19|20)\d{2}/i, message: :invalid_course_year }
+
+  def students(order = nil)
+    order ||= 'surname, name'
+    super().order(order)
+  end
+
+  def tests(order = nil)
+    order ||= 'evaluated_at asc'
+    super().order(order)
+  end
 
   def attendants_for(test)
     students.select { |each| each.attended_to? test }.count
