@@ -1,10 +1,12 @@
 class TestsController < ApplicationController
+  include SortsModels
+
   before_action :set_test, only: [:edit, :update, :destroy]
   helper_method :course_id, :course, :courses, :start_year
 
   # GET /courses/:course_id/tests
   def index
-    @tests = course.tests.page(params[:page])
+    @tests = course.tests(sort_params).page(params[:page])
   end
 
   # GET /courses/:course_id/tests/new
@@ -72,5 +74,13 @@ private
 
   def test_params
     params.require(:test).permit(:title, :evaluated_at, :passing_score,).merge(course_params)
+  end
+
+  def sortable_columns
+    %w[title evaluated_at passing_score]
+  end
+
+  def default_sort_column
+    'evaluated_at'
   end
 end

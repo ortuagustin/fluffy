@@ -12,9 +12,9 @@
   <table class="table is-striped is-fullwidth">
     <thead>
       <tr>
-        <th><%= t 'tests.fields.title' %></th>
-        <th><%= t 'tests.fields.evaluated_at' %></th>
-        <th><%= t 'tests.fields.passing_score' %></th>
+        <th><%= sortable 'title', (t 'tests.fields.title') %></th>
+        <th><%= sortable 'evaluated_at', (t 'tests.fields.evaluated_at') %></th>
+        <th><%= sortable 'passing_score', (t 'tests.fields.passing_score') %></th>
         <th colspan='4'></th>
       </tr>
     </thead>
