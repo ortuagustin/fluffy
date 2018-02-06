@@ -1,4 +1,6 @@
 class Test < ApplicationRecord
+  include Searchable
+
   belongs_to :course
   has_many :test_results, dependent: :destroy
 
@@ -8,6 +10,10 @@ class Test < ApplicationRecord
   validates :title, length: { maximum: 255 }
   validates :passing_score, inclusion: { in: 1..10 }
   validate :test_date_cannot_be_in_the_past
+
+  def self.searchable_fields
+    %w[title]
+  end
 
   def save_test_results(califications)
     Test.transaction do
