@@ -75,4 +75,8 @@ private
   def sortable_columns
     %w[name surname dni email file_number]
   end
+
+  def default_sort_column
+    'surname'
+  end
 end

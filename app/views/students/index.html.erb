@@ -12,11 +12,11 @@
   <table class="table is-striped is-fullwidth">
     <thead>
       <tr>
-        <th><%= t 'students.fields.surname' %></th>
-        <th><%= t 'students.fields.name' %></th>
-        <th><%= t 'students.fields.dni' %></th>
-        <th><%= t 'students.fields.email' %></th>
-        <th><%= t 'students.fields.file_number' %></th>
+        <th> <%= sortable 'surname', (t 'students.fields.surname') %> </th>
+        <th> <%= sortable 'name', (t 'students.fields.name') %> </th>
+        <th> <%= sortable 'dni', (t 'students.fields.dni') %> </th>
+        <th> <%= sortable 'email', (t 'students.fields.email') %> </th>
+        <th> <%= sortable 'file_number', (t 'students.fields.file_number') %> </th>
         <th colspan='2'></th>
       </tr>
     </thead>
