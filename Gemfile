@@ -66,6 +66,5 @@ gem "devise", "~> 4.3"
 gem "jquery-rails", "~> 4.3"
 gem "font-awesome-rails", "~> 4.7"
 gem "kaminari", "~> 1.1"
-gem 'activerecord_any_of', github: 'oelmekki/activerecord_any_of'
 
 gem 'rails-assets-bulma', source: 'https://rails-assets.org'

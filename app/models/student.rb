@@ -1,13 +1,12 @@
 class Student < ApplicationRecord
   include Contracts
+  include Searchable
 
   belongs_to :course, counter_cache: true
   has_many :test_results, dependent: :destroy
   has_many :tests, through: :test_results
 
   default_scope { includes(:tests, :test_results) }
-
-  scope :search, ->(q) { where.any_of(name: q, surname: q, file_number: q) }
 
   validates :name, :surname, :email, :file_number, :dni, presence: true
   validates :name, :surname, :email, length: { maximum: 255 }
@@ -18,6 +17,10 @@ class Student < ApplicationRecord
   validates :dni, uniqueness: { scope: :course_id, message: :already_belongs_to_course }
   validates :id, uniqueness: { scope: :course_id, message: :already_belongs_to_course }
   validates :file_number, uniqueness: { scope: :course_id, message: :already_belongs_to_course }
+
+  def self.searchable_fields
+    %w[name surname file_number]
+  end
 
   Contract Num => Bool
   def attended_to?(test_id)
