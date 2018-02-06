@@ -1,6 +1,6 @@
 module SortableHelper
   def sortable(attribute, title, options = {})
-    link_to column_title(attribute, title), { sort: attribute, direction: direction(attribute) }, options
+    link_to column_title(attribute, title), { q: filter, sort: attribute, direction: direction(attribute) }, options
   end
 
   def column_title(attribute, title)
