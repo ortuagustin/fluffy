@@ -1,0 +1,26 @@
+<table class="table is-striped is-fullwidth">
+  <thead>
+    <tr>
+      <th> <%= sortable 'surname', (t 'students.fields.surname'), remote: true %> </th>
+      <th> <%= sortable 'name', (t 'students.fields.name'), remote: true %> </th>
+      <th> <%= sortable 'dni', (t 'students.fields.dni'), remote: true %> </th>
+      <th> <%= sortable 'email', (t 'students.fields.email'), remote: true %> </th>
+      <th> <%= sortable 'file_number', (t 'students.fields.file_number'), remote: true %> </th>
+      <th colspan='2'></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @students.each do |student| %>
+      <tr>
+        <td><%= student.surname %></td>
+        <td><%= student.name %></td>
+        <td><%= student.dni %></td>
+        <td><%= student.email %></td>
+        <td><%= student.file_number %></td>
+        <td><%= fa_link_to 'pencil', (t 'students.actions.edit'), edit_course_student_path(course_id, student) %></td>
+        <td><%= fa_link_to 'trash-o', (t 'students.actions.destroy'), course_student_path(course_id, student), method: :delete, data: { confirm: (t 'students.actions.destroy_prompt') } %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
