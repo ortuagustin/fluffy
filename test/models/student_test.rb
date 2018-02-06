@@ -234,4 +234,52 @@ class StudentTest < ActiveSupport::TestCase
     student = Student.first
     assert student.association(:tests).loaded?
   end
+
+  test "test search scope returns correct results for name field" do
+    results = Student.search('Agustin')
+    assert_equal 1, results.count
+    assert_includes results, @me
+  end
+
+  test "test search scope returns correct results for surname field" do
+    results = Student.search('Ortu')
+    assert_equal 1, results.count
+    assert_includes results, @me
+  end
+
+  test "test search scope returns correct results for file_number field" do
+    results = Student.search('11329/6')
+    assert_equal 1, results.count
+    assert_includes results, @me
+  end
+
+  test "test search scope returns correct results when multiple students matches on same field" do
+    student = Student.new
+    student.name  = 'Foo'
+    student.surname = 'Bar'
+    student.file_number = '11223/4'
+    student.dni = '98765432'
+    student.email = 'foo@bar.com'
+    student.course = courses(:current_course)
+    student.save!
+    results = Student.search('Foo')
+    assert_equal 2, results.count
+    assert_includes results, student
+    assert_includes results, @another_student
+  end
+
+  test "test search scope returns correct results when multiple students matches on different fields" do
+    student = Student.new
+    student.name  = 'Bar'
+    student.surname = 'Foo'
+    student.file_number = '11223/4'
+    student.dni = '98765432'
+    student.email = 'foo@bar.com'
+    student.course = courses(:current_course)
+    student.save!
+    results = Student.search('Foo')
+    assert_equal 2, results.count
+    assert_includes results, student
+    assert_includes results, @another_student
+  end
 end

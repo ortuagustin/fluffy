@@ -7,6 +7,8 @@ class Student < ApplicationRecord
 
   default_scope { includes(:tests, :test_results) }
 
+  scope :search, ->(q) { where.any_of(name: q, surname: q, file_number: q) }
+
   validates :name, :surname, :email, :file_number, :dni, presence: true
   validates :name, :surname, :email, length: { maximum: 255 }
   validates :file_number, length: { maximum: 7 }
