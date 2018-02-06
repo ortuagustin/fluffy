@@ -10,9 +10,10 @@ class Course < ApplicationRecord
   validates :year, uniqueness: true
   validates :year, format: { with: /(19|20)\d{2}/i, message: :invalid_course_year }
 
-  def students(order = nil)
-    order ||= 'surname, name'
-    super().order(order)
+  def students(options = {})
+    keyword = options[:keyword] || nil
+    order = options[:order] || 'surname'
+    super().order(order).search(keyword)
   end
 
   def tests(order = nil)
