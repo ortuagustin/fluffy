@@ -1,6 +1,6 @@
 <%= form_subtitle (t 'courses.summary.title', year: @course.year) %>
 
-<%= render 'box', locals: { link_path: courses_path } %>
+<%= render partial: 'box', locals: { link_path: courses_path } %>
 
 <table class="table is-striped is-fullwidth is-narrow is-bordered">
   <%= render 'courses/califications/header' %>
