@@ -3,7 +3,7 @@ Rails.application.routes.draw do
     get '(page/:page)', action: :index, on: :collection, as: ''
   end
 
-  scope ":locale", locale: /#{I18n.available_locales.join("|")}/ do
+  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
     devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
 
     get 'home', to: 'courses#index', as: :home
@@ -20,11 +20,8 @@ Rails.application.routes.draw do
   end
 
   authenticated :user do
-    root to: redirect("#{I18n.locale}/home/"), as: :authenticated_root
+    root to: redirect("/home"), as: :authenticated_root
   end
 
-  root to: redirect("#{I18n.locale}/users/login")
-
-  get '/*path', to: redirect("/#{I18n.default_locale}/%{path}"),
-    constraints: lambda { |req| I18n.available_locales.none? { |locale| req.path.starts_with? locale.to_s } }
+  root to: redirect("/users/login")
 end
