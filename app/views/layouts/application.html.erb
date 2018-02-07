@@ -22,6 +22,8 @@
         <h2 class="subtitle"><%= content_for?(:subtitle) ? yield(:subtitle) : '' %></h2>
       </div>
     </div>
+
+    <%= render 'courses/navigation' if @course %>
   </section>
 
   <%= render 'alerts' %>

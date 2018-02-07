@@ -6,7 +6,7 @@ class CoursesController < ApplicationController
 
   # GET /courses
   def index
-    @course = Course.new(year: Date.current.year)
+    @new_course = Course.new(year: Date.current.year)
   end
 
   # GET /courses/:id

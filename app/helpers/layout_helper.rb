@@ -15,4 +15,11 @@ module LayoutHelper
     options.merge! builder: FormBuilder
     form_for record, options, &block
   end
+
+  def navigation_link(text, url)
+    klass = current_page?(url) ? 'is-active' : nil
+    content_tag(:li, class: klass) do
+      link_to text, url
+    end
+  end
 end

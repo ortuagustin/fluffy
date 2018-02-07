@@ -1,8 +1,8 @@
 <div class="box column is-5 is-offset-4 has-text-centered">
-  <%= form_for(@course) do |f| %>
+  <%= form_for(@new_course) do |f| %>
     <p class="title is-4"> <%= t 'courses.actions.new' %> </p>
 
-    <%= render partial: 'errors', locals: {obj: @course} %>
+    <%= render partial: 'errors', locals: {obj: @new_course} %>
 
     <div class="field is-grouped">
       <div class="control">
