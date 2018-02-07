@@ -1,4 +1,6 @@
 class CoursesController < ApplicationController
+  include FiltersModels
+
   before_action :set_colours
   before_action :set_course, only: [:destroy, :summary]
   before_action :fetch_all_courses, only: [:index, :create]
@@ -17,7 +19,7 @@ class CoursesController < ApplicationController
   # GET /courses/:id/summary
   def summary
     @tests = @course.tests
-    @students = @course.students.page(params[:page])
+    @students = @course.students(keyword: filter).page(params[:page])
   end
 
   # POST /courses

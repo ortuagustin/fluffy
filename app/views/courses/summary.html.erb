@@ -2,11 +2,15 @@
 
 <%= render partial: 'box', locals: { link_path: courses_path } %>
 
-<table id="table" class="table is-striped is-fullwidth is-narrow is-bordered">
-  <%= render 'courses/califications/header' %>
-  <%= render 'courses/califications/body' %>
-  <%= render 'courses/califications/footer' %>
-</table>
+<div class="box">
+  <%= search_form summary_course_path(@course) do %>
+    <table class="table is-striped is-fullwidth is-narrow is-bordered">
+      <%= render 'courses/califications/header' %>
+      <%= render 'courses/califications/body' %>
+      <%= render 'courses/califications/footer' %>
+    </table>
+  <% end %>
+</div>
 
 <div id="pagination">
   <%= render 'courses/califications/pagination' %>
