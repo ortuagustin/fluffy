@@ -24,7 +24,6 @@ private
   end
 
   def args(attribute)
-    p = params.permit(:sort, :direction)
-    p.merge(sort: attribute, direction: direction(attribute))
+    { q: filter, sort: attribute, direction: direction(attribute) }
   end
 end
