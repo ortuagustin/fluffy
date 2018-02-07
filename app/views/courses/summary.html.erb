@@ -2,8 +2,12 @@
 
 <%= render partial: 'box', locals: { link_path: courses_path } %>
 
-<table class="table is-striped is-fullwidth is-narrow is-bordered">
+<table id="table" class="table is-striped is-fullwidth is-narrow is-bordered">
   <%= render 'courses/califications/header' %>
   <%= render 'courses/califications/body' %>
   <%= render 'courses/califications/footer' %>
 </table>
+
+<div id="pagination">
+  <%= render 'courses/califications/pagination' %>
+</div>

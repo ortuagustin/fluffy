@@ -17,7 +17,7 @@ class CoursesController < ApplicationController
   # GET /courses/:id/summary
   def summary
     @tests = @course.tests
-    @students = @course.students
+    @students = @course.students.page(params[:page])
   end
 
   # POST /courses
