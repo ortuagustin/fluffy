@@ -4,10 +4,8 @@
 
 <div class="box">
   <%= search_form summary_course_path(@course) do %>
-    <table class="table is-striped is-fullwidth is-narrow is-bordered">
-      <%= render 'courses/califications/header' %>
-      <%= render 'courses/califications/body' %>
-      <%= render 'courses/califications/footer' %>
+    <table id="table" class="table is-striped is-fullwidth is-narrow is-bordered">
+      <%= render 'courses/califications/table' %>
     </table>
   <% end %>
 </div>
