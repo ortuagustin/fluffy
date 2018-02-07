@@ -9,7 +9,7 @@
 <% end %>
 
 <div class="box">
-  <%= search_form course_tests_path(course_id) do %>
+  <%= remote_search_form course_tests_path(course_id) do %>
     <div id="tests">
       <%= render 'tests' %>
     </div>
