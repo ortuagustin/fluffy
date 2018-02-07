@@ -1,6 +1,7 @@
 <nav class="navbar">
+
   <div class="navbar-brand">
-  <%= link_to (t 'navigation.home_link_label'), home_path, :class => 'navbar-item is-active' %>
+    <%= link_to (t 'navigation.home_link_label'), home_path, class: 'navbar-item is-active' %>
   </div>
 
   <div class="navbar-menu">
@@ -10,8 +11,9 @@
         <%= fa_link_to 'id-card-o', html_spacing + (t 'navigation.register_link_label'), new_user_registration_path, size: 20, :class => 'navbar-item' %>
       <% else %>
         <div class="navbar-item">
-            <p> <%= t 'navigation.welcome', username: current_user.username %></p>
+          <p> <%= t 'navigation.welcome', username: current_user.username %></p>
         </div>
+
         <%= fa_link_to 'sign-out', html_spacing + (t 'navigation.logout_link_label'), destroy_user_session_path, size: 20, :method => 'delete', :class => 'navbar-item' %>
       <% end %>
     </div>
