@@ -4,8 +4,10 @@ module SortableHelper
   end
 
   def sort_form_inputs
-    (hidden_field_tag :sort, sort_column) if sort_column?
-    (hidden_field_tag :direction, sort_direction) if sort_direction?
+    fields = ''
+    fields << (hidden_field_tag :sort, sort_column) if sort_column?
+    fields << (hidden_field_tag :direction, sort_direction) if sort_direction?
+    fields.html_safe
   end
 private
   def column_title(attribute, title)
