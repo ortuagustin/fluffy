@@ -1,4 +1,7 @@
 class CalificationsController < ApplicationController
+  include SortsModels
+  include FiltersModels
+
   before_action :fetch_course
   before_action :fetch_test
   before_action :fetch_students
@@ -29,7 +32,7 @@ private
   end
 
   def fetch_students
-    @students = @course.students
+    @students = @course.students({ order: sort_params, keyword: filter }).page(params[:page])
   end
 
   def course_id
@@ -54,5 +57,13 @@ private
 
   def students_with_scores
     Hash[students.zip scores]
+  end
+
+  def sortable_columns
+    %w[name surname dni email file_number]
+  end
+
+  def default_sort_column
+    'surname'
   end
 end
