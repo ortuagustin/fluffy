@@ -10,18 +10,6 @@ class Course < ApplicationRecord
   validates :year, uniqueness: true
   validates :year, format: { with: /(19|20)\d{2}/i, message: :invalid_course_year }
 
-  def students(options = {})
-    keyword = options[:keyword]
-    order = options[:order] || 'surname'
-    super().order(order).search(keyword)
-  end
-
-  def tests(options = {})
-    keyword = options[:keyword]
-    order = options[:order] || 'evaluated_at'
-    super().order(order).search(keyword)
-  end
-
   def attendants_for(test)
     students.select { |each| each.attended_to? test }.count
   end
