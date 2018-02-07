@@ -1,10 +1,24 @@
-<nav class="navbar">
+<nav class="navbar is-primary is-fixed-top">
 
   <div class="navbar-brand">
     <%= link_to (t 'navigation.home_link_label'), home_path, class: 'navbar-item is-active' %>
   </div>
 
   <div class="navbar-menu">
+    <div class="navbar-start">
+      <div class="navbar-item has-dropdown is-hoverable">
+        <div class="navbar-link">
+          <%= t 'navigation.change_locale' %>
+        </div>
+
+        <div class="navbar-dropdown is-boxed">
+          <% I18n.locales_except_current.each do |each| %>
+            <%= link_to (I18n.t_lang each), url_for(locale: each), class: 'navbar-item' %>
+          <% end %>
+        </div>
+      </div>
+    </div>
+
     <div class="navbar-end">
       <% unless user_signed_in? %>
         <%= fa_link_to 'sign-in', html_spacing + (t 'navigation.login_link_label'), new_user_session_path, size: 20, :class => 'navbar-item' %>

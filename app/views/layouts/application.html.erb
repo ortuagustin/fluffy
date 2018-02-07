@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html class="has-navbar-fixed-top">
 
 <head>
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -11,11 +11,9 @@
 </head>
 
 <body>
-  <section class="hero is-primary is-small">
-    <div class="hero-head">
-      <%= render 'layouts/navigation' %>
-    </div>
+  <%= render 'layouts/navigation' %>
 
+  <section class="hero is-primary is-small">
     <div class="hero-body">
       <div class="container has-text-centered">
         <h1 class="title"><%= content_for?(:title) ? yield(:title) : "Fluffy" %></h1>

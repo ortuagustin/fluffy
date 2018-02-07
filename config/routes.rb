@@ -7,7 +7,7 @@ Rails.application.routes.draw do
     get 'summary/(page/:page)', action: :summary, on: :member, as: ''
   end
 
-  scope "(:locale)", locale: /#{I18n.available_locales.join("|")}/ do
+  scope "(:locale)", locale: /#{ I18n.locales.join("|")}/ do
     devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
 
     get 'home', to: 'courses#index', as: :home

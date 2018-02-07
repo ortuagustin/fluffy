@@ -25,6 +25,7 @@ es:
     register_link_label: "Registrarse"
     welcome: "Bienvenido, %{username}"
     go_to: "Ir a"
+    change_locale: "Idioma (español)"
   login_form:
     title: "Login"
     subtitle: "Inicia sesión para continuar."

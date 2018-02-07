@@ -10,6 +10,7 @@ en:
     register_link_label: "Register"
     welcome: "Welcome, %{username}"
     go_to: "Go to"
+    change_locale: "Language (english)"
   login_form:
     title: "Login"
     subtitle: "Please login to proceed."
