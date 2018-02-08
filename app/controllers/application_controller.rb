@@ -7,12 +7,16 @@ class ApplicationController < ActionController::Base
 
 protected
   def set_locale
-    I18n.locale = params[:locale] || session[:locale] || I18n.default_locale
+    I18n.locale = locale_params[:locale] || session[:locale] || I18n.default_locale
     session[:locale] = I18n.locale
   end
 
   def default_url_options
     { locale: I18n.locale }
+  end
+
+  def locale_params
+    params.permit(:locale)
   end
 
   def configure_permitted_parameters
