@@ -1,5 +1,5 @@
 class TestsController < ApplicationController
-  include SortsModels
+  include SortsModels # app/controllers/concerns/sorts_models.rb
   include FiltersModels
 
   sorts :tests, :title, :title, :evaluated_at, :passing_score

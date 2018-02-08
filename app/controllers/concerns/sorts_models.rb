@@ -1,3 +1,58 @@
+# Este modulo me permite manejar facilmente columnas para ordenar un listado de modelos
+# expone un unico metodo publico, #sorts, que recibe el nombre "tabletizado" (ver ActiveSupport::Inflector#tableize)
+# por ej: "students" (de todas formas, siempre se invoca a #tableize, ...)
+# y, opcionalmente: la columna por defecto por la cual se ordena, y una lista de campos "ordenables"
+#
+# Si no se especifica la lista de columnas ordenables, se obtienen todos los atributos del modelo
+# Si no se especifica una columna por defecto, se asume la primer columna
+#
+# La idea es incluir este modulo en un Controller; el modulo va a agregar metodos para generar cabeceras de
+# tablas HTML siguiendo la convencion "sort_modelos_by_atriubto", donde modelos es el que se pasa como parametro
+# al llamar a #sorts, y atributo cada uno de los campos
+#
+# Estos metodos "sort_by" son wrappers de ActionView::Helpers::UrlHelper#link_to, y esperan encontrar las traducciones
+# en el locale activo siguiendo la convencion "modelos.fields.atributo", por ej: "students.fields.name"
+#
+# Los links son generados con la opcion "remote: true", ya que la idea es reflejar los cambios por AJAX. Los links
+# generados incluyen los parametros de ordenacion en la URL, los parametros que envia son:
+# ":order" => columna por la que se ordena. Se aplica una sanitizacion respecto de las columnas indicadas al invocar
+#             a #sorts; si el valor del parametro no esta inlcuido en esa lista, se devuelve la columna por defecto
+#
+# ":direction" => los unicos dos posibles valores son "asc" y "desc". Tambien son sanitizados
+#
+# Ejemplo:
+#
+# class StudentsController < ApplicationController
+#   include SortsModels
+#
+#   sorts :students, :surname, :name, :surname
+# end
+#
+# Esto indica que el recurso "students" es ordenable, y que la columna por defecto es :surname; los campos para los
+# cuales se generan metodos son :surname y :name
+#
+# Esto genera los siguientes metodos (que tambien se pueden utilizar en las vistas)
+#
+# #sort_students_by_name
+# #sort_students_by_surname
+# #students_sort_params => contiene los parametros de ordenacion, extraidos de la url, listos para enviar al
+#                          metodo #order de ActiveRecord
+# #students_sort_column? => true si en el request existe params[:sort] y ademas supera la sanitizacion
+# #students_sort_direction? => true si en el request existe params[:direction] y ademas supera la sanitizacion
+# #students_sort_column => valor de params[:sort]; si no existe, devuelve columna por defecto
+# #students_sort_direction => valor de params[:direction]; si no existe, devuelve "asc"
+#
+# Los helpers que generan URL tambien son capaces de detectar cual es la columna por la cual se esta ordenando
+# actualmente, y tambien la direccion. Esto permite agregar una flecha que indica cual es la columna por la cual
+# se esta ordenando, y tambien la direccion de la misma (usa iconos de FontAwesome 4)
+#
+# El controller definido arriba se terminaria usando asi:
+#
+#  def index
+#    @students = Student.order(students_sort_params)
+#  end
+#
+
 module SortsModels
   extend ActiveSupport::Concern
 

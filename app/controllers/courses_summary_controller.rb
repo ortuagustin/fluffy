@@ -1,5 +1,5 @@
 class CoursesSummaryController < ApplicationController
-  include SortsModels
+  include SortsModels # app/controllers/concerns/sorts_models.rb
   include FiltersModels
 
   sorts :students, :surname, :name, :surname, :dni, :email, :file_number
