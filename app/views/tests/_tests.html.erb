@@ -13,7 +13,7 @@
   <tbody>
     <% @tests.each do |test| %>
       <tr>
-        <td><%= test.title %></td>
+        <td><%= highlight(test.title, filter) %></td>
         <td><%= l test.evaluated_at, format: "%d-%m-%Y" %></td>
         <td><%= test.passing_score %></td>
         <td><%= fa_link_to 'table', (t 'tests.actions.edit_califications'), edit_califications_course_test_path(course_id, test), size: 18 %></td>
