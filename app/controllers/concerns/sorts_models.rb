@@ -57,6 +57,8 @@ module SortsModels
   extend ActiveSupport::Concern
 
   module ClassMethods
+    include ConcernMethods
+
     def sorts(model, *fields)
       resource = model.to_s.tableize
       @@fields ||= ActiveSupport::HashWithIndifferentAccess.new
@@ -66,10 +68,6 @@ module SortsModels
     end
 
     private
-      def define_helper_method(name, &block)
-        helper_method define_method(name, &block)
-      end
-
       def create_helpers(resource)
         define_helper_method "#{resource}_sort_column?" do
           @@fields[resource].include?(send("#{resource}_sanitized_sort_params")[:sort])
