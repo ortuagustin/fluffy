@@ -2,6 +2,8 @@ class StudentsController < ApplicationController
   include SortsModels
   include FiltersModels
 
+  sorts :students, :surname, :name, :surname, :dni, :email, :file_number
+
   before_action :set_student, except: [:index, :create, :new]
   helper_method :course_id, :course, :courses
 
@@ -71,13 +73,5 @@ private
 
   def student_params
     params.require(:student).permit(:name, :surname, :dni, :email, :file_number).merge(course_params)
-  end
-
-  def sortable_columns
-    %w[name surname dni email file_number]
-  end
-
-  def default_sort_column
-    'surname'
   end
 end

@@ -1,7 +1,4 @@
 class CoursesController < ApplicationController
-  include SortsModels
-  include FiltersModels
-
   before_action :set_colours
   before_action :set_course, only: [:destroy]
   before_action :fetch_all_courses, only: [:index, :create]

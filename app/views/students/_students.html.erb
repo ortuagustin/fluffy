@@ -3,11 +3,11 @@
 <table class="table is-striped is-fullwidth">
   <thead>
     <tr>
-      <th> <%= sortable 'surname', (t 'students.fields.surname'), remote: true %> </th>
-      <th> <%= sortable 'name', (t 'students.fields.name'), remote: true %> </th>
-      <th> <%= sortable 'dni', (t 'students.fields.dni'), remote: true %> </th>
-      <th> <%= sortable 'email', (t 'students.fields.email'), remote: true %> </th>
-      <th> <%= sortable 'file_number', (t 'students.fields.file_number'), remote: true %> </th>
+      <th> <%= sort_students_by_surname %> </th>
+      <th> <%= sort_students_by_name %> </th>
+      <th> <%= sort_students_by_dni %> </th>
+      <th> <%= sort_students_by_email %> </th>
+      <th> <%= sort_students_by_file_number %> </th>
       <th colspan='2'></th>
     </tr>
   </thead>

@@ -2,6 +2,8 @@ class TestsController < ApplicationController
   include SortsModels
   include FiltersModels
 
+  sorts :tests, :title, :title, :evaluated_at, :passing_score
+
   before_action :set_test, only: [:edit, :update, :destroy]
   helper_method :course_id, :course, :courses, :start_year
 
@@ -75,13 +77,5 @@ private
 
   def test_params
     params.require(:test).permit(:title, :evaluated_at, :passing_score,).merge(course_params)
-  end
-
-  def sortable_columns
-    %w[title evaluated_at passing_score]
-  end
-
-  def default_sort_column
-    'evaluated_at'
   end
 end

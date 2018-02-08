@@ -2,6 +2,7 @@ class CoursesSummaryController < ApplicationController
   include SortsModels
   include FiltersModels
 
+  sorts :students, :surname, :name, :surname, :dni, :email, :file_number
   before_action :set_course
 
   # GET /courses/:id/summary

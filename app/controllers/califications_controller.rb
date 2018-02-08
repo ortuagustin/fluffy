@@ -2,6 +2,8 @@ class CalificationsController < ApplicationController
   include SortsModels
   include FiltersModels
 
+  sorts :students, :surname, :name, :surname, :dni, :email, :file_number
+
   before_action :fetch_course
   before_action :fetch_test
   before_action :fetch_students
@@ -57,13 +59,5 @@ private
 
   def students_with_scores
     Hash[students.zip scores]
-  end
-
-  def sortable_columns
-    %w[name surname dni email file_number]
-  end
-
-  def default_sort_column
-    'surname'
   end
 end

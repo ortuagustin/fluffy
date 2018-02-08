@@ -3,9 +3,9 @@
 <table class="table is-striped is-fullwidth">
   <thead>
     <tr>
-      <th><%= sortable 'title', (t 'tests.fields.title'), remote: true %></th>
-      <th><%= sortable 'evaluated_at', (t 'tests.fields.evaluated_at'), remote: true %></th>
-      <th><%= sortable 'passing_score', (t 'tests.fields.passing_score'), remote: true %></th>
+      <th><%= sort_tests_by_title %></th>
+      <th><%= sort_tests_by_evaluated_at %></th>
+      <th><%= sort_tests_by_passing_score %></th>
       <th colspan='4'></th>
     </tr>
   </thead>
