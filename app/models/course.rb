@@ -1,5 +1,6 @@
 class Course < ApplicationRecord
   include Contracts
+  include CourseWithSearchableAssociations # /models/concerns/course_with_searchable_associations.rb
 
   has_many :students, dependent: :destroy
   has_many :tests, dependent: :destroy

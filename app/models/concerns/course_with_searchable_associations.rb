@@ -9,7 +9,7 @@
 #   has_many :students, dependent: :destroy
 #   has_many :tests, dependent: :destroy
 #
-#   def students_with_options(options = {})
+#   def students_with_options(options)
 #     keyword = options[:keyword]
 #     order = options[:order] || 'surname'
 #     students.order(order).search(keyword)
@@ -18,7 +18,7 @@
 #
 # Pero me parecio que lo mas intuitivo era seguir llamando los metodos "de toda la vida" y que sea transparente
 # Intente con esta implementacion, que si bien funciona, me lleva al problema de los N+1 queries
-#   def students_with_options(options = {})
+#   def students_with_options(options)
 #     keyword = options[:keyword]
 #     order = options[:order] || 'surname'
 #     super().order(order).search(keyword)
@@ -40,7 +40,7 @@ module CourseWithSearchableAssociations
   # delega en el 'students' a secas, sin argumentos
   # el metodo search esta definido en el modulo Searchable: app/models/concerns/searchable.rb
   Contract Hash => ActiveRecord::Relation
-  def students(options = {})
+  def students(options)
     keyword = options[:keyword]
     order = options[:order] || 'surname'
     students.order(order).search(keyword)
@@ -52,11 +52,9 @@ module CourseWithSearchableAssociations
   end
 
   Contract Hash => ActiveRecord::Relation
-  def tests(options = {})
+  def tests(options)
     keyword = options[:keyword]
     order = options[:order] || 'evaluated_at'
     tests.order(order).search(keyword)
   end
 end
-
-Course.include(CourseWithSearchableAssociations)
