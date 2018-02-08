@@ -2,7 +2,7 @@ class TestsController < ApplicationController
   include SortsModels # app/controllers/concerns/sorts_models.rb
   include FiltersModels
 
-  sorts :tests, :title, :title, :evaluated_at, :passing_score
+  sorts :tests, :evaluated_at, :title, :passing_score
 
   before_action :set_test, only: [:edit, :update, :destroy]
   helper_method :course_id, :course, :courses, :start_year

@@ -1,20 +1,19 @@
 # Este modulo me permite manejar facilmente columnas para ordenar un listado de modelos
 # expone un unico metodo publico, #sorts, que recibe el nombre "tabletizado" (ver ActiveSupport::Inflector#tableize)
 # por ej: "students" (de todas formas, siempre se invoca a #tableize, ...)
-# y, opcionalmente: la columna por defecto por la cual se ordena, y una lista de campos "ordenables"
-#
-# Si no se especifica la lista de columnas ordenables, se obtienen todos los atributos del modelo
-# Si no se especifica una columna por defecto, se asume la primer columna
+# y, opcionalmenteuna lista de campos "ordenables", la cual, si no se define, se inicializa como todos los atributos
+# del modelo en cuestion.
+# De estas columnas, la primera es la que define el orden por defecto
 #
 # La idea es incluir este modulo en un Controller; el modulo va a agregar metodos para generar cabeceras de
 # tablas HTML siguiendo la convencion "sort_modelos_by_atriubto", donde modelos es el que se pasa como parametro
 # al llamar a #sorts, y atributo cada uno de los campos
 #
 # Estos metodos "sort_by" son wrappers de ActionView::Helpers::UrlHelper#link_to, y esperan encontrar las traducciones
-# en el locale activo siguiendo la convencion "modelos.fields.atributo", por ej: "students.fields.name"
+# en el locale activo siguiendo la convencion "tabletizado.fields.atributo", por ej: "students.fields.name"
 #
 # Los links son generados con la opcion "remote: true", ya que la idea es reflejar los cambios por AJAX. Los links
-# generados incluyen los parametros de ordenacion en la URL, los parametros que envia son:
+# generados incluyen los parametros de ordenamiento en la URL; estos son:
 # ":order" => columna por la que se ordena. Se aplica una sanitizacion respecto de las columnas indicadas al invocar
 #             a #sorts; si el valor del parametro no esta inlcuido en esa lista, se devuelve la columna por defecto
 #
@@ -25,7 +24,7 @@
 # class StudentsController < ApplicationController
 #   include SortsModels
 #
-#   sorts :students, :surname, :name, :surname
+#   sorts :students, :surname, name,
 # end
 #
 # Esto indica que el recurso "students" es ordenable, y que la columna por defecto es :surname; los campos para los
@@ -43,8 +42,9 @@
 # #students_sort_direction => valor de params[:direction]; si no existe, devuelve "asc"
 #
 # Los helpers que generan URL tambien son capaces de detectar cual es la columna por la cual se esta ordenando
-# actualmente, y tambien la direccion. Esto permite agregar una flecha que indica cual es la columna por la cual
-# se esta ordenando, y tambien la direccion de la misma (usa iconos de FontAwesome 4)
+# actualmente, y tambien la direccion(ascendenteo descendente).
+# Esto permite agregar un icono (una flecha) que indica cual es la columna por la cual se esta ordenando, y
+# tambien la direccion de la misma (usa iconos de FontAwesome 4)
 #
 # El controller definido arriba se terminaria usando asi:
 #
@@ -57,12 +57,12 @@ module SortsModels
   extend ActiveSupport::Concern
 
   module ClassMethods
-    def sorts(model, default = nil, *fields)
+    def sorts(model, *fields)
       resource = model.to_s.tableize
       @@fields ||= ActiveSupport::HashWithIndifferentAccess.new
       @@fields[resource] = model_fields(resource, fields)
       create_sort_by_methods(resource, @@fields[resource])
-      create_helpers(resource, default)
+      create_helpers(resource)
     end
 
     private
@@ -70,13 +70,13 @@ module SortsModels
         helper_method define_method(name, &block)
       end
 
-      def create_helpers(resource, default)
+      def create_helpers(resource)
         define_helper_method "#{resource}_sort_column?" do
           @@fields[resource].include?(send("#{resource}_sanitized_sort_params")[:sort])
         end
 
         define_helper_method "#{resource}_default_sort_column" do
-          default.blank? ? @@fields[resource].first : default.to_s
+          @@fields[resource].first
         end
 
         define_helper_method "#{resource}_sanitized_sort_params" do

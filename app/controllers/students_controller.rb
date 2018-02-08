@@ -2,7 +2,7 @@ class StudentsController < ApplicationController
   include SortsModels # app/controllers/concerns/sorts_models.rb
   include FiltersModels
 
-  sorts :students, :surname, :name, :surname, :dni, :email, :file_number
+  sorts :students, :surname, :name, :dni, :email, :file_number
 
   before_action :set_student, except: [:index, :create, :new]
   helper_method :course_id, :course, :courses

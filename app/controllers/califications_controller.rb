@@ -2,7 +2,7 @@ class CalificationsController < ApplicationController
   include SortsModels # app/controllers/concerns/sorts_models.rb
   include FiltersModels
 
-  sorts :students, :surname, :name, :surname, :dni, :email, :file_number
+  sorts :students, :surname, :name, :dni, :email, :file_number
 
   before_action :fetch_course
   before_action :fetch_test

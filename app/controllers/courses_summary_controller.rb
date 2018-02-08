@@ -2,7 +2,8 @@ class CoursesSummaryController < ApplicationController
   include SortsModels # app/controllers/concerns/sorts_models.rb
   include FiltersModels
 
-  sorts :students, :surname, :name, :surname, :dni, :email, :file_number
+  sorts :students, :surname, :name, :dni, :email, :file_number
+
   before_action :set_course
 
   # GET /courses/:id/summary
