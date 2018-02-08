@@ -1,8 +1,9 @@
 class CoursesController < ApplicationController
+  include SortsModels
   include FiltersModels
 
   before_action :set_colours
-  before_action :set_course, only: [:destroy, :summary]
+  before_action :set_course, only: [:destroy]
   before_action :fetch_all_courses, only: [:index, :create]
   helper_method :tile_class, :min_year, :max_year
 
@@ -14,12 +15,6 @@ class CoursesController < ApplicationController
   # GET /courses/:id
   def show
     redirect_to course_students_path(course_id)
-  end
-
-  # GET /courses/:id/summary
-  def summary
-    @tests = @course.tests
-    @students = @course.students(keyword: filter).page(params[:page])
   end
 
   # POST /courses
@@ -35,6 +30,7 @@ class CoursesController < ApplicationController
 
   # DELETE /courses/:id
   def destroy
+    @course = Course.find(params[:id])
     @course.destroy
     redirect_to courses_url, notice: (t 'courses.flash.deleted')
   end
@@ -53,10 +49,6 @@ private
 
   def tile_class(index)
     "'tile is-child box notification has-text-centered is-#{colour(index)}'".html_safe
-  end
-
-  def set_course
-    @course = Course.find(params[:id])
   end
 
   def fetch_all_courses

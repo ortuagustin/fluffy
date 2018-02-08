@@ -1,23 +1,23 @@
   <tfooter>
     <tr>
       <th colspan="3"> <%= t 'test_results.summary.passed_count' %> </th>
-      <%= render partial: 'courses/califications/footer_row', locals: { method: :passed_count } %>
+      <%= render partial: 'footer_row', locals: { method: :passed_count } %>
     </tr>
     <tr>
       <th colspan="3"> <%= t 'test_results.summary.failed_count' %> </th>
-      <%= render partial: 'courses/califications/footer_row', locals: { method: :failed_count } %>
+      <%= render partial: 'footer_row', locals: { method: :failed_count } %>
     </tr>
     <tr>
       <th colspan="3"> <%= t 'test_results.summary.attended_count' %> </th>
-      <%= render partial: 'courses/califications/footer_row', locals: { method: :attended_count } %>
+      <%= render partial: 'footer_row', locals: { method: :attended_count } %>
     </tr>
     <tr>
       <th colspan="3"> <%= t 'test_results.summary.missing_count' %> </th>
-      <%= render partial: 'courses/califications/footer_row', locals: { method: :missing_count } %>
+      <%= render partial: 'footer_row', locals: { method: :missing_count } %>
     </tr>
     <tr>
       <th colspan="3"> <%= t 'test_results.summary.passed_average' %> </th>
-      <%= render partial: 'courses/califications/footer_row', locals: { method: :passed_average_percentage } %>
+      <%= render partial: 'footer_row', locals: { method: :passed_average_percentage } %>
     </tr>
     <tr>
       <th colspan="3"> <%= t 'califications.summary.passed_course_count' %> </th>

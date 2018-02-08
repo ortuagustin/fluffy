@@ -1,8 +1,8 @@
 <thead>
   <tr>
-    <th rowspan="2"><%= t 'students.fields.surname' %></th>
-    <th rowspan="2"><%= t 'students.fields.name' %></th>
-    <th rowspan="2"><%= t 'students.fields.file_number' %></th>
+    <th rowspan="2"><%= sortable 'name', (t 'students.fields.surname'), remote: true %></th>
+    <th rowspan="2"><%= sortable 'surname', (t 'students.fields.name'), remote: true %></th>
+    <th rowspan="2"><%= sortable 'file_number', (t 'students.fields.file_number'), remote: true %></th>
     <% @tests.each do |test| %>
       <th class="has-text-centered" colspan="2"><%= test.title %></th>
     <% end %>
