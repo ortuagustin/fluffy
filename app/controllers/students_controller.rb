@@ -9,7 +9,7 @@ class StudentsController < ApplicationController
 
   # GET /courses/:course_id/students
   def index
-    @students = course.students({ order: sort_params, keyword: filter }).page(params[:page])
+    @students = course.students({ order: students_sort_params, keyword: filter }).page(params[:page])
   end
 
   # GET /courses/:course_id/students/new

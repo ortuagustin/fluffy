@@ -34,7 +34,7 @@ private
   end
 
   def fetch_students
-    @students = @course.students({ order: sort_params, keyword: filter }).page(params[:page])
+    @students = @course.students({ order: students_sort_params, keyword: filter }).page(params[:page])
   end
 
   def course_id

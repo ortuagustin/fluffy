@@ -8,7 +8,7 @@ class CoursesSummaryController < ApplicationController
   # GET /courses/:id/summary
   def show
     @tests = @course.tests
-    @students = @course.students({ order: sort_params, keyword: filter }).page(params[:page])
+    @students = @course.students({ order: students_sort_params, keyword: filter }).page(params[:page])
   end
 private
   def set_course

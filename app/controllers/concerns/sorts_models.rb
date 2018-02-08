@@ -1,57 +1,81 @@
 module SortsModels
   extend ActiveSupport::Concern
 
-  included do
-    helper_method :sort_column, :sort_direction, :sort_column?, :sort_direction?, :sort_form_inputs
-  end
-
-  def sort_form_inputs
-    fields = ''
-    fields << (view_context.hidden_field_tag :sort, sort_column) if sort_column?
-    fields << (view_context.hidden_field_tag :direction, sort_direction) if sort_direction?
-    fields.html_safe
-  end
-
-  def sanitized_sort_params
-    params.permit(:sort, :direction)
-  end
-
-  def sort_column
-    sort_column? ? sanitized_sort_params[:sort] : default_sort_column
-  end
-
-  def sort_direction?
-    %w[asc desc].include?(sanitized_sort_params[:direction])
-  end
-
-  def sort_direction
-    sort_direction? ? sanitized_sort_params[:direction] : default_sort_direction
-  end
-
-  def default_sort_direction
-    'asc'
-  end
-
-  def sort_params
-    sort_column + ' ' + sort_direction
-  end
-
   module ClassMethods
     def sorts(model, default = nil, *fields)
       resource = model.to_s.tableize
-      @@fields = model_fields(resource, fields)
-      create_sort_by_methods(resource, @@fields)
-      create_helpers(fields, default)
+      @@fields ||= ActiveSupport::HashWithIndifferentAccess.new
+      @@fields[resource] = model_fields(resource, fields)
+      create_sort_by_methods(resource, @@fields[resource])
+      create_helpers(resource, default)
     end
 
     private
-      def create_helpers(fields, default)
-        define_method(:sort_column?) do
-          @@fields.include?(sanitized_sort_params[:sort])
+      def define_helper_method(name, &block)
+        helper_method define_method(name, &block)
+      end
+
+      def create_helpers(resource, default)
+        define_helper_method "#{resource}_sort_column?" do
+          @@fields[resource].include?(send("#{resource}_sanitized_sort_params")[:sort])
         end
 
-        define_method(:default_sort_column) do
-          default.blank? ? @@fields.first : default.to_s
+        define_helper_method "#{resource}_default_sort_column" do
+          default.blank? ? @@fields[resource].first : default.to_s
+        end
+
+        define_helper_method "#{resource}_sanitized_sort_params" do
+          params.permit(:sort, :direction)
+        end
+
+        define_helper_method "#{resource}_sort_column" do
+          send("#{resource}_sort_column?") ?
+            send("#{resource}_sanitized_sort_params")[:sort] :
+            send("#{resource}_default_sort_column")
+        end
+
+        define_helper_method "#{resource}_sort_direction?" do
+          %w[asc desc].include?(send("#{resource}_sanitized_sort_params")[:direction])
+        end
+
+        define_helper_method "#{resource}_sort_direction" do
+          send("#{resource}_sort_direction?") ?
+            send("#{resource}_sanitized_sort_params")[:direction] :
+            send("#{resource}_default_sort_direction")
+        end
+
+        define_helper_method "#{resource}_default_sort_direction" do
+          'asc'
+        end
+
+        define_helper_method "#{resource}_sort_params" do
+          send("#{resource}_sort_column") + ' ' + send("#{resource}_sort_direction")
+        end
+
+        define_helper_method "#{resource}_sort_form_inputs" do
+          ctx = view_context
+          fields = ''
+          fields << (ctx.hidden_field_tag :sort, send("#{resource}_sort_column")) if send("#{resource}_sort_column?")
+          fields << (ctx.hidden_field_tag :direction, send("#{resource}_sort_direction")) if send("#{resource}_sort_direction")
+          fields.html_safe
+        end
+
+        define_method :header do |name, field|
+          h = I18n.t("#{name}.fields.#{field}")
+          return h unless field == send("#{resource}_sort_column")
+          "#{h} #{icon(field)}".html_safe
+        end
+
+        define_method :url do |field|
+          { q: filter, sort: field, direction: direction(field) }
+        end
+
+        define_method :direction do |field|
+          field == send("#{resource}_sort_column") && send("#{resource}_sort_direction") == "asc" ? "desc" : "asc"
+        end
+
+        define_method :icon do |field|
+          view_context.fa_icon "sort-#{direction(field)}"
         end
       end
 
@@ -74,23 +98,5 @@ module SortsModels
       def get_model_class(klass)
         Object.const_get klass
       end
-  end
-private
-  def header(name, field)
-    h = I18n.t("#{name}.fields.#{field}")
-    return h unless field == sort_column
-    "#{h} #{icon(field)}".html_safe
-  end
-
-  def url(field)
-    { q: filter, sort: field, direction: direction(field) }
-  end
-
-  def direction(field)
-    field == sort_column && sort_direction == "asc" ? "desc" : "asc"
-  end
-
-  def icon(field)
-    view_context.fa_icon "sort-#{direction(field)}"
   end
 end
