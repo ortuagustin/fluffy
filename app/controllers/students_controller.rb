@@ -1,15 +1,16 @@
 class StudentsController < ApplicationController
   include SortsModels # app/controllers/concerns/sorts_models.rb
-  include FiltersModels
+  include FiltersModels # app/controllers/concerns/filters_models.rb
 
   sorts :students, :surname, :name, :dni, :email, :file_number
+  filters :students
 
   before_action :set_student, except: [:index, :create, :new]
   helper_method :course_id, :course, :courses
 
   # GET /courses/:course_id/students
   def index
-    @students = course.students({ order: students_sort_params, keyword: filter }).page(params[:page])
+    @students = course.students({ order: students_sort_params, keyword: students_filter }).page(params[:page])
   end
 
   # GET /courses/:course_id/students/new

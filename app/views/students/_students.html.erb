@@ -13,13 +13,13 @@
   </thead>
 
   <tbody>
-    <% @students.each do |student| %>
+    <% students.each do |student| %>
       <tr>
-        <td><%= highlight(student.surname, filter) %></td>
-        <td><%= highlight(student.name, filter) %></td>
-        <td><%= highlight(student.dni, filter) %></td>
-        <td><%= highlight(student.email, filter) %></td>
-        <td><%= highlight(student.file_number, filter) %></td>
+        <td><%= student.surname %></td>
+        <td><%= student.name %></td>
+        <td><%= student.dni %></td>
+        <td><%= student.email %></td>
+        <td><%= student.file_number %></td>
         <td><%= fa_link_to 'pencil', (t 'students.actions.edit'), edit_course_student_path(course_id, student) %></td>
         <td><%= fa_link_to 'trash-o', (t 'students.actions.destroy'), course_student_path(course_id, student), method: :delete, data: { confirm: (t 'students.actions.destroy_prompt') } %></td>
       </tr>
