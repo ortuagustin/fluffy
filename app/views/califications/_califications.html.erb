@@ -17,11 +17,11 @@
   <tbody>
     <% @students.each do |student| %>
       <tr>
-        <td> <%= student.surname %> </td>
-        <td> <%= student.name %> </td>
-        <td> <%= student.dni %> </td>
-        <td> <%= student.email %> </td>
-        <td> <%= student.file_number %> </td>
+        <td><%= highlight(student.surname, filter) %></td>
+        <td><%= highlight(student.name, filter) %></td>
+        <td><%= highlight(student.dni, filter) %></td>
+        <td><%= highlight(student.email, filter) %></td>
+        <td><%= highlight(student.file_number, filter) %></td>
         <td> <%= @test.passing_score %> </td>
         <td> <%= student.score_for(@test) %> </td>
         <td> <%= boolean_to_glyph(student.passed?(@test)) %> </td>
