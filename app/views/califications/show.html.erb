@@ -7,7 +7,7 @@
 <p class="subtitle is-6 has-text-grey has-text-weight-bold"><%= t 'test_results.show.passing_score', passing_score: @test.passing_score %></p>
 
 <div class="box">
-  <%= remote_search_form califications_course_test_path(@course, @test), students_filter do %>
+  <%= remote_search_form califications_course_test_path(@course, @test) do %>
     <div id="califications">
       <%= render 'califications' %>
     </div>

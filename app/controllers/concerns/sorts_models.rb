@@ -57,14 +57,14 @@ module SortsModels
   extend ActiveSupport::Concern
 
   module ClassMethods
-    include MetaModel
+    include ConcernMethods
 
     def sorts(model, *fields)
-      @resource = resource(model)
+      resource = model.to_s.tableize
       @@fields ||= ActiveSupport::HashWithIndifferentAccess.new
-      @@fields[@resource] = model_fields(@resource, fields)
-      create_sort_by_methods(@resource, @@fields[@resource])
-      create_helpers(@resource)
+      @@fields[resource] = model_fields(resource, fields)
+      create_sort_by_methods(resource, @@fields[resource])
+      create_helpers(resource)
     end
 
     private
@@ -120,7 +120,7 @@ module SortsModels
         end
 
         define_method :url do |field|
-          { q: send("#{resource}_filter"), sort: field, direction: direction(field) }
+          { q: filter, sort: field, direction: direction(field) }
         end
 
         define_method :direction do |field|
@@ -141,6 +141,15 @@ module SortsModels
 
           helper_method method_name
         end
+      end
+
+      def model_fields(resource, fields = [])
+        return get_model_class(resource.classify).column_names if fields.blank?
+        fields.map {|f| f.to_s }
+      end
+
+      def get_model_class(klass)
+        Object.const_get klass
       end
   end
 end
