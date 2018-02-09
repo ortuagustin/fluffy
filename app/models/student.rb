@@ -19,7 +19,7 @@ class Student < ApplicationRecord
   validates :file_number, uniqueness: { scope: :course_id, message: :already_belongs_to_course }
 
   def self.searchable_fields
-    %w[name surname file_number]
+    %w[name surname dni email file_number]
   end
 
   Contract Num => Bool
