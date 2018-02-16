@@ -1,6 +1,5 @@
 class CoursesController < ApplicationController
   before_action :set_colours
-  before_action :set_course, only: [:destroy]
   before_action :fetch_all_courses, only: [:index, :create]
   helper_method :tile_class, :min_year, :max_year
 
