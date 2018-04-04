@@ -1,7 +1,47 @@
 require 'test_helper'
 
 class PostTest < ActiveSupport::TestCase
-  # test "the truth" do
-  #   assert true
-  # end
+  setup do
+    @post = posts(:one)
+  end
+
+  test "should not allow a post without a title" do
+    @post.title = nil
+    assert @post.invalid?
+  end
+
+  test "should not allow a post with a blank title" do
+    @post.title = ''
+    assert @post.invalid?
+  end
+
+  test "should not allow a post with a title longer than 100 characters" do
+    @post.title = 'a' * 101
+    assert @post.invalid?
+  end
+
+  test "should allow a post with a title with less than 100 characters" do
+    @post.title = 'a' * 100
+    assert @post.valid?
+  end
+
+  test "should not allow a post without a body" do
+    @post.body = nil
+    assert @post.invalid?
+  end
+
+  test "should not allow a post with a blank body" do
+    @post.body = ''
+    assert @post.invalid?
+  end
+
+  test "it must belong to a course" do
+    @post.course = nil
+    assert @post.invalid?
+  end
+
+  test "it must belong to a user" do
+    @post.user = nil
+    assert @post.invalid?
+  end
 end
