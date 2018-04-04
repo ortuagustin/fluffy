@@ -1,0 +1,15 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  id: 1
+  title: 'Post One Title'
+  body: 'Post Two Body'
+  user: teacher
+  course: foo_course
+
+two:
+  id: w
+  title: 'Post Two Title'
+  body: 'Post Two Body'
+  user: teacher
+  course: foo_course

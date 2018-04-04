@@ -4,7 +4,7 @@ require 'faker'
 User.destroy_all
 
 # create admin user
-User.create(:username => 'admin', :password => 'admin', :email => 'admin@test.com')
+admin = User.create(:username => 'admin', :password => 'admin', :email => 'admin@test.com')
 
 # empty database
 Course.destroy_all
@@ -37,5 +37,14 @@ ActiveRecord::Base.transaction do
         student.test_results << TestResult.create(test: test, score: Faker::Number.between(1, 10))
       end
     end
+  end
+
+  # create some posts
+  20.times do |i|
+    course = (i.odd? ? last_course : current_course)
+    course.posts <<
+      Post.create(title: Faker::Lorem.sentence,
+                  body: Faker::Lorem.paragraph,
+                  user: admin)
   end
 end

@@ -4,9 +4,11 @@ class Course < ApplicationRecord
 
   has_many :students, dependent: :destroy
   has_many :tests, dependent: :destroy
+  has_many :posts, dependent: :destroy
 
   validates_associated :students
   validates_associated :tests
+  validates_associated :posts
   validates :year, presence: true
   validates :year, uniqueness: true
   validates :year, format: { with: /(19|20)\d{2}/i, message: :invalid_course_year }
@@ -37,5 +39,15 @@ class Course < ApplicationRecord
 
   def passed_count
     students.select { |each| each.passed?(self) }.count
+  end
+
+  Contract Num => Post
+  def post(post_id)
+    posts.detect { |each| each.id == post_id } || posts.raise_record_not_found_exception!(post_id)
+  end
+
+  Contract String => Post
+  def post(post_id)
+    post(post_id.to_i)
   end
 end

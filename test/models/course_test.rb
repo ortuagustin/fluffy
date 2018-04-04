@@ -115,4 +115,36 @@ class CourseTest < ActiveSupport::TestCase
       courses(:foo_course).test 12345
     end
   end
+
+  test "it has may posts associated" do
+    assert_equal 0, @current_course.posts.size
+    assert_equal 2, courses(:foo_course).posts.size
+  end
+
+  test "it returns correct post when the given post id belongs to the course" do
+    course = courses(:foo_course)
+    actual = course.post 1
+    expected = posts(:one)
+    assert_equal expected, actual
+  end
+
+  test "it returns correct post even if the given post id is passed as string" do
+    course = courses(:foo_course)
+    actual = course.post '1'
+    expected = posts(:one)
+    assert_equal expected, actual
+  end
+
+  test "it raises exception when the given post id doest not exist in the course" do
+    assert_raises(ActiveRecord::RecordNotFound) do
+      courses(:foo_course).post 12345
+    end
+  end
+
+  test "deleting a course should delete associated posts" do
+    course_id = @current_course.id
+    @current_course.destroy
+    posts = Post.where(course_id: course_id)
+    assert posts.empty?
+  end
 end
