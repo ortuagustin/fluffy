@@ -36,7 +36,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /courses/:course_id/posts/:post_id
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: (t 'posts.flash.updated')
+      redirect_to course_post_path(course_id, @post), notice: (t 'posts.flash.updated')
     else
       render :edit
     end
