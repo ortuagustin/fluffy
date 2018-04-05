@@ -6,13 +6,15 @@
   <%= render partial: 'post', locals: { post: @post, truncate_body: false } %>
 </div>
 
-<hr>
+<br>
 
-<%= render partial: 'replies/show', collection: @replies, as: :reply %>
+<div class="box">
+  <%= render partial: 'replies/show', collection: @replies, as: :reply %>
+</div>
+
+<%= render 'replies/form', reply: @reply %>
+
+<hr>
 
 <%= paginate @replies, param_name: :replies_page %></br>
 <%= page_entries_info @replies %>
-
-<hr>
-
-<%= render 'replies/form', reply: @reply %>

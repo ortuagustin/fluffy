@@ -1,25 +1,27 @@
-<%= custom_form_for [course, @post, @reply] do |form| %>
-  <% if reply.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
+<div class="box">
+  <%= custom_form_for [course, @post, @reply] do |form| %>
+    <% if reply.errors.any? %>
+      <div id="error_explanation">
+        <h2><%= pluralize(reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
 
-      <ul>
-      <% reply.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+        <ul>
+        <% reply.errors.full_messages.each do |message| %>
+          <li><%= message %></li>
+        <% end %>
+        </ul>
+      </div>
+    <% end %>
+
+    <div class="field">
+      <%= form.label :body %>
+      <%= form.text_area :body, id: :reply_body %>
+    </div>
+
+    <%= form.hidden_field :user_id %>
+    <%= form.hidden_field :post_id %>
+
+    <div class="actions">
+      <%= form.submit %>
     </div>
   <% end %>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, id: :reply_body %>
-  </div>
-
-  <%= form.hidden_field :user_id %>
-  <%= form.hidden_field :post_id %>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>
