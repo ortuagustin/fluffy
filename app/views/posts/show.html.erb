@@ -8,4 +8,4 @@
 
 <hr>
 
-<%= render @post.replies %>
+<%= render partial: 'replies/show', collection: @post.replies, as: :reply %>
