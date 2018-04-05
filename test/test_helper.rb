@@ -9,5 +9,7 @@ class ActiveSupport::TestCase
 end
 
 class ActionDispatch::IntegrationTest
+  include Devise::Test::IntegrationHelpers
+
   delegate :parsed_body, to: :response
 end

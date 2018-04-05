@@ -1,8 +1,6 @@
 require 'test_helper'
 
 class PostsControllerTest < ActionDispatch::IntegrationTest
-  include Devise::Test::IntegrationHelpers
-
   setup do
     @course = courses(:current_course)
     @post = posts(:one)
@@ -19,5 +17,4 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     get "/en/courses/#{@course.id}/posts"
     assert_response :success
   end
-
 end
