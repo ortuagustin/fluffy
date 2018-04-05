@@ -4,7 +4,7 @@ class PostsController < ApplicationController
 
   # GET /courses/:course_id/posts
   def index
-    @posts = course.posts
+    @posts = course.posts.page(params[:page])
   end
 
   # GET /courses/:course_id/posts/:post_id
@@ -61,6 +61,7 @@ private
 
   def set_post
     @post = course.post(post_id)
+    @replies = @post.replies.page(params[:replies_page])
   end
 
   def course_params

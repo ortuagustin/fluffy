@@ -17,8 +17,8 @@ Rails.application.routes.draw do
         get 'edit_califications', to: 'califications#edit', on: :member
       end
 
-      resources :posts do
-        resources :replies, only: [:create, :update, :destroy]
+      resources :posts, concerns: :paginatable do
+        resources :replies, only: [:create, :update, :destroy], concerns: :paginatable
       end
     end
   end

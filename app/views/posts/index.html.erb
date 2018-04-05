@@ -9,3 +9,6 @@
 <% end %>
 
 <%= render(partial: "post", collection: @posts, locals: { truncate_body: true }) || (t 'posts.index.empty') %>
+
+<%= paginate @posts %></br>
+<%= page_entries_info @posts %>

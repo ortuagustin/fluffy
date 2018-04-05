@@ -8,7 +8,10 @@
 
 <hr>
 
-<%= render partial: 'replies/show', collection: @post.replies, as: :reply %>
+<%= render partial: 'replies/show', collection: @replies, as: :reply %>
+
+<%= paginate @replies, param_name: :replies_page %></br>
+<%= page_entries_info @replies %>
 
 <hr>
 
