@@ -41,7 +41,7 @@ ActiveRecord::Base.transaction do
   end
 
   # create some posts with some replies
-  20.times do |i|
+  Faker::Number.between(50, 150).times do |i|
     course = (i.odd? ? last_course : current_course)
     post = Post.create(title: Faker::Lorem.sentence,
                        body: Faker::Lorem.paragraph,
@@ -49,7 +49,7 @@ ActiveRecord::Base.transaction do
 
     course.posts << post
 
-    10.times do |j|
+    Faker::Number.between(10, 50).times do |j|
       post.replies << Reply.create(body: Faker::Lorem.paragraph, user: admin)
     end
   end
