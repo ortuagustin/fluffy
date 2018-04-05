@@ -7,25 +7,28 @@
     </div>
 
     <p class="title"> <%= t 'courses.index.tile', year: course.year %> </p>
+
     <div class="level">
-      <div class="level-left">
-        <div class="level-item">
-          <%= fa_link_to 'users', (t 'courses.actions.students'), course_students_path(course), size: 30 %>
-        </div>
-
-        <div class="level-item">
-          <%= fa_link_to 'gear', (t 'courses.actions.tests'), course_tests_path(course), size: 30 %>
-        </div>
-
-        <div class="level-item">
-          <%= fa_link_to 'line-chart', (t 'courses.actions.summary'), summary_course_path(course), size: 30 %>
-        </div>
+      <div class="level-item">
+        <%= fa_link_to 'users', (t 'courses.actions.students'), course_students_path(course), size: 30 %>
       </div>
 
-      <div class="level-right">
-        <div class="level-item">
-          <%= fa_link_to 'trash-o', (t 'courses.actions.destroy'), course_path(course), size: 30, method: :delete, data: { confirm: (t 'courses.actions.destroy_prompt') } %>
-        </div>
+      <div class="level-item">
+        <%= fa_link_to 'gear', (t 'courses.actions.tests'), course_tests_path(course), size: 30 %>
+      </div>
+
+      <div class="level-item">
+        <%= fa_link_to 'comments', (t 'courses.actions.forum'), course_posts_path(course), size: 30 %>
+      </div>
+    </div>
+
+    <div class="level">
+      <div class="level-item">
+        <%= fa_link_to 'line-chart', (t 'courses.actions.summary'), summary_course_path(course), size: 30 %>
+      </div>
+
+      <div class="level-item">
+        <%= fa_link_to 'trash-o', (t 'courses.actions.destroy'), course_path(course), size: 30, method: :delete, data: { confirm: (t 'courses.actions.destroy_prompt') } %>
       </div>
     </div>
   </article>

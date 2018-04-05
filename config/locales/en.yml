@@ -82,6 +82,7 @@ en:
       new: "New Course"
       students: "Students"
       tests: "Tests"
+      forum: "Forum"
       destroy: "Delete Course"
       destroy_prompt: "Deleting the Course will also delete all it's related Tests, Students and Results Data\n\nContinue?"
     fields:

@@ -97,6 +97,7 @@ es:
       new: "Nueva cursada"
       students: "Alumnos"
       tests: "Examenes"
+      forum: "Foro"
       destroy: "Eliminar cursada"
       destroy_prompt: "Al eliminar la Cursada, también se eliminarán los datos relacionados: Alumnos, Examenes y Notas\n\nContinuar?"
     fields:
