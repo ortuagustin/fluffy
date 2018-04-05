@@ -44,4 +44,19 @@ class PostTest < ActiveSupport::TestCase
     @post.user = nil
     assert @post.invalid?
   end
+
+  test "it has many replies" do
+    assert_not_nil @post.replies
+  end
+
+  test "its replies must be ordered from least recent" do
+    recent_reply = Reply.create(body: 'test', user: User.first, created_at: 5.days.ago)
+    old_reply = Reply.create(body: 'test', user: User.first, created_at: 15.days.ago)
+
+    @post.replies << recent_reply
+    @post.replies << old_reply
+
+    assert_equal old_reply, @post.replies.first
+    assert_equal recent_reply, @post.replies.second
+  end
 end

@@ -8,7 +8,6 @@ one:
   course: foo_course
 
 two:
-  id: w
   title: 'Post Two Title'
   body: 'Post Two Body'
   user: teacher

@@ -1,0 +1,11 @@
+# Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
+
+one:
+  body: 'Reply One Body'
+  user: teacher
+  post: one
+
+two:
+  body: 'Reply Two Body'
+  user: student
+  post: one

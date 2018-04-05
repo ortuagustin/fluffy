@@ -26,10 +26,11 @@ ActiveRecord::Base.transaction do
   # create some students and some results
   100.times do |i|
     student = Student.create(name: Faker::HarryPotter.unique.character,
-                            surname: Faker::HarryPotter.house,
-                            dni: Faker::Number.unique.number(8),
-                            file_number: "#{Faker::Number.unique.number(5)}/#{Faker::Number.number(1)}",
-                            email: Faker::Internet.unique.email)
+                             surname: Faker::HarryPotter.house,
+                             dni: Faker::Number.unique.number(8),
+                             file_number: "#{Faker::Number.unique.number(5)}/#{Faker::Number.number(1)}",
+                             email: Faker::Internet.unique.email)
+
     course = (i.odd? ? last_course : current_course)
     course.students << student
     course.tests.each_with_index do |test, i|
@@ -39,12 +40,17 @@ ActiveRecord::Base.transaction do
     end
   end
 
-  # create some posts
+  # create some posts with some replies
   20.times do |i|
     course = (i.odd? ? last_course : current_course)
-    course.posts <<
-      Post.create(title: Faker::Lorem.sentence,
-                  body: Faker::Lorem.paragraph,
-                  user: admin)
+    post = Post.create(title: Faker::Lorem.sentence,
+                       body: Faker::Lorem.paragraph,
+                       user: admin)
+
+    course.posts << post
+
+    10.times do |j|
+      post.replies << Reply.create(body: Faker::Lorem.paragraph, user: admin)
+    end
   end
 end

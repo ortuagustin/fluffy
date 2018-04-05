@@ -1,19 +1,11 @@
-<p id="notice"><%= notice %></p>
+<%= form_subtitle (t 'posts.index.title') %>
 
-<p>
-  <strong>Title:</strong>
-  <%= @post.title %>
-</p>
+<%= fa_link_to 'chevron-left', (t 'navigation.back_link_label'), course_posts_path(course_id), size: 16, class: 'has-text-info' %>
 
-<p>
-  <strong>Body:</strong>
-  <%= @post.body %>
-</p>
+<div style="margin-top: 25px;">
+  <%= render partial: 'post', locals: { post: @post, truncate_body: false } %>
+</div>
 
-<p>
-  <strong>User:</strong>
-  <%= @post.user %>
-</p>
+<hr>
 
-<%= link_to 'Edit', edit_course_post_path(course_id, @post) %> |
-<%= link_to 'Back', course_posts_path(course_id) %>
+<%= render @post.replies %>

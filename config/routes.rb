@@ -17,7 +17,9 @@ Rails.application.routes.draw do
         get 'edit_califications', to: 'califications#edit', on: :member
       end
 
-      resources :posts
+      resources :posts do
+        resources :replies
+      end
     end
   end
 
