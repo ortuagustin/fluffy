@@ -121,6 +121,16 @@ class CourseTest < ActiveSupport::TestCase
     assert_equal 2, courses(:foo_course).posts.size
   end
 
+  test "posts should be ordered from most recent" do
+    recent_post = Post.create(title: 'test', body: 'test', user: User.first, created_at: 5.days.ago)
+    old_post = Post.create(title: 'test', body: 'test', user: User.first, created_at: 15.days.ago)
+    @current_course.posts << old_post
+    @current_course.posts << recent_post
+
+    assert_equal recent_post, @current_course.posts.first
+    assert_equal old_post, @current_course.posts.second
+  end
+
   test "it returns correct post when the given post id belongs to the course" do
     course = courses(:foo_course)
     actual = course.post 1

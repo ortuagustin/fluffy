@@ -4,7 +4,7 @@ class Course < ApplicationRecord
 
   has_many :students, dependent: :destroy
   has_many :tests, dependent: :destroy
-  has_many :posts, dependent: :destroy
+  has_many :posts, -> { order(created_at: :desc) }, dependent: :destroy
 
   validates_associated :students
   validates_associated :tests
