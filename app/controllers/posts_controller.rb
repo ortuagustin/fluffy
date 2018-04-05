@@ -20,9 +20,10 @@ class PostsController < ApplicationController
   # POST /courses/:course_id/posts
   def create
     @post = Post.new(post_params)
+    @post.course_id = course_id
 
     if @post.save
-      redirect_to @post, notice: (t 'posts.flash.created')
+      redirect_to course_posts_path(course_id), notice: (t 'posts.flash.created')
     else
       render :new
     end
