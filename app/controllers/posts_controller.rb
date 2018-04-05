@@ -9,6 +9,7 @@ class PostsController < ApplicationController
 
   # GET /courses/:course_id/posts/:post_id
   def show
+    @reply = Reply.new(post_id: post_id, user_id: current_user.id)
   end
 
   # GET /courses/:course_id/posts/new

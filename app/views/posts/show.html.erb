@@ -9,3 +9,7 @@
 <hr>
 
 <%= render partial: 'replies/show', collection: @post.replies, as: :reply %>
+
+<hr>
+
+<%= render 'replies/form', reply: @reply %>
