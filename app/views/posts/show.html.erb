@@ -1,4 +1,4 @@
-<%= form_subtitle (t 'posts.index.title') %>
+<%= form_subtitle (t 'posts.index.title', year: @course.year) %>
 
 <%= fa_link_to 'chevron-left', (t 'navigation.back_link_label'), course_posts_path(course_id), size: 16, class: 'has-text-info' %>
 

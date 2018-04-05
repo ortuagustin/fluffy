@@ -1,4 +1,4 @@
-<%= form_subtitle (t 'posts.index.title') %>
+<%= form_subtitle (t 'posts.index.title', year: @course.year)  %>
 
 <%= render layout: 'box', locals: { link_path: courses_path } do %>
   <div class="level-right">
