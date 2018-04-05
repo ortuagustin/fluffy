@@ -1,4 +1,4 @@
-<div class="box">
+<div class="box is-marginless">
   <article class="media">
     <div class="media-left">
       <p class="has-text-weight-bold"> @<%= post.user.username %> </p>
@@ -14,13 +14,13 @@
 
           <div class="level-left">
             <div class="level-item">
-              <p class="subtitle"> <%= link_to post.title, course_post_path(course_id, post) %> </p>
+              <p class="subtitle is-6"> <%= link_to post.title, course_post_path(course_id, post) %> </p>
             </div>
           </div>
 
           <div class="level-right">
             <div class="level-item">
-              <p class="has-text-weight-light"> 3 replies </p>
+              <p class="has-text-weight-light"> <%= t('posts.replies_count', count: post.replies_count) %> </p>
             </div>
 
             <div class="level-item">

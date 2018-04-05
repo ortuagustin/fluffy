@@ -138,6 +138,11 @@ es:
       passed_course?: "Cursada aprobada?"
     summary:
       passed_course_count: "Alumnos que aprobaron la Cursada"
+  posts:
+    replies_count:
+      zero: "Sin respuestas"
+      one: "1 respuesta"
+      other: "%{count} respuestas"
   activerecord:
     models:
       student:

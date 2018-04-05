@@ -123,6 +123,11 @@ en:
       passed_course?: "Passed Course?"
     summary:
       passed_course_count: "Students that passed the Course"
+  posts:
+    replies_count:
+      zero: "No replies"
+      one: "1 reply"
+      other: "%{count} replies"
   activerecord:
     errors:
       messages:

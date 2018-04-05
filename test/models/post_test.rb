@@ -59,4 +59,11 @@ class PostTest < ActiveSupport::TestCase
     assert_equal old_reply, @post.replies.first
     assert_equal recent_reply, @post.replies.second
   end
+
+  test "it knows how many replies are associated to it" do
+    @post.replies << Reply.create(body: 'test', user: User.first, created_at: 5.days.ago)
+    @post.replies << Reply.create(body: 'test', user: User.first, created_at: 15.days.ago)
+
+    assert_equal 2, @post.replies_count
+  end
 end
