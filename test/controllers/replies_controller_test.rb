@@ -1,48 +1,31 @@
 require 'test_helper'
 
 class RepliesControllerTest < ActionDispatch::IntegrationTest
+  require 'test_helper'
+
   setup do
-    @reply = replies(:one)
+    @course = courses(:current_course)
+    @post = posts(:one)
+    @user = users(:teacher)
   end
 
-  test "should get index" do
-    get replies_url
-    assert_response :success
+  test "unauthorized users cannot reply to posts " do
+    assert_no_difference "Reply.count" do
+      post course_post_replies_url(@course.id, @post.id), params: { reply: reply_params }
+      assert_redirected_to '/users/login'
+    end
   end
 
-  test "should get new" do
-    get new_reply_url
-    assert_response :success
-  end
+  test "authorized users can see posts" do
+    login_as @user
 
-  test "should create reply" do
     assert_difference('Reply.count') do
-      post replies_url, params: { reply: { body: @reply.body, post_id: @reply.post_id, user_id: @reply.user_id } }
+      post course_post_replies_url(@course.id, @post.id), params: { reply: reply_params }
+      assert_response :success
     end
-
-    assert_redirected_to reply_url(Reply.last)
   end
-
-  test "should show reply" do
-    get reply_url(@reply)
-    assert_response :success
-  end
-
-  test "should get edit" do
-    get edit_reply_url(@reply)
-    assert_response :success
-  end
-
-  test "should update reply" do
-    patch reply_url(@reply), params: { reply: { body: @reply.body, post_id: @reply.post_id, user_id: @reply.user_id } }
-    assert_redirected_to reply_url(@reply)
-  end
-
-  test "should destroy reply" do
-    assert_difference('Reply.count', -1) do
-      delete reply_url(@reply)
-    end
-
-    assert_redirected_to replies_url
+private
+  def reply_params
+    { body: 'test', post_id: @post.id, user_id: @user.id }
   end
 end
