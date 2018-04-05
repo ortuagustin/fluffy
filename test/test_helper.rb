@@ -12,4 +12,8 @@ class ActionDispatch::IntegrationTest
   include Devise::Test::IntegrationHelpers
 
   delegate :parsed_body, to: :response
+
+  def setup
+    self.default_url_options = { locale: I18n.default_locale }
+  end
 end
