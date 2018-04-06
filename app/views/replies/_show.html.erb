@@ -13,7 +13,9 @@
 
         <div class="level-left">
           <div class="level-item">
-            <p> <a id=<%= reply.id %> href="#<%= reply.id %>"> #<%= reply_counter + 1 %> </a> </p>
+            <% if defined? reply_counter %>
+              <p> <a id=<%= reply.id %> href="#<%= reply.id %>"> #<%= reply_counter + 1 %> </a> </p>
+            <% end %>
           </div>
         </div>
 

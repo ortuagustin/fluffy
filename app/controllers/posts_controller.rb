@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, except: [:index, :create, :new]
-  helper_method :course_id, :user_id, :course
+  helper_method :course_id, :user_id, :course, :has_best_reply?, :best_reply
 
   # GET /courses/:course_id/posts
   def index
@@ -65,7 +65,15 @@ private
 
   def set_post
     @post = course.post(post_id)
-    @replies = @post.replies.page(params[:replies_page])
+    @replies = @post.replies_except_best.page(params[:replies_page])
+  end
+
+  def has_best_reply?
+    @post.has_best_reply?
+  end
+
+  def best_reply
+    @best_reply ||= @post.best_reply
   end
 
   def course_params

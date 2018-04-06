@@ -8,6 +8,14 @@
 
 <br>
 
+<% if has_best_reply? %>
+  <div class="message is-primary is-marginless">
+    <div class="message-body">
+      <%= render partial: 'replies/show', locals: { reply: best_reply } %>
+    </div>
+  </div>
+<% end %>
+
 <div class="box">
   <%= render partial: 'replies/show', collection: @replies, as: :reply %>
 </div>
