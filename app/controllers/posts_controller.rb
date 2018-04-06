@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, except: [:index, :create, :new]
-  helper_method :course_id, :course
+  helper_method :course_id, :user_id, :course
 
   # GET /courses/:course_id/posts
   def index
@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   # GET /courses/:course_id/posts/:post_id
   def show
-    @reply = Reply.new(post_id: post_id, user_id: current_user.id)
+    @reply = Reply.new
   end
 
   # GET /courses/:course_id/posts/new
@@ -22,7 +22,7 @@ class PostsController < ApplicationController
     @post = Post.new(post_params)
 
     if @post.save
-      redirect_to @post, notice: (t 'posts.flash.created')
+      redirect_to course_posts_path(course_id), notice: (t 'posts.flash.created')
     else
       render :new
     end
@@ -35,7 +35,7 @@ class PostsController < ApplicationController
   # PATCH/PUT /courses/:course_id/posts/:post_id
   def update
     if @post.update(post_params)
-      redirect_to @post, notice: (t 'posts.flash.updated')
+      redirect_to course_post_path(course_id, @post), notice: (t 'posts.flash.updated')
     else
       render :edit
     end
@@ -55,6 +55,10 @@ private
     course_params.require(:course_id)
   end
 
+  def user_id
+    current_user.id
+  end
+
   def post_id
     params.require(:id)
   end
@@ -69,6 +73,6 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :user_id)
+    params.require(:post).permit(:title, :body, :user_id, :course_id)
   end
 end

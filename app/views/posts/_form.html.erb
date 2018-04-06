@@ -1,32 +1,36 @@
-<%= custom_form_for [course, @post] do |form| %>
-  <% if post.errors.any? %>
-    <div id="error_explanation">
-      <h2><%= pluralize(post.errors.count, "error") %> prohibited this post from being saved:</h2>
+<%= render partial: 'box', locals: { link_path: course_posts_path(course_id) } %>
 
-      <ul>
-      <% post.errors.full_messages.each do |message| %>
-        <li><%= message %></li>
-      <% end %>
-      </ul>
+<div class="box">
+
+  <p class="title is-4 has-text-grey has-text-centered"> <%= t 'posts.actions.new' %> </p>
+  <%= custom_form_for [course, @post] do |f| %>
+    <%= render partial: 'errors', locals: {obj: @post} %>
+
+    <div class="field">
+      <%= f.label t 'posts.fields.title' %>
+      <div class="control">
+        <%= f.text_field :title, class: 'input', autofocus: true, placeholder: (t 'tests.fields.title') %>
+      </div>
     </div>
+
+    <div class="field">
+      <%= f.label t 'posts.fields.body' %>
+      <div class="control">
+        <%= f.text_area :body, class: 'textarea', placeholder: (t 'posts.fields.body'), rows: 15 %>
+      </div>
+    </div>
+
+    <%= f.hidden_field :course_id, value: course_id %>
+    <%= f.hidden_field :user_id, value: user_id %>
+
+    <br>
+
+    <div class="field">
+      <div class="control has-text-centered">
+        <%= f.submit (t 'posts.form.submit'), class: 'button is-primary is-medium' %>
+      </div>
+    </div>
+
   <% end %>
 
-  <div class="field">
-    <%= form.label :title %>
-    <%= form.text_field :title, id: :post_title %>
-  </div>
-
-  <div class="field">
-    <%= form.label :body %>
-    <%= form.text_area :body, id: :post_body %>
-  </div>
-
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.text_field :user_id, id: :post_user_id %>
-  </div>
-
-  <div class="actions">
-    <%= form.submit %>
-  </div>
-<% end %>
+</div>

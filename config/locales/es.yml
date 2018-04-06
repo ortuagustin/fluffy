@@ -144,6 +144,11 @@ es:
       title: "Foro cursada %{year}"
     actions:
       new: "Crear un nuevo Post"
+    fields:
+      title: "Título"
+      body: "Contenido"
+    form:
+      submit: "Postea!"
     replies_count:
       zero: "Sin respuestas"
       one: "1 respuesta"
