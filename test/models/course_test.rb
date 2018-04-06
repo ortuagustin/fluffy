@@ -122,13 +122,26 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test "posts should be ordered from most recent" do
-    recent_post = Post.create(title: 'test', body: 'test', user: User.first, created_at: 5.days.ago)
-    old_post = Post.create(title: 'test', body: 'test', user: User.first, created_at: 15.days.ago)
+    recent_post = Post.create(title: 'recent', body: 'recent', user: User.first, created_at: 5.days.ago)
+    old_post = Post.create(title: 'old', body: 'old', user: User.first, created_at: 15.days.ago)
     @current_course.posts << old_post
     @current_course.posts << recent_post
 
     assert_equal recent_post, @current_course.posts.first
     assert_equal old_post, @current_course.posts.second
+  end
+
+  test "sticky posts should take priority when ordering" do
+    recent_post = Post.create(title: 'recent', body: 'recent', user: User.first, created_at: 5.days.ago)
+    old_post = Post.create(title: 'old', body: 'old', user: User.first, created_at: 15.days.ago)
+    most_old_post_but_sticky = Post.create(is_sticky: true, title: 'sticky', body: 'sticky', user: User.first, created_at: 30.days.ago)
+    @current_course.posts << old_post
+    @current_course.posts << most_old_post_but_sticky
+    @current_course.posts << recent_post
+
+    assert_equal most_old_post_but_sticky, @current_course.posts.first
+    assert_equal recent_post, @current_course.posts.second
+    assert_equal old_post, @current_course.posts.third
   end
 
   test "it returns correct post when the given post id belongs to the course" do

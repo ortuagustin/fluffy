@@ -66,4 +66,9 @@ class PostTest < ActiveSupport::TestCase
 
     assert_equal 2, @post.replies_count
   end
+
+  test "it should not be sticky by default" do
+    assert_not_nil @post.is_sticky?
+    refute @post.is_sticky?
+  end
 end
