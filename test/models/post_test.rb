@@ -71,4 +71,67 @@ class PostTest < ActiveSupport::TestCase
     assert_not_nil @post.is_sticky?
     refute @post.is_sticky?
   end
+
+  test "it should not have a best reply by default" do
+    assert_nil @post.best_reply
+    refute @post.has_best_reply?
+  end
+
+  test "it can mark a reply as the best" do
+    refute @post.has_best_reply?
+
+    reply = Reply.create(body: 'test', user: @post.user)
+    @post.replies << reply
+    @post.best_reply = reply
+    @post.save!
+
+    post = Post.find(@post.id)
+
+    assert_not_nil post.best_reply
+    assert post.has_best_reply?
+    assert_equal reply, post.best_reply
+  end
+
+  test "it can only have ony reply as the best" do
+    reply = Reply.create(body: 'reply', post: @post, user: @post.user)
+    best_reply = Reply.create(body: 'best_reply', post: @post, user: @post.user)
+    @post.replies << [reply, best_reply]
+    @post.best_reply = best_reply
+    @post.save!
+
+    assert_equal best_reply, @post.best_reply, 'expected best reply was not the post actual best reply'
+    refute reply.is_best_reply?, 'this reply should not be the best'
+    assert best_reply.is_best_reply?, 'this reply should be the best'
+  end
+
+  test "it updates best reply reference when marking a reply as the best" do
+    reply = Reply.create(body: 'reply', post: @post, user: @post.user)
+    first_best_reply = Reply.create(body: 'best_reply', post: @post, user: @post.user)
+    @post.replies << [reply, first_best_reply]
+    @post.save!
+
+    first_best_reply.mark_best_reply
+    assert_equal first_best_reply, @post.best_reply, 'expected best reply was not the post actual best reply'
+
+    new_best_reply = Reply.create(body: 'new_best_reply', post: @post, user: @post.user)
+    new_best_reply.mark_best_reply
+
+    assert_equal new_best_reply, @post.best_reply, 'it did not update the post best reply to the newest one'
+    refute first_best_reply.is_best_reply?, 'first best reply should no longer be the best reply of the post'
+    assert new_best_reply.is_best_reply?, 'new best reply should be the best reply of post'
+  end
+
+  test "it can return all replies except the best given a best reply is present" do
+    post = Post.create(title: 'test', body: 'test', course: @post.course, user: @post.user)
+    reply = Reply.create(body: 'reply', post: @post, user: @post.user)
+    best_reply = Reply.create(body: 'best_reply', post: @post, user: @post.user)
+    post.replies << [reply, best_reply]
+    post.best_reply = best_reply
+    post.save!
+
+    assert_equal 2, post.replies.size
+    assert_equal 1, post.replies_except_best.size
+    assert_not_equal best_reply, post.replies_except_best.first
+    assert_equal @post.replies, @post.replies_except_best, 'collections should match since @post does not have a best reply'
+  end
 end
