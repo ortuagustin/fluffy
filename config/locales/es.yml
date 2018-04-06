@@ -148,6 +148,13 @@ es:
       zero: "Sin respuestas"
       one: "1 respuesta"
       other: "%{count} respuestas"
+  replies:
+    fields:
+      body: "Queres dejar un comentario?"
+    actions:
+      new: "Responde al Post"
+    form:
+      submit: "Postea!"
   activerecord:
     models:
       student:

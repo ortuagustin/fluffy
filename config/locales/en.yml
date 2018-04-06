@@ -133,6 +133,13 @@ en:
       zero: "No replies"
       one: "1 reply"
       other: "%{count} replies"
+  replies:
+    fields:
+      body: "Have something to say?"
+    actions:
+      new: "Reply to the Post"
+    form:
+      submit: "Post it!"
   activerecord:
     errors:
       messages:

@@ -1,27 +1,25 @@
 <div class="box">
-  <%= custom_form_for [course, @post, @reply] do |form| %>
-    <% if reply.errors.any? %>
-      <div id="error_explanation">
-        <h2><%= pluralize(reply.errors.count, "error") %> prohibited this reply from being saved:</h2>
 
-        <ul>
-        <% reply.errors.full_messages.each do |message| %>
-          <li><%= message %></li>
-        <% end %>
-        </ul>
-      </div>
-    <% end %>
+  <p class="subtitle has-text-grey"> <%= t 'replies.actions.new' %> </p>
+
+  <%= custom_form_for [course, @post, @reply] do |f| %>
+    <%= render partial: 'errors', locals: {obj: @reply} %>
 
     <div class="field">
-      <%= form.label :body %>
-      <%= form.text_area :body, id: :reply_body %>
+      <div class="control">
+        <%= f.text_area :body, class: 'textarea', placeholder: (t 'replies.fields.body'), rows: 7 %>
+      </div>
     </div>
 
-    <%= form.hidden_field :user_id %>
-    <%= form.hidden_field :post_id %>
+    <%= f.hidden_field :user_id %>
+    <%= f.hidden_field :post_id %>
 
-    <div class="actions">
-      <%= form.submit %>
+    <div class="field">
+      <div class="control has-text-centered">
+        <%= f.submit (t 'replies.form.submit'), class: 'button is-primary is-medium' %>
+      </div>
     </div>
+
   <% end %>
+
 </div>
