@@ -149,6 +149,10 @@ es:
       body: "Contenido"
     form:
       submit: "Postea!"
+    flash:
+      created: "Se publicó tu Post."
+      updated: "Se actualizó tu Post."
+      deleted: "Se eliminó el Post."
     replies_count:
       zero: "Sin respuestas"
       one: "1 respuesta"

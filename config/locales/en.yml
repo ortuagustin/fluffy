@@ -134,6 +134,10 @@ en:
       body: "Message"
     form:
       submit: "Post!"
+    flash:
+      created: "Post created."
+      updated: "Post was updated."
+      deleted: "Post was deleted."
     replies_count:
       zero: "No replies"
       one: "1 reply"
