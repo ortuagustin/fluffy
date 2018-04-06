@@ -24,6 +24,6 @@ class Post < ApplicationRecord
   def replies_except_best
     return replies unless has_best_reply?
 
-    replies.reject { |reply| is_best_reply?(reply) }
+    Kaminari.paginate_array(replies.reject { |reply| is_best_reply?(reply) })
   end
 end
