@@ -13,8 +13,16 @@
         <div class="level">
 
           <div class="level-left">
+            <% if post.is_sticky? %>
+              <div class="level-item">
+                <p class="subtitle has-text-grey"> <%= fa_icon 'thumb-tack' %> </p>
+              </div>
+            <% end %>
+
             <div class="level-item">
-              <p class="subtitle is-6"> <%= link_to post.title, course_post_path(course_id, post) %> </p>
+              <p class="subtitle is-6">
+                <%= link_to post.title, course_post_path(course_id, post) %>
+              </p>
             </div>
           </div>
 
