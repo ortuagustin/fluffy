@@ -39,8 +39,22 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     patch course_post_path(@course, @post), params: { post: post_params }
     assert_response :unauthorized
   end
+
+  test "the post owner can edit its posts" do
+    login_as @teacher
+    patch course_post_path(course_id: @course.id, id: @post.id, format: 'json'), params: { post: edit_post_params }
+    assert_response :success
+
+    @post.reload
+    assert_equal 'changed title', @post.title
+    assert_equal 'changed body', @post.body
+  end
 private
   def post_params
     { title: 'test', body: 'test', user_id: @teacher.id }
+  end
+
+  def edit_post_params
+    { title: 'changed title', body: 'changed body', user_id: @teacher.id }
   end
 end
