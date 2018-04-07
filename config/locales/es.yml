@@ -144,10 +144,26 @@ es:
       title: "Foro cursada %{year}"
     actions:
       new: "Crear un nuevo Post"
+    fields:
+      title: "Título"
+      body: "Contenido"
+    form:
+      submit: "Postea!"
+    flash:
+      created: "Se publicó tu Post."
+      updated: "Se actualizó tu Post."
+      deleted: "Se eliminó el Post."
     replies_count:
       zero: "Sin respuestas"
       one: "1 respuesta"
       other: "%{count} respuestas"
+  replies:
+    fields:
+      body: "Queres dejar un comentario?"
+    actions:
+      new: "Responde al Post"
+    form:
+      submit: "Postea!"
   activerecord:
     models:
       student:

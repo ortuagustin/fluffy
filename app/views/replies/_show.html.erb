@@ -13,13 +13,13 @@
 
         <div class="level-left">
           <div class="level-item">
-            <p> <a id=<%= reply_counter %> href="#<%= reply_counter %>"> #<%= reply_counter %> </a> </p>
+            <p> <a id=<%= reply.id %> href="#<%= reply.id %>"> #<%= reply_counter + 1 %> </a> </p>
           </div>
         </div>
 
         <div class="level-right">
           <div class="level-item">
-            <p class="has-text-weight-light"> <%= time_since_posted(reply) %> </p>
+            <p class="has-text-weight-light" style="margin-right: 10px;"> <%= time_since_posted(reply) %> </p>
           </div>
         </div>
       </div>

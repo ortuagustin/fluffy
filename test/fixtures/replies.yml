@@ -3,7 +3,7 @@
 one:
   body: 'Reply One Body'
   user: teacher
-  post: one
+  post: two
 
 two:
   body: 'Reply Two Body'

@@ -1,6 +1,6 @@
 class PostsController < ApplicationController
   before_action :set_post, except: [:index, :create, :new]
-  helper_method :course_id, :course
+  helper_method :course_id, :user_id, :course
 
   # GET /courses/:course_id/posts
   def index
@@ -9,7 +9,7 @@ class PostsController < ApplicationController
 
   # GET /courses/:course_id/posts/:post_id
   def show
-    @reply = Reply.new(post_id: post_id, user_id: current_user.id)
+    @reply = Reply.new
   end
 
   # GET /courses/:course_id/posts/new
@@ -56,6 +56,10 @@ private
     course_params.require(:course_id)
   end
 
+  def user_id
+    current_user.id
+  end
+
   def post_id
     params.require(:id)
   end
@@ -70,6 +74,6 @@ private
   end
 
   def post_params
-    params.require(:post).permit(:title, :body, :user_id)
+    params.require(:post).permit(:title, :body, :user_id, :course_id)
   end
 end

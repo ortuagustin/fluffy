@@ -24,4 +24,15 @@ class ReplyTest < ActiveSupport::TestCase
     @reply.user = nil
     assert @reply.invalid?
   end
+
+  test "it should not be the best reply by default" do
+    assert_not_nil @reply.is_best_reply?
+    refute @reply.is_best_reply?
+  end
+
+  test "it can be marked as the best reply of the post" do
+    refute @reply.is_best_reply?
+    @reply.mark_best_reply
+    assert @reply.is_best_reply?
+  end
 end

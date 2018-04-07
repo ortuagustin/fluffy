@@ -11,6 +11,9 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     assert_no_difference "Reply.count" do
       post course_post_replies_path(@course, @post), params: { reply: reply_params }
       assert_redirected_to '/users/login'
+
+      post course_post_replies_path(@course, @post), params: { reply: reply_params, format: 'json' }
+      assert_response :unauthorized
     end
   end
 
@@ -18,7 +21,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     login_as @user
 
     assert_difference('Reply.count') do
-      post course_post_replies_path(@course, @post), params: { reply: reply_params }
+      post course_post_replies_path(@course, @post), params: { reply: reply_params, format: 'json' }
       assert_response :success
     end
   end

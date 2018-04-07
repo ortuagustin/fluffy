@@ -129,10 +129,26 @@ en:
       title: "%{year} Course Forum"
     actions:
       new: "Create a new Post"
+    fields:
+      title: "Title"
+      body: "Message"
+    form:
+      submit: "Post!"
+    flash:
+      created: "Post created."
+      updated: "Post was updated."
+      deleted: "Post was deleted."
     replies_count:
       zero: "No replies"
       one: "1 reply"
       other: "%{count} replies"
+  replies:
+    fields:
+      body: "Have something to say?"
+    actions:
+      new: "Reply to the Post"
+    form:
+      submit: "Post it!"
   activerecord:
     errors:
       messages:
