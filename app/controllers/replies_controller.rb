@@ -1,7 +1,8 @@
 class RepliesController < ApplicationController
-  before_action :set_reply, only: [:update, :destroy]
   before_action :set_post, only: [:create, :update]
+  before_action :set_reply, only: [:update, :destroy]
 
+  # POST /courses/:course_id/posts/:post_id/replies
   # POST /courses/:course_id/posts/:post_id/replies.json
   def create
     @reply = Reply.new(reply_params)
@@ -11,11 +12,12 @@ class RepliesController < ApplicationController
         format.html { redirect_to controller: "posts", action: "show", id: @post.id, replies_page: new_reply_page, anchor: @reply.id }
         format.json { render json: @reply, status: :created }
       else
-        render_errors(@reply.errors)
+        render_errors(@reply, format)
       end
     end
   end
 
+  # PATCH/PUT /courses/:course_id/posts/:post_id/replies/:reply_id
   # PATCH/PUT /courses/:course_id/posts/:post_id/replies/:reply_id.json
   def update
     respond_to do |format|
@@ -23,7 +25,7 @@ class RepliesController < ApplicationController
         format.html { redirect_to controller: "posts", action: "show", id: @post.id, replies_page: new_reply_page, anchor: @reply.id }
         format.json { render json: @reply, status: :ok }
       else
-        render_errors(@reply.errors)
+        render_errors(@reply, format)
       end
     end
   end
@@ -31,7 +33,11 @@ class RepliesController < ApplicationController
   # DELETE /courses/:course_id/posts/:post_id/replies/:reply_id.json
   def destroy
     @reply.destroy
-    head :no_content
+
+    respond_to do |format|
+      format.html { redirect_to course_posts_path(course_id), notice: (t 'posts.flash.deleted') }
+      format.json { head :no_content }
+    end
   end
 private
   def set_reply
@@ -54,7 +60,10 @@ private
     @post.replies.page.total_pages
   end
 
-  def render_errors(errors)
-    render json: errors, status: :unprocessable_entity
+  def render_errors(reply, format)
+    format do
+      format.html { redirect_to controller: "posts", action: "show", id: reply.id }
+      format.json { render json: reply.errors, status: :unprocessable_entity }
+    end
   end
 end

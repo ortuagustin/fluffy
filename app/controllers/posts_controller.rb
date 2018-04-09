@@ -18,13 +18,19 @@ class PostsController < ApplicationController
   end
 
   # POST /courses/:course_id/posts
+  # POST /courses/:course_id/posts.json
   def create
     @post = Post.new(post_params)
+    @post.course_id = course_id
 
-    if @post.save
-      redirect_to course_posts_path(course_id), notice: (t 'posts.flash.created')
-    else
-      render :new
+    respond_to do |format|
+      if @post.save
+        format.html { redirect_to course_posts_path(course_id), notice: (t 'posts.flash.created') }
+        format.json { render json: @post, status: :created }
+      else
+        format.html { render :new }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
@@ -33,18 +39,27 @@ class PostsController < ApplicationController
   end
 
   # PATCH/PUT /courses/:course_id/posts/:post_id
+  # PATCH/PUT /courses/:course_id/posts/:post_id.json
   def update
-    if @post.update(post_params)
-      redirect_to course_post_path(course_id, @post), notice: (t 'posts.flash.updated')
-    else
-      render :edit
+    respond_to do |format|
+      if @post.update(post_params)
+        format.html { redirect_to course_posts_path(course_id), notice: (t 'posts.flash.updated') }
+        format.json { render json: @post, status: :ok }
+      else
+        format.html { render :edit }
+        format.json { render json: @post.errors, status: :unprocessable_entity }
+      end
     end
   end
 
   # DELETE /courses/:course_id/posts/:post_id
   def destroy
     @post.destroy
-    redirect_to course_posts_path(course_id), notice: (t 'posts.flash.deleted')
+
+    respond_to do |format|
+      format.html { redirect_to course_posts_path(course_id), notice: (t 'posts.flash.deleted') }
+      format.json { head :no_content }
+    end
   end
 private
   def course
