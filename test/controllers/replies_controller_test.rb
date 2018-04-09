@@ -33,6 +33,15 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
     patch course_post_reply_path(@course, @post, @reply), params: { reply: edit_reply_params, format: 'json' }
     assert_response :forbidden
   end
+
+  test "a reply can be edited by its owner" do
+    login_as @reply.user
+    patch course_post_reply_path(@course, @post, @reply), params: { reply: edit_reply_params, format: 'json' }
+    assert_response :success
+
+    @reply.reload
+    assert_equal 'changed body', @reply.body
+  end
 private
   def reply_params
     { body: 'test', post_id: @post.id, user_id: @user.id }
