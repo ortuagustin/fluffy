@@ -40,7 +40,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     assert_response :forbidden
   end
 
-  test "the post owner can edit its posts" do
+  test "a post can be edited by its owner" do
     login_as @teacher
     patch course_post_path(course_id: @course.id, id: @post.id, format: 'json'), params: { post: edit_post_params }
     assert_response :success
