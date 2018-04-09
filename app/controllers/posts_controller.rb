@@ -41,6 +41,8 @@ class PostsController < ApplicationController
   # PATCH/PUT /courses/:course_id/posts/:post_id
   # PATCH/PUT /courses/:course_id/posts/:post_id.json
   def update
+    authorize @post
+
     respond_to do |format|
       if @post.update(post_params)
         format.html { redirect_to course_posts_path(course_id), notice: (t 'posts.flash.updated') }

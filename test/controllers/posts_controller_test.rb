@@ -37,7 +37,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "only the post owner can edit a post" do
     login_as users(:student)
     patch course_post_path(@course, @post), params: { post: post_params }
-    assert_response :unauthorized
+    assert_response :forbidden
   end
 
   test "the post owner can edit its posts" do

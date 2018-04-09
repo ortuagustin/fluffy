@@ -1,5 +1,6 @@
 class ApplicationController < ActionController::Base
   include Pundit
+  rescue_from Pundit::NotAuthorizedError, with: :user_not_authorized
 
   protect_from_forgery with: :exception
 
@@ -24,5 +25,10 @@ protected
     devise_parameter_sanitizer.permit(:sign_up) do |user_params|
       user_params.permit(:username, :email, :email_confirmation, :password, :password_confirmation)
     end
+  end
+
+  def user_not_authorized
+    flash[:alert] = I18n.t 'not_authorized'
+    redirect_to (request.referrer || root_path), status: :forbidden
   end
 end

@@ -1,4 +1,5 @@
 es:
+  not_authorized: "No tenés permiso para realizar esta acción."
   helpers:
     page_entries_info:
       more_pages:
