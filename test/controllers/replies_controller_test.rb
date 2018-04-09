@@ -3,8 +3,9 @@ require 'test_helper'
 class RepliesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @course = courses(:current_course)
-    @post = posts(:one)
     @user = users(:teacher)
+    @post = posts(:two)
+    @reply = replies(:two)
   end
 
   test "unauthorized users cannot reply to posts" do
@@ -25,8 +26,19 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
       assert_response :success
     end
   end
+
+  test "only the owner can edit the reply" do
+    login_as @user
+    assert_not_equal @user, @reply.user
+    patch course_post_reply_path(@course, @post, @reply), params: { reply: edit_reply_params, format: 'json' }
+    assert_response :forbidden
+  end
 private
   def reply_params
     { body: 'test', post_id: @post.id, user_id: @user.id }
+  end
+
+  def edit_reply_params
+    { body: 'changed body' }
   end
 end

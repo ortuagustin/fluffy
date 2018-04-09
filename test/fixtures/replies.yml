@@ -8,4 +8,4 @@ one:
 two:
   body: 'Reply Two Body'
   user: student
-  post: one
+  post: two

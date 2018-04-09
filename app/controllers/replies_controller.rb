@@ -5,7 +5,7 @@ class RepliesController < ApplicationController
   # POST /courses/:course_id/posts/:post_id/replies
   # POST /courses/:course_id/posts/:post_id/replies.json
   def create
-    @reply = Reply.new(reply_params)
+    @reply = Reply.new(create_reply_params)
 
     respond_to do |format|
       if @reply.save
@@ -20,8 +20,10 @@ class RepliesController < ApplicationController
   # PATCH/PUT /courses/:course_id/posts/:post_id/replies/:reply_id
   # PATCH/PUT /courses/:course_id/posts/:post_id/replies/:reply_id.json
   def update
+    authorize @reply
+
     respond_to do |format|
-      if @reply.update(reply_params)
+      if @reply.update(update_reply_params)
         format.html { redirect_to controller: "posts", action: "show", id: @post.id, replies_page: new_reply_page, anchor: @reply.id }
         format.json { render json: @reply, status: :ok }
       else
@@ -41,19 +43,31 @@ class RepliesController < ApplicationController
   end
 private
   def set_reply
-    @reply = Reply.find(params[:id])
+    @reply = Reply.find(reply_id)
   end
 
   def set_post
     @post = Post.find(post_id)
   end
 
-  def reply_params
+  def create_reply_params
     params.require(:reply).permit(:body, :user_id, :post_id)
+  end
+
+  def update_reply_params
+    params.require(:reply).permit(:body)
+  end
+
+  def course_id
+    params.require(:course_id)
   end
 
   def post_id
     params.require(:post_id)
+  end
+
+  def reply_id
+    params.require(:id)
   end
 
   def new_reply_page
@@ -61,9 +75,7 @@ private
   end
 
   def render_errors(reply, format)
-    format do
-      format.html { redirect_to controller: "posts", action: "show", id: reply.id }
-      format.json { render json: reply.errors, status: :unprocessable_entity }
-    end
+    format.html { redirect_to controller: "posts", action: "show", course_id: course_id, id: post_id }
+    format.json { render json: reply.errors, status: :unprocessable_entity }
   end
 end
