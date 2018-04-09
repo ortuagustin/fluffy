@@ -66,7 +66,7 @@ gem "devise", "~> 4.3"
 gem "jquery-rails", "~> 4.3"
 gem "font-awesome-rails", "~> 4.7"
 gem "kaminari", "~> 1.1"
+gem "pundit", "~> 1.1"
+gem 'acts_as_votable', '~> 0.11.1'
 
 gem 'rails-assets-bulma', source: 'https://rails-assets.org'
-# Added at 2018-04-09 00:33:22 -0300 by agustin:
-gem "pundit", "~> 1.1"

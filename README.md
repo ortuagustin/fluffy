@@ -13,6 +13,7 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
   - [Contracts](https://github.com/egonSchiele/contracts.ruby)
   - [Devise](https://github.com/plataformatec/devise)
   - [Pundit](https://github.com/varvet/pundit)
+  - [acts_as_votable](https://github.com/ryanto/acts_as_votable)
   - [FontAwesome](https://github.com/bokmann/font-awesome-rails)
   - [Kaminari](https://github.com/kaminari/kaminari)
   - [Bulma](https://bulma.io)
