@@ -55,6 +55,6 @@ private
   end
 
   def edit_post_params
-    { title: 'changed title', body: 'changed body', user_id: @teacher.id }
+    { title: 'changed title', body: 'changed body' }
   end
 end
