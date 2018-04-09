@@ -12,6 +12,7 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
   - [Faker](https://github.com/stympy/faker)
   - [Contracts](https://github.com/egonSchiele/contracts.ruby)
   - [Devise](https://github.com/plataformatec/devise)
+  - [Pundit](https://github.com/varvet/pundit)
   - [FontAwesome](https://github.com/bokmann/font-awesome-rails)
   - [Kaminari](https://github.com/kaminari/kaminari)
   - [Bulma](https://bulma.io)
