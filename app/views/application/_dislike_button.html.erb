@@ -1,0 +1,17 @@
+<% if current_user.disliked? likeable %>
+  <%= fa_button 'times',
+      (t 'posts.actions.undislike'),
+      dislike_course_post_path(course.id, likeable.id), method: :delete,
+      size: 20,
+      class: 'is-danger',
+      rounded: true
+  %>
+<% else %>
+  <%= fa_button 'thumbs-down',
+      (t 'posts.actions.dislike'),
+      dislike_course_post_path(course.id, likeable.id), method: :post,
+      size: 20,
+      class: 'is-info',
+      rounded: true
+  %>
+<% end %>

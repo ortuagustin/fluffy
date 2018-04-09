@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
-  paginates_per 10
+  acts_as_votable           ## acts_as_votable
+  paginates_per 10          ## Kaminari
 
   belongs_to :course
   belongs_to :user
@@ -25,5 +26,21 @@ class Post < ApplicationRecord
     return replies unless has_best_reply?
 
     Kaminari.paginate_array(replies.reject { |reply| is_best_reply?(reply) })
+  end
+
+  def likes
+    get_likes
+  end
+
+  def dislikes
+    get_dislikes
+  end
+
+  def like_score
+    weighted_score
+  end
+
+  def as_json(options = {})
+    super options.merge :methods => [:like_score]
   end
 end

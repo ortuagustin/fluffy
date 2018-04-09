@@ -134,4 +134,74 @@ class PostTest < ActiveSupport::TestCase
     assert_not_equal best_reply, post.replies_except_best.first
     assert_equal @post.replies, @post.replies_except_best, 'collections should match since @post does not have a best reply'
   end
+
+  test "it can be liked by a user" do
+    user = users(:student)
+
+    refute user.liked? @post
+    assert_equal 0, @post.likes.size
+    assert_equal 0, @post.like_score
+
+    @post.liked_by user
+
+    assert_equal 1, @post.likes.size
+    assert_equal 1, @post.like_score
+    assert user.liked? @post
+  end
+
+  test "a user who liked it, can undo the like" do
+    user = users(:student)
+    @post.liked_by user
+    assert_equal 1, @post.like_score
+
+    @post.unliked_by user
+
+    refute user.liked? @post
+    assert_equal 0, @post.like_score
+  end
+
+  test "it can only be liked once per user" do
+    user = users(:student)
+
+    @post.liked_by user
+    @post.liked_by user
+
+    assert_equal 1, @post.likes.size
+    assert_equal 1, @post.like_score
+  end
+
+  test "it can be disliked by a user" do
+    user = users(:student)
+
+    refute user.disliked? @post
+    assert_equal 0, @post.dislikes.size
+    assert_equal 0, @post.like_score
+
+    @post.disliked_by user
+
+    assert_equal 1, @post.dislikes.size
+    assert_equal -1, @post.like_score
+    assert user.disliked? @post
+  end
+
+  test "a user who diliked it, can undo the like" do
+    user = users(:student)
+    @post.disliked_by user
+    assert_equal -1, @post.like_score
+
+    @post.undisliked_by user
+
+    refute user.disliked? @post
+    assert_equal 0, @post.like_score
+  end
+
+  test "it can only be disliked once per user" do
+    user = users(:student)
+
+    @post.disliked_by user
+    @post.disliked_by user
+
+    assert_equal 1, @post.dislikes.size
+    assert_equal -1, @post.like_score
+  end
 end

@@ -18,6 +18,11 @@ Rails.application.routes.draw do
       end
 
       resources :posts, concerns: :paginatable do
+        post 'like', to: 'posts_likes#create', on: :member
+        delete 'like', to: 'posts_likes#destroy', on: :member
+        post 'dislike', to: 'posts_dislikes#create', on: :member
+        delete 'dislike', to: 'posts_dislikes#destroy', on: :member
+
         resources :replies, only: [:create, :update, :destroy], concerns: :paginatable
       end
     end

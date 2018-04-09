@@ -130,6 +130,10 @@ en:
       title: "%{year} Course Forum"
     actions:
       new: "Create a new Post"
+      like: "Like"
+      unlike: "Remove Like"
+      dislike: "Dislike"
+      undislike: "Remove Dislike"
     fields:
       title: "Title"
       body: "Message"
@@ -139,10 +143,15 @@ en:
       created: "Post created."
       updated: "Post was updated."
       deleted: "Post was deleted."
+      liked: "Added your Like."
+      unliked: "Removed your Like."
+      disliked: "Added your Dislike."
+      undisliked: "Removed your Dislike."
     replies_count:
       zero: "No replies"
       one: "1 reply"
       other: "%{count} replies"
+    like_score: "Score: %{score}"
   replies:
     fields:
       body: "Have something to say?"
