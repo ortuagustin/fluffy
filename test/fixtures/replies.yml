@@ -9,3 +9,8 @@ two:
   body: 'Reply Two Body'
   user: student
   post: two
+
+reply_for_post_one:
+  body: 'Body'
+  user: teacher
+  post: one

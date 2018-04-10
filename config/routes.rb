@@ -31,7 +31,10 @@ Rails.application.routes.draw do
         concerns :likeable, controller: 'posts_likes'
         concerns :dislikeable, controller: 'posts_dislikes'
 
-        resources :replies, only: [:create, :update, :destroy], concerns: :paginatable
+        resources :replies, only: [:create, :update, :destroy], concerns: :paginatable do
+          concerns :likeable, controller: 'replies_likes'
+          concerns :dislikeable, controller: 'replies_dislikes'
+        end
       end
     end
   end

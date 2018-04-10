@@ -130,10 +130,6 @@ en:
       title: "%{year} Course Forum"
     actions:
       new: "Create a new Post"
-      like: "Like"
-      unlike: "Remove Like"
-      dislike: "Dislike"
-      undislike: "Remove Dislike"
     fields:
       title: "Title"
       body: "Message"
@@ -159,6 +155,16 @@ en:
       new: "Reply to the Post"
     form:
       submit: "Post it!"
+    flash:
+      liked: "Added your Like."
+      unliked: "Removed your Like."
+      disliked: "Added your Dislike."
+      undisliked: "Removed your Dislike."
+  actions:
+    like: "Like"
+    unlike: "Remove Like"
+    dislike: "Dislike"
+    undislike: "Remove Dislike"
   activerecord:
     errors:
       messages:

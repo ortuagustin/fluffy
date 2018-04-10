@@ -28,4 +28,12 @@ class Post < ApplicationRecord
 
     Kaminari.paginate_array(replies.reject { |reply| is_best_reply?(reply) })
   end
+
+  def like_path
+    like_course_post_path(course_id: course_id, id: id)
+  end
+
+  def dislike_path
+    dislike_course_post_path(course_id: course_id, id: id)
+  end
 end

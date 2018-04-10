@@ -2,6 +2,7 @@ module Likeable
   extend ActiveSupport::Concern
 
   included do
+    include Rails.application.routes.url_helpers
     acts_as_votable           ## acts_as_votable
   end
 
@@ -19,5 +20,13 @@ module Likeable
 
   def as_json(options = {})
     super options.merge :methods => [:like_score]
+  end
+
+  def like_path
+    raise NotImplementedError
+  end
+
+  def dislike_path
+    raise NotImplementedError
   end
 end

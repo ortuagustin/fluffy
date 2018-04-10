@@ -35,4 +35,74 @@ class ReplyTest < ActiveSupport::TestCase
     @reply.mark_best_reply
     assert @reply.is_best_reply?
   end
+
+  test "it can be liked by a user" do
+    user = users(:student)
+
+    refute user.liked? @reply
+    assert_equal 0, @reply.likes.size
+    assert_equal 0, @reply.like_score
+
+    @reply.liked_by user
+
+    assert_equal 1, @reply.likes.size
+    assert_equal 1, @reply.like_score
+    assert user.liked? @reply
+  end
+
+  test "a user who liked it, can undo the like" do
+    user = users(:student)
+    @reply.liked_by user
+    assert_equal 1, @reply.like_score
+
+    @reply.unliked_by user
+
+    refute user.liked? @reply
+    assert_equal 0, @reply.like_score
+  end
+
+  test "it can only be liked once per user" do
+    user = users(:student)
+
+    @reply.liked_by user
+    @reply.liked_by user
+
+    assert_equal 1, @reply.likes.size
+    assert_equal 1, @reply.like_score
+  end
+
+  test "it can be disliked by a user" do
+    user = users(:student)
+
+    refute user.disliked? @reply
+    assert_equal 0, @reply.dislikes.size
+    assert_equal 0, @reply.like_score
+
+    @reply.disliked_by user
+
+    assert_equal 1, @reply.dislikes.size
+    assert_equal -1, @reply.like_score
+    assert user.disliked? @reply
+  end
+
+  test "a user who diliked it, can undo the like" do
+    user = users(:student)
+    @reply.disliked_by user
+    assert_equal -1, @reply.like_score
+
+    @reply.undisliked_by user
+
+    refute user.disliked? @reply
+    assert_equal 0, @reply.like_score
+  end
+
+  test "it can only be disliked once per user" do
+    user = users(:student)
+
+    @reply.disliked_by user
+    @reply.disliked_by user
+
+    assert_equal 1, @reply.dislikes.size
+    assert_equal -1, @reply.like_score
+  end
 end

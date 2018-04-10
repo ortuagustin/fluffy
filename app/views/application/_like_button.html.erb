@@ -1,17 +1,17 @@
 <% if current_user.liked? likeable %>
   <%= fa_button 'times',
-      (t 'posts.actions.unlike'),
-      like_course_post_path(course.id, likeable.id), method: :delete,
-      size: 20,
-      class: 'is-danger',
+      (t 'actions.unlike'),
+      likeable.like_path, method: :delete,
+      size: local_assigns.fetch(:icon_size, 20),
+      class: "#{local_assigns.fetch :button_size, ''} is-danger",
       rounded: true
   %>
 <% else %>
   <%= fa_button 'thumbs-up',
-      (t 'posts.actions.like'),
-      like_course_post_path(course.id, likeable.id), method: :post,
-      size: 20,
-      class: 'is-info',
+      (t 'actions.like'),
+      likeable.like_path, method: :post,
+      size: local_assigns.fetch(:icon_size, 20),
+      class: "#{local_assigns.fetch :button_size, ''} is-info",
       rounded: true
   %>
 <% end %>

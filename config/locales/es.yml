@@ -145,10 +145,6 @@ es:
       title: "Foro cursada %{year}"
     actions:
       new: "Crear un nuevo Post"
-      like: "Me gusta"
-      unlike: "Ya no me gusta"
-      dislike: "No me gusta"
-      undislike: "Eliminar no me gusta"
     fields:
       title: "Título"
       body: "Contenido"
@@ -174,6 +170,16 @@ es:
       new: "Responde al Post"
     form:
       submit: "Postea!"
+    flash:
+      liked: "Se agregó tu Me Gusta."
+      unliked: "Se eliminó tu Me Gusta."
+      disliked: "Se agregó tu No Me Gusta."
+      undisliked: "Se eliminó tu No Me Gusta."
+  actions:
+    like: "Me gusta"
+    unlike: "Ya no me gusta"
+    dislike: "No me gusta"
+    undislike: "Eliminar no me gusta"
   activerecord:
     models:
       student:

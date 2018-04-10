@@ -1,4 +1,4 @@
-<article class="container media">
+<article class="media">
   <div class="media-left">
     <p class="has-text-weight-bold"> @<%= reply.user.username %> </p>
 
@@ -21,12 +21,32 @@
 
         <div class="level-right">
           <div class="level-item">
-            <p class="has-text-weight-light" style="margin-right: 10px;"> <%= time_since_posted(reply) %> </p>
+            <p class="has-text-weight-light"> <%= t('posts.like_score', score: reply.like_score) %> </p>
+          </div>
+
+          <div class="level-item">
+            <p class="has-text-weight-light"> <%= time_since_posted(reply) %> </p>
           </div>
         </div>
       </div>
 
       <p> <%= reply.body %> </p>
+
+      <div class="level">
+        <div class="level-left"> </div>
+
+        <% unless policy(reply).owner? %>
+          <div class="level-right">
+            <div class="level-item">
+              <%= render partial: 'like_button', locals: { likeable: reply, button_size: 'is-small', icon_size: 16 } %>
+            </div>
+
+            <div class="level-item">
+              <%= render partial: 'dislike_button', locals: { likeable: reply, button_size: 'is-small', icon_size: 16 } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
     </div>
   </div>
 </article>
