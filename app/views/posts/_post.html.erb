@@ -45,15 +45,17 @@
         <div class="level">
           <div class="level-left"> </div>
 
-          <div class="level-right">
-            <div class="level-item">
-              <%= render partial: 'like_button', locals: { likeable: post } %>
-            </div>
+          <% unless policy(post).owner? %>
+            <div class="level-right">
+              <div class="level-item">
+                <%= render partial: 'like_button', locals: { likeable: post } %>
+              </div>
 
-            <div class="level-item">
-              <%= render partial: 'dislike_button', locals: { likeable: post } %>
+              <div class="level-item">
+                <%= render partial: 'dislike_button', locals: { likeable: post } %>
+              </div>
             </div>
-          </div>
+          <% end %>
         </div>
 
       </div>
