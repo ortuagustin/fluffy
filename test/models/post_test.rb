@@ -204,4 +204,53 @@ class PostTest < ActiveSupport::TestCase
     assert_equal 1, @post.dislikes.size
     assert_equal -1, @post.like_score
   end
+
+  test "it can be subscribed to" do
+    user = users(:student)
+
+    assert @post.subscribers.empty?
+    refute user.subscribed_to? @post
+
+    @post.add_subscription_for user
+
+    assert_equal 1, @post.subscribers.size
+    assert @post.subscribers.include? user
+
+    assert user.subscribed_to? @post
+  end
+
+  test "it can only be subscribed once per user" do
+    user = users(:student)
+
+    @post.add_subscription_for user
+    @post.add_subscription_for user
+
+    assert_equal 1, @post.subscribers.size
+    assert_equal 1, user.subscriptions.size
+  end
+
+  test "it should automatically subscribe its owner when created" do
+    user = users(:student)
+    post = Post.create(title: 'test', body: 'test', course: Course.first, user: user)
+
+    assert_equal 1, post.subscribers.size
+    assert_equal 1, user.subscriptions.size
+    assert user.subscribed_to? post
+  end
+
+  test "its subscription may be removed" do
+    user = users(:student)
+
+    @post.add_subscription_for user
+
+    assert_equal 1, @post.subscribers.size
+    assert_equal 1, user.subscriptions.size
+    assert user.subscribed_to? @post
+
+    @post.remove_subscription_for user
+
+    assert_equal 0, @post.subscribers.size
+    assert_equal 0, user.subscriptions.size
+    refute user.subscribed_to? @post
+  end
 end

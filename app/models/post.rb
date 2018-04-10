@@ -1,5 +1,6 @@
 class Post < ApplicationRecord
   include Likeable
+  include Subscribable
 
   paginates_per 10          ## Kaminari
 
@@ -10,6 +11,8 @@ class Post < ApplicationRecord
 
   validates :title, :body, presence: true
   validates :title, length: { maximum: 100 }
+
+  alias_method :owner, :user
 
   def is_best_reply?(reply)
     if has_best_reply? then

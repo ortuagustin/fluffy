@@ -13,6 +13,11 @@ Rails.application.routes.draw do
     delete 'dislike', action: :destroy, controller: options[:controller], on: :member
   end
 
+  concern :subscribable do |options|
+    post 'subscribe', action: :create, controller: options[:controller], on: :member
+    delete 'subscribe', action: :destroy, controller: options[:controller], on: :member
+  end
+
   scope "(:locale)", locale: /#{ I18n.locales.join("|")}/ do
     devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
 
@@ -30,6 +35,10 @@ Rails.application.routes.draw do
       resources :posts, concerns: :paginatable do
         concerns :likeable, controller: 'posts_likes'
         concerns :dislikeable, controller: 'posts_dislikes'
+
+        shallow do
+          concerns :subscribable, controller: 'posts_subscriptions'
+        end
 
         resources :replies, only: [:create, :update, :destroy], concerns: :paginatable do
           concerns :likeable, controller: 'replies_likes'

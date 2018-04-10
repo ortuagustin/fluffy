@@ -1,5 +1,6 @@
 module LikesReplies
   include LikesModels
+
   extend ActiveSupport::Concern
 
   included do
