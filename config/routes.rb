@@ -33,9 +33,8 @@ Rails.application.routes.draw do
       end
 
       resources :posts, concerns: :paginatable do
-        concerns :likeable, controller: 'posts_likes'
-
         shallow do
+          concerns :likeable, controller: 'posts_likes'
           concerns :dislikeable, controller: 'posts_dislikes'
           concerns :subscribable, controller: 'posts_subscriptions'
         end
