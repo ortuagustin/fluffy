@@ -27,4 +27,8 @@ module Subscribable
   def owner
     raise NotImplementedError
   end
+
+  def subscribe_path
+    raise NotImplementedError
+  end
 end

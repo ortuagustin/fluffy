@@ -143,6 +143,8 @@ en:
       unliked: "Removed your Like."
       disliked: "Added your Dislike."
       undisliked: "Removed your Dislike."
+      subscribed: "You're now subscribed to the Post."
+      unsubscribed: "Removed your subscription to the Post."
     replies_count:
       zero: "No replies"
       one: "1 reply"
@@ -165,6 +167,8 @@ en:
     unlike: "Remove Like"
     dislike: "Dislike"
     undislike: "Remove Dislike"
+    subscribe: "Subscribe"
+    unsubscribe: "Unsubscribe"
   activerecord:
     errors:
       messages:

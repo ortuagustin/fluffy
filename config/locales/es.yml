@@ -158,6 +158,8 @@ es:
       unliked: "Se eliminó tu Me Gusta."
       disliked: "Se agregó tu No Me Gusta."
       undisliked: "Se eliminó tu No Me Gusta."
+      subscribed: "Te subscribiste al Post."
+      unsubscribed: "Se eliminó tu subscripción al Post."
     replies_count:
       zero: "Sin respuestas"
       one: "1 respuesta"
@@ -180,6 +182,8 @@ es:
     unlike: "Ya no me gusta"
     dislike: "No me gusta"
     undislike: "Eliminar no me gusta"
+    subscribe: "Subscribirse"
+    unsubscribe: "Eliminar subscripción"
   activerecord:
     models:
       student:

@@ -1,0 +1,17 @@
+<% if current_user.subscribed_to? subscribable %>
+  <%= fa_button 'times',
+      (t 'actions.unsubscribe'),
+      subscribable.subscribe_path, method: :delete,
+      size: local_assigns.fetch(:icon_size, 20),
+      class: "#{local_assigns.fetch :button_size, ''} is-danger is-outlined",
+      rounded: true
+  %>
+<% else %>
+  <%= fa_button 'bullhorn',
+      (t 'actions.subscribe'),
+      subscribable.subscribe_path, method: :post,
+      size: local_assigns.fetch(:icon_size, 20),
+      class: "#{local_assigns.fetch :button_size, ''} is-link is-outlined",
+      rounded: true
+  %>
+<% end %>

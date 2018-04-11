@@ -43,7 +43,9 @@
         <p> <%= post_body(post, truncate_body) %> </p>
 
         <div class="level">
-          <div class="level-left"> </div>
+          <div class="level-left">
+            <%= render partial: 'subscribe_button', locals: { subscribable: post } %>
+          </div>
 
           <% unless policy(post).owner? %>
             <div class="level-right">

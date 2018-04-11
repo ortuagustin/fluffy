@@ -39,4 +39,8 @@ class Post < ApplicationRecord
   def dislike_path
     dislike_course_post_path(course_id: course_id, id: id)
   end
+
+  def subscribe_path
+    subscribe_post_path(id: id)
+  end
 end
