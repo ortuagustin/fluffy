@@ -1,11 +1,11 @@
 class RepliesController < ApplicationController
-  before_action :set_post, only: [:create, :update]
   before_action :set_reply, only: [:update, :destroy]
 
-  # POST /courses/:course_id/posts/:post_id/replies
-  # POST /courses/:course_id/posts/:post_id/replies.json
+  # POST /posts/:post_id/replies
+  # POST /posts/:post_id/replies.json
   def create
     @reply = Reply.new(create_reply_params)
+    @post = Post.find @reply.post_id
 
     respond_to do |format|
       if @reply.save
@@ -17,8 +17,8 @@ class RepliesController < ApplicationController
     end
   end
 
-  # PATCH/PUT /courses/:course_id/posts/:post_id/replies/:reply_id
-  # PATCH/PUT /courses/:course_id/posts/:post_id/replies/:reply_id.json
+  # PATCH/PUT /replies/:reply_id
+  # PATCH/PUT /replies/:reply_id.json
   def update
     authorize @reply
 
@@ -32,22 +32,20 @@ class RepliesController < ApplicationController
     end
   end
 
-  # DELETE /courses/:course_id/posts/:post_id/replies/:reply_id.json
+  # DELETE /replies/:reply_id
+  # DELETE /replies/:reply_id.json
   def destroy
     @reply.destroy
 
     respond_to do |format|
-      format.html { redirect_to course_posts_path(course_id), notice: (t 'posts.flash.deleted') }
+      format.html { redirect_to @reply.post.course.forum_path, notice: (t 'replies.flash.deleted') }
       format.json { head :no_content }
     end
   end
 private
   def set_reply
-    @reply = Reply.find(reply_id)
-  end
-
-  def set_post
-    @post = Post.find(post_id)
+    @reply = Reply.find reply_id
+    @post = @reply.post
   end
 
   def create_reply_params
@@ -59,11 +57,11 @@ private
   end
 
   def course_id
-    params.require(:course_id)
+    @post.course_id
   end
 
   def post_id
-    params.require(:post_id)
+    @post.id
   end
 
   def reply_id

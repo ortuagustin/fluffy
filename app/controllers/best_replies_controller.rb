@@ -33,6 +33,6 @@ private
   end
 
   def redirect_fallback
-    course_post_path(course_id, post_id)
+    @reply.post.path
   end
 end

@@ -8,19 +8,19 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "unauthorized users cannot see posts" do
-    get course_posts_path(@course)
+    get @course.forum_path
     assert_redirected_to_login
   end
 
   test "authorized users can see posts" do
     login_as @teacher
-    get course_posts_path(@course)
+    get @course.forum_path
     assert_response :success
   end
 
   test "unauthorized users cannot create posts" do
     assert_no_difference "Post.count" do
-      post course_posts_path(@course), params: { post: post_params }
+      post @course.forum_path, params: { post: post_params }
       assert_redirected_to_login
     end
   end
@@ -29,20 +29,20 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     login_as @teacher
 
     assert_difference('Post.count') do
-      post course_posts_path(@course), params: { post: post_params }
+      post @course.forum_path, params: { post: post_params }
       assert_response :redirect
     end
   end
 
   test "only the post owner can edit a post" do
     login_as users(:student)
-    patch course_post_path(@course, @post), params: { post: post_params }
+    patch @post.path, params: { post: post_params }
     assert_response :forbidden
   end
 
   test "a post can be edited by its owner" do
     login_as @teacher
-    patch course_post_path(course_id: @course.id, id: @post.id, format: 'json'), params: { post: edit_post_params }
+    patch @post.path, params: { post: edit_post_params, format: 'json' }
     assert_response :success
 
     @post.reload
@@ -51,7 +51,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   end
 private
   def post_params
-    { title: 'test', body: 'test', user_id: @teacher.id }
+    { title: 'test', body: 'test', user_id: @teacher.id, course_id: @course.id }
   end
 
   def edit_post_params

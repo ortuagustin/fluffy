@@ -1,6 +1,7 @@
 class Course < ApplicationRecord
   include Contracts
   include CourseWithSearchableAssociations # /models/concerns/course_with_searchable_associations.rb
+  include GeneratesUrls                    # /models/concerns/generates_urls.rb
 
   has_many :students, dependent: :destroy
   has_many :tests, dependent: :destroy
@@ -49,5 +50,13 @@ class Course < ApplicationRecord
   Contract String => Post
   def post(post_id)
     post(post_id.to_i)
+  end
+
+  def forum_path
+    course_posts_path(course_id: id)
+  end
+
+  def add_post_path
+    new_course_post_path(course_id: id)
   end
 end

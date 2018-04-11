@@ -19,11 +19,7 @@ protected
     params.require(:id)
   end
 
-  def course_id
-    @post.course_id
-  end
-
   def redirect_fallback
-    course_post_path(course_id, post_id)
+    @post.path
   end
 end

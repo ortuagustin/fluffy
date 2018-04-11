@@ -175,6 +175,9 @@ es:
     form:
       submit: "Postea!"
     flash:
+      created: "Se agregó tu Respuesta al Post."
+      updated: "Se actualizó tu Respuesta."
+      deleted: "Se eliminó la Respuesta."
       liked: "Se agregó tu Me Gusta."
       unliked: "Se eliminó tu Me Gusta."
       disliked: "Se agregó tu No Me Gusta."

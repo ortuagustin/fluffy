@@ -2,7 +2,7 @@
 
   <p class="subtitle has-text-grey"> <%= t 'replies.actions.new' %> </p>
 
-  <%= custom_form_for [course, @post, @reply] do |f| %>
+  <%= custom_form_for [@post, @reply] do |f| %>
     <%= render partial: 'errors', locals: {obj: @reply} %>
 
     <div class="field">

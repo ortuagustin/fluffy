@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class RepliesDisdislikesControllerTest < ActionDispatch::IntegrationTest
+class RepliesDislikesControllerTest < ActionDispatch::IntegrationTest
   setup do
     @reply = replies(:two)
     @user = users(:teacher)

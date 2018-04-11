@@ -14,7 +14,7 @@ class PostsSubscriptionsController < ApplicationController
   end
 protected
   def redirect_fallback
-    course_post_path(@post.course_id, @post)
+    @post.path
   end
 private
   def set_post
@@ -23,10 +23,6 @@ private
 
   def post_id
     params.require(:id)
-  end
-
-  def course_id
-    course_params.require(:course_id)
   end
 
   def course_params

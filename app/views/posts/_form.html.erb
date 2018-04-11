@@ -1,9 +1,9 @@
-<%= render partial: 'box', locals: { link_path: course_posts_path(course_id) } %>
+<%= render partial: 'box', locals: { link_path: @course.forum_path } %>
 
 <div class="box">
 
   <p class="title is-4 has-text-grey has-text-centered"> <%= t 'posts.actions.new' %> </p>
-  <%= custom_form_for [course, @post] do |f| %>
+  <%= custom_form_for [@course, @post] do |f| %>
     <%= render partial: 'errors', locals: {obj: @post} %>
 
     <div class="field">
@@ -20,7 +20,7 @@
       </div>
     </div>
 
-    <%= f.hidden_field :course_id, value: course_id %>
+    <%= f.hidden_field :course_id, value: @course.id %>
     <%= f.hidden_field :user_id, value: user_id %>
 
     <br>

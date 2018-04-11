@@ -3,7 +3,7 @@
 <%= render layout: 'box', locals: { link_path: courses_path } do %>
   <div class="level-right">
     <div class="level-item">
-      <%= fa_link_to 'plus', (t 'posts.actions.new'), new_course_post_path(course_id), size: 35, class: 'has-text-success' %>
+      <%= fa_link_to 'plus', (t 'posts.actions.new'), @course.add_post_path, size: 35, class: 'has-text-success' %>
     </div>
   </div>
 <% end %>

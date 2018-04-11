@@ -4,7 +4,6 @@ class PostsSubscriptionsControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
     @user = users(:student)
-    @course = @post.course
   end
 
   test "unauthorized users cannot subscribe to posts" do
@@ -20,12 +19,12 @@ class PostsSubscriptionsControllerTest < ActionDispatch::IntegrationTest
   test "authorized users can subscribe to posts" do
     login_as @user
     post @post.subscribe_path
-    assert_redirected_to course_post_path(@course, @post)
+    assert_redirected_to @post.path
   end
 
   test "authorized users can unsubscribe from posts" do
     login_as @user
     delete @post.subscribe_path
-    assert_redirected_to course_post_path(@course, @post)
+    assert_redirected_to @post.path
   end
 end

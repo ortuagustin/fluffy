@@ -20,6 +20,10 @@ class Reply < ApplicationRecord
     post.update(best_reply: nil)
   end
 
+  def path
+    reply_path(id: id)
+  end
+
   def like_path
     like_reply_path(id: id)
   end

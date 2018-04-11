@@ -165,6 +165,9 @@ en:
     form:
       submit: "Post it!"
     flash:
+      created: "Added your Reply to the Post."
+      updated: "Reply was updated."
+      deleted: "Reply was deleted."
       liked: "Added your Like."
       unliked: "Removed your Like."
       disliked: "Added your Dislike."
