@@ -16,9 +16,11 @@
   </div>
 <% end %>
 
-<div class="box">
-  <%= render partial: 'replies/show', collection: @replies, as: :reply %>
-</div>
+<% unless @replies.empty? %>
+  <div class="box">
+    <%= render partial: 'replies/show', collection: @replies, as: :reply %>
+  </div>
+<% end %>
 
 <%= render 'replies/form', reply: @reply %>
 
