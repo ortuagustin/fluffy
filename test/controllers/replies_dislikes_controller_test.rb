@@ -11,12 +11,12 @@ class RepliesDisdislikesControllerTest < ActionDispatch::IntegrationTest
 
   test "unauthorized users cannot dislike replies" do
     post dislike_course_post_reply_path(@course, @post, @reply)
-    assert_redirected_to '/users/login'
+    assert_redirected_to_login
   end
 
   test "unauthorized users cannot undislike replies" do
     delete dislike_course_post_reply_path(@course, @post, @reply)
-    assert_redirected_to '/users/login'
+    assert_redirected_to_login
   end
 
   test "authorized users can dislike replies" do

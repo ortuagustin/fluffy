@@ -11,7 +11,7 @@ class RepliesControllerTest < ActionDispatch::IntegrationTest
   test "unauthorized users cannot reply to posts" do
     assert_no_difference "Reply.count" do
       post course_post_replies_path(@course, @post), params: { reply: reply_params }
-      assert_redirected_to '/users/login'
+      assert_redirected_to_login
 
       post course_post_replies_path(@course, @post), params: { reply: reply_params, format: 'json' }
       assert_response :unauthorized

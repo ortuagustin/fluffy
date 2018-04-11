@@ -16,4 +16,8 @@ class ActionDispatch::IntegrationTest
   def setup
     self.default_url_options = { locale: I18n.default_locale }
   end
+
+  def assert_redirected_to_login
+    assert_redirected_to new_user_session_path(locale: nil)
+  end
 end

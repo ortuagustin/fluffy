@@ -10,12 +10,12 @@ class PostsDisdislikesControllerTest < ActionDispatch::IntegrationTest
 
   test "unauthorized users cannot dislike posts" do
     post dislike_course_post_path(@course, @post)
-    assert_redirected_to '/users/login'
+    assert_redirected_to_login
   end
 
   test "unauthorized users cannot undislike posts" do
     delete dislike_course_post_path(@course, @post)
-    assert_redirected_to '/users/login'
+    assert_redirected_to_login
   end
 
   test "authorized users can dislike posts" do

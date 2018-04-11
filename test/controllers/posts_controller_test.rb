@@ -9,7 +9,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
 
   test "unauthorized users cannot see posts" do
     get course_posts_path(@course)
-    assert_redirected_to '/users/login'
+    assert_redirected_to_login
   end
 
   test "authorized users can see posts" do
@@ -21,7 +21,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
   test "unauthorized users cannot create posts" do
     assert_no_difference "Post.count" do
       post course_posts_path(@course), params: { post: post_params }
-      assert_redirected_to '/users/login'
+      assert_redirected_to_login
     end
   end
 

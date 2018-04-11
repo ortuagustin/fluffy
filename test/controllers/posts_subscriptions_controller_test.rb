@@ -9,12 +9,12 @@ class PostsSubscriptionsControllerTest < ActionDispatch::IntegrationTest
 
   test "unauthorized users cannot subscribe to posts" do
     post subscribe_post_path(@post)
-    assert_redirected_to '/users/login'
+    assert_redirected_to_login
   end
 
   test "unauthorized users cannot unsubscribe from posts" do
     delete subscribe_post_path(@post)
-    assert_redirected_to '/users/login'
+    assert_redirected_to_login
   end
 
   test "authorized users can subscribe to posts" do

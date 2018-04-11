@@ -19,7 +19,7 @@ Rails.application.routes.draw do
   end
 
   scope "(:locale)", locale: /#{ I18n.locales.join("|")}/ do
-    devise_for :users, path_names: {sign_in: 'login', sign_out: 'logout', sign_up: 'register'}
+    devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
 
     get 'home', to: 'courses#index', as: :home
     resources :courses, except: [:edit, :update, :new] do

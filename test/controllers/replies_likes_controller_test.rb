@@ -11,12 +11,12 @@ class RepliesLikesControllerTest < ActionDispatch::IntegrationTest
 
   test "unauthorized users cannot like replies" do
     post like_course_post_reply_path(@course, @post, @reply)
-    assert_redirected_to '/users/login'
+    assert_redirected_to_login
   end
 
   test "unauthorized users cannot unlike replies" do
     delete like_course_post_reply_path(@course, @post, @reply)
-    assert_redirected_to '/users/login'
+    assert_redirected_to_login
   end
 
   test "authorized users can like replies" do
