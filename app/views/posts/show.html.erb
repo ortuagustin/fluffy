@@ -22,9 +22,9 @@
   </div>
 <% end %>
 
-<%= render 'replies/form', reply: @reply %>
+<%= paginate @replies, param_name: :replies_page %>
+<%= page_entries_info @replies %>
 
 <hr>
 
-<%= paginate @replies, param_name: :replies_page %></br>
-<%= page_entries_info @replies %>
+<%= render 'replies/form', reply: @reply %>
