@@ -2,7 +2,7 @@ module Likeable
   extend ActiveSupport::Concern
 
   included do
-    include Rails.application.routes.url_helpers
+    include GeneratesUrls
     acts_as_votable           ## acts_as_votable
   end
 

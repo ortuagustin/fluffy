@@ -2,6 +2,8 @@ module Subscribable
   extend ActiveSupport::Concern
 
   included do
+    include GeneratesUrls
+
     has_many :subscriptions, dependent: :destroy, as: :subscribable
     has_many :subscribers, through: :subscriptions
 
