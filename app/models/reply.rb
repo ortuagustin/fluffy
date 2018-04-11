@@ -21,10 +21,10 @@ class Reply < ApplicationRecord
   end
 
   def like_path
-    like_course_post_reply_path(course_id: post.course_id, post_id: post_id, id: id)
+    like_reply_path(id: id)
   end
 
   def dislike_path
-    dislike_course_post_reply_path(course_id: post.course_id, post_id: post_id, id: id)
+    dislike_reply_path(id: id)
   end
 end
