@@ -27,4 +27,8 @@ class Reply < ApplicationRecord
   def dislike_path
     dislike_reply_path(id: id)
   end
+
+  def select_as_best_path
+    select_best_reply_path(id: id)
+  end
 end

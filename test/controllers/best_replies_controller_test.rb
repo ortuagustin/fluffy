@@ -7,24 +7,24 @@ class BestRepliesControllerTest < ActionDispatch::IntegrationTest
   end
 
   test "unauthorized users cannot select best replies" do
-    post select_best_reply_path @reply
+    post @reply.select_as_best_path
     assert_redirected_to_login
   end
 
   test "unauthorized users cannot unselect best replies" do
-    delete select_best_reply_path @reply
+    delete @reply.select_as_best_path
     assert_redirected_to_login
   end
 
   test "post owner can select best replies" do
     login_as @post_owner
-    post select_best_reply_path @reply
+    post @reply.select_as_best_path
     assert_response :redirect
   end
 
   test "post owner can unselect best replies" do
     login_as @post_owner
-    delete select_best_reply_path @reply
+    delete @reply.select_as_best_path
     assert_response :redirect
   end
 end
