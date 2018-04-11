@@ -16,6 +16,10 @@ class Reply < ApplicationRecord
     post.update(best_reply: self)
   end
 
+  def unmark_best_reply
+    post.update(best_reply: nil)
+  end
+
   def like_path
     like_course_post_reply_path(course_id: post.course_id, post_id: post_id, id: id)
   end

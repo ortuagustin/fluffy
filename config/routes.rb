@@ -43,6 +43,11 @@ Rails.application.routes.draw do
         resources :replies, only: [:create, :update, :destroy], concerns: :paginatable do
           concerns :likeable, controller: 'replies_likes'
           concerns :dislikeable, controller: 'replies_dislikes'
+
+          shallow do
+            post 'select_best', to: 'best_replies#create', on: :member
+            delete 'select_best', to: 'best_replies#destroy', on: :member
+          end
         end
       end
     end

@@ -160,6 +160,8 @@ en:
       body: "Have something to say?"
     actions:
       new: "Reply to the Post"
+      select_best: "Mark as Best Reply"
+      unselect_best: "Unnark as Best Reply"
     form:
       submit: "Post it!"
     flash:
@@ -167,6 +169,8 @@ en:
       unliked: "Removed your Like."
       disliked: "Added your Dislike."
       undisliked: "Removed your Dislike."
+      selected_best: "Marked as Best Reply."
+      unselected_best: "Removed Best Reply."
   actions:
     like: "Like"
     unlike: "Remove Like"

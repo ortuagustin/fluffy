@@ -1,0 +1,17 @@
+<% if reply.is_best_reply? %>
+  <%= fa_button 'times',
+      (t 'replies.actions.unselect_best'),
+      select_best_reply_path(reply), method: :delete,
+      size: local_assigns.fetch(:icon_size, 20),
+      class: "#{local_assigns.fetch :button_size, ''} is-danger is-outlined",
+      rounded: true
+  %>
+<% else %>
+  <%= fa_button 'check',
+      (t 'replies.actions.select_best'),
+      select_best_reply_path(reply), method: :post,
+      size: local_assigns.fetch(:icon_size, 20),
+      class: "#{local_assigns.fetch :button_size, ''} is-success is-outlined",
+      rounded: true
+  %>
+<% end %>

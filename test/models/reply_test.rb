@@ -36,6 +36,14 @@ class ReplyTest < ActiveSupport::TestCase
     assert @reply.is_best_reply?
   end
 
+  test "it can be unmarked as the best reply of the post" do
+    refute @reply.is_best_reply?
+    @reply.mark_best_reply
+    assert @reply.is_best_reply?
+    @reply.unmark_best_reply
+    refute @reply.is_best_reply?
+  end
+
   test "it can be liked by a user" do
     user = users(:student)
 

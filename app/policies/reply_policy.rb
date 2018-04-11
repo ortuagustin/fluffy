@@ -10,4 +10,8 @@ class ReplyPolicy < ApplicationPolicy
   def not_owner?
     not owner?
   end
+
+  def select_best?
+    record.post.user == user
+  end
 end

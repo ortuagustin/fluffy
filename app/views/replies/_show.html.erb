@@ -33,7 +33,11 @@
       <p> <%= reply.body %> </p>
 
       <div class="level">
-        <div class="level-left"> </div>
+          <div class="level-left">
+            <% if policy(reply).select_best? %>
+              <%= render partial: 'best_reply_button', locals: { reply: reply, button_size: 'is-small', icon_size: 16 } %>
+            <% end %>
+          </div>
 
         <% unless policy(reply).owner? %>
           <div class="level-right">

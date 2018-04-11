@@ -167,9 +167,11 @@ es:
     like_score: "Puntuación: %{score}"
   replies:
     fields:
-      body: "Queres dejar un comentario?"
+      body: "Queres dejar un Comentario?"
     actions:
       new: "Responde al Post"
+      select_best: "Mejor Respuesta"
+      unselect_best: "No es la Mejor Respuesta"
     form:
       submit: "Postea!"
     flash:
@@ -177,6 +179,8 @@ es:
       unliked: "Se eliminó tu Me Gusta."
       disliked: "Se agregó tu No Me Gusta."
       undisliked: "Se eliminó tu No Me Gusta."
+      selected_best: "Seleccionada como Mejor Respuesta."
+      unselected_best: "Eliminada Mejor Respuesta."
   actions:
     like: "Me gusta"
     unlike: "Ya no me gusta"
