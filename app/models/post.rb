@@ -33,7 +33,7 @@ class Post < ApplicationRecord
   end
 
   def like_path
-    dislike_post_path(id: id)
+    like_post_path(id: id)
   end
 
   def dislike_path
