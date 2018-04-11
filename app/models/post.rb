@@ -33,11 +33,11 @@ class Post < ApplicationRecord
   end
 
   def like_path
-    like_course_post_path(course_id: course_id, id: id)
+    dislike_post_path(id: id)
   end
 
   def dislike_path
-    dislike_course_post_path(course_id: course_id, id: id)
+    dislike_post_path(id: id)
   end
 
   def subscribe_path

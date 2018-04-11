@@ -4,15 +4,15 @@ module LikesPosts
   extend ActiveSupport::Concern
 
   included do
-    before_action :set_course, :set_post
+    before_action :set_post
   end
 protected
   def record
     @post
   end
 
-  def set_course
-    @course = Course.find(course_id)
+  def set_post
+    @post = Post.find post_id
   end
 
   def post_id
@@ -20,18 +20,10 @@ protected
   end
 
   def course_id
-    course_params.require(:course_id)
-  end
-
-  def set_post
-    @post = @course.post(post_id)
-  end
-
-  def course_params
-    params.permit(:course_id)
+    @post.course_id
   end
 
   def redirect_fallback
-    course_post_path(@course, @post)
+    course_post_path(course_id, post_id)
   end
 end
