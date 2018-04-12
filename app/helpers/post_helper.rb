@@ -8,4 +8,10 @@ module PostHelper
 
     post.body.truncate(400)
   end
+
+  def post_title(post, truncate)
+    return post.title unless truncate
+
+    post.title.truncate(50)
+  end
 end

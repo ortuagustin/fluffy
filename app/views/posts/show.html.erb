@@ -3,7 +3,7 @@
 <%= fa_link_to 'chevron-left', (t 'navigation.back_link_label'), @course.forum_path, size: 16, class: 'has-text-info' %>
 
 <div style="margin-top: 25px;">
-  <%= render partial: 'post', locals: { post: @post, truncate_body: false } %>
+  <%= render partial: 'post', locals: { post: @post, truncate_title: false, truncate_body: false } %>
 </div>
 
 <br>

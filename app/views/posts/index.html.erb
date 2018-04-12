@@ -8,7 +8,7 @@
   </div>
 <% end %>
 
-<%= render(partial: 'post', collection: @posts, locals: { truncate_body: true }) || (t 'posts.index.empty') %>
+<%= render(partial: 'post', collection: @posts, locals: { truncate_title: true, truncate_body: true }) || (t 'posts.index.empty') %>
 
 <br>
 
