@@ -1,0 +1,49 @@
+<%= render layout: 'trending_box', locals: { posts: @posts, header: (t 'posts.trending.recently_updated') } do |post| %>
+  <% if post.replies.any? %>
+    <div class="level-left">
+      <div class="level-item">
+        <p class="has-text-weight-bold is-size-7">
+          <%= t('posts.trending.last_reply_by') %> @<%= post.most_recent_reply.user.username %>
+        </p>
+      </div>
+    </div>
+
+    <div class="level-right">
+      <div class="level-item">
+        <p class="has-text-weight-light is-size-7"> <%= time_since(post.updated_at) %> </p>
+      </div>
+    </div>
+  <% end %>
+<% end %>
+
+<%= render layout: 'trending_box', locals: { posts: @posts, header: (t 'posts.trending.popular') } do |post| %>
+  <div class="level-left">
+    <div class="level-item">
+      <p class="has-text-weight-bold is-size-7">
+        <%= t('posts.trending.post_created_by') %> @<%= post.user.username %>
+      </p>
+    </div>
+  </div>
+
+  <div class="level-right">
+    <div class="level-item">
+      <p class="has-text-weight-bold is-size-7"> <%= t('posts.replies_count', count: post.replies_count) %> </p>
+    </div>
+  </div>
+<% end %>
+
+<%= render layout: 'trending_box', locals: { posts: @posts, header: (t 'posts.trending.most_liked') } do |post| %>
+  <div class="level-left">
+    <div class="level-item">
+      <p class="has-text-weight-bold is-size-7">
+        <%= t('posts.trending.post_created_by') %> @<%= post.user.username %>
+      </p>
+    </div>
+  </div>
+
+  <div class="level-right">
+    <div class="level-item">
+      <p class="has-text-weight-bold is-size-7"> <%= t('posts.trending.like_score', count: post.like_score) %> </p>
+    </div>
+  </div>
+<% end %>

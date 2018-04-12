@@ -143,6 +143,13 @@ es:
   posts:
     index:
       title: "Foro cursada %{year}"
+    trending:
+      popular: "Posts Populares"
+      recently_updated: "Posts actualizados recientemente"
+      most_liked: "Posts con más 'Me Gusta'"
+      last_reply_by: "Último comentario de"
+      post_created_by: "Creado por"
+      like_score: "%{count} Me Gusta"
     actions:
       new: "Crear un nuevo Post"
     fields:

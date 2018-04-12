@@ -133,6 +133,16 @@ en:
   posts:
     index:
       title: "%{year} Course Forum"
+    trending:
+      popular: "Popular Posts"
+      recently_updated: "Posts updated recently"
+      most_liked: "Most Liked Posts"
+      last_reply_by: "Last Reply by"
+      post_created_by: "Created by"
+      like_score:
+        zero: "No Likes"
+        one: "1 Like"
+        other: "%{count} Likes"
     actions:
       new: "Create a new Post"
     fields:

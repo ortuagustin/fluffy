@@ -8,7 +8,15 @@
   </div>
 <% end %>
 
-<%= render(partial: 'post', collection: @posts, locals: { truncate_title: true, truncate_body: true }) || (t 'posts.index.empty') %>
+<div class="columns">
+  <div class="column is-two-thirds">
+    <%= render(partial: 'post', collection: @posts, locals: { truncate_title: true, truncate_body: true }) || (t 'posts.index.empty') %>
+  </div>
+
+  <div class="column">
+    <%= render 'trending' %>
+  </div>
+</div>
 
 <br>
 

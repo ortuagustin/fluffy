@@ -1,0 +1,19 @@
+<div class="message box is-paddingless is-white">
+  <div class="message-body">
+    <p class="is-size-5 has-text-weight-bold is-uppercase has-text-centered	has-text-primary" style="margin-bottom: 1rem;">
+      <%= header %>
+    </p>
+
+    <% posts.each do |post| %>
+        <p class="has-text-link is-size-6">
+          <%= link_to post_title(post, true, 40), post.path, style: "text-decoration: none" %>
+        </p>
+
+        <div class="level" style="margin-top: 0.5rem; margin-bottom: 0.5rem;">
+          <%= yield post %>
+        </div>
+
+        <hr class="is-marginless">
+    <% end %>
+  </div>
+</div>
