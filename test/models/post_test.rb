@@ -68,8 +68,22 @@ class PostTest < ActiveSupport::TestCase
   end
 
   test "it should not be sticky by default" do
-    assert_not_nil @post.is_sticky?
-    refute @post.is_sticky?
+    assert_not_nil @post.sticky?
+    refute @post.sticky?
+  end
+
+  test "it can be pinned" do
+    refute @post.sticky?
+    @post.pin
+    assert @post.sticky?
+  end
+
+  test "it can be unpinned" do
+    @post.pin
+    assert @post.sticky?
+
+    @post.unpin
+    refute @post.sticky?
   end
 
   test "it should not have a best reply by default" do

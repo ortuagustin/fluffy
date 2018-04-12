@@ -160,6 +160,8 @@ en:
       undisliked: "Removed your Dislike."
       subscribed: "You're now subscribed to the Post."
       unsubscribed: "Removed your subscription to the Post."
+      pinned: "Post pinned"
+      unpinned: "Post unpinned"
     replies_count:
       zero: "No replies"
       one: "1 reply"

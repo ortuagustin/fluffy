@@ -14,6 +14,18 @@ class Post < ApplicationRecord
 
   alias_method :owner, :user
 
+  def sticky?
+    is_sticky
+  end
+
+  def pin
+    update(is_sticky: true)
+  end
+
+  def unpin
+    update(is_sticky: false)
+  end
+
   def is_best_reply?(reply)
     if has_best_reply? then
       best_reply.id == reply.id
@@ -54,5 +66,9 @@ class Post < ApplicationRecord
 
   def subscribe_path
     subscribe_post_path(id: id)
+  end
+
+  def pin_path
+    pin_post_path(id: id)
   end
 end

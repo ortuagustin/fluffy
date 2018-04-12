@@ -1,6 +1,6 @@
 <div class="box is-marginless">
   <article class="media">
-    <div class="media-left">
+<%=  %>    <div class="media-left">
       <%= render partial: 'user_avatar', locals: { user: post.user } %>
     </div>
 
@@ -47,8 +47,14 @@
             <%= render partial: 'subscribe_button', locals: { subscribable: post, button_size: 'is-small' } %>
           </div>
 
-          <% unless policy(post).owner? %>
-            <div class="level-right">
+          <div class="level-right">
+            <% if policy(post).pin? %>
+              <div class="level-item">
+                <%= render partial: 'pin_button', locals: { post: post, button_size: 'is-small' } %>
+              </div>
+            <% end %>
+
+            <% unless policy(post).owner? %>
               <div class="level-item">
                 <%= render partial: 'like_button', locals: { likeable: post, button_size: 'is-small' } %>
               </div>
@@ -56,8 +62,8 @@
               <div class="level-item">
                 <%= render partial: 'dislike_button', locals: { likeable: post, button_size: 'is-small' } %>
               </div>
-            </div>
-          <% end %>
+            <% end %>
+          </div>
         </div>
 
       </div>

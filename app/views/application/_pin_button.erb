@@ -1,0 +1,17 @@
+<% if post.sticky? %>
+  <%= fa_button 'times',
+      (t 'posts.actions.unpin'),
+      post.pin_path, method: :delete,
+      size: local_assigns.fetch(:icon_size, 20),
+      class: "#{local_assigns.fetch :button_size, ''} is-danger is-outlined",
+      rounded: true
+  %>
+<% else %>
+  <%= fa_button 'thumb-tack',
+      (t 'posts.actions.pin'),
+      post.pin_path, method: :post,
+      size: local_assigns.fetch(:icon_size, 20),
+      class: "#{local_assigns.fetch :button_size, ''} is-black is-outlined",
+      rounded: true
+  %>
+<% end %>

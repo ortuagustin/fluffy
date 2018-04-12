@@ -1,4 +1,8 @@
 class PostPolicy < ApplicationPolicy
+  def pin?
+    user.username == 'admin'       # to-do: chequear por el rol
+  end
+
   def update?
     owner?
   end

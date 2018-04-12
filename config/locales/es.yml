@@ -167,6 +167,8 @@ es:
       undisliked: "Se eliminó tu No Me Gusta."
       subscribed: "Te subscribiste al Post."
       unsubscribed: "Se eliminó tu subscripción al Post."
+      pinned: "Post anclado"
+      unpinned: "Post desanclado"
     replies_count:
       zero: "Sin respuestas"
       one: "1 respuesta"

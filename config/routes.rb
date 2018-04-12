@@ -18,6 +18,11 @@ Rails.application.routes.draw do
     delete 'subscribe', action: :destroy, controller: options[:controller], on: :member
   end
 
+  concern :pinnable do |options|
+    post 'pin', action: :create, controller: options[:controller], on: :member
+    delete 'pin', action: :destroy, controller: options[:controller], on: :member
+  end
+
   scope "(:locale)", locale: /#{ I18n.locales.join("|")}/ do
     devise_for :users, path_names: { sign_in: 'login', sign_out: 'logout', sign_up: 'register' }
 
@@ -34,6 +39,7 @@ Rails.application.routes.draw do
 
       resources :posts, shallow: true do
         concerns :paginatable
+        concerns :pinnable, controller: 'posts_sticky'
         concerns :likeable, controller: 'posts_likes'
         concerns :dislikeable, controller: 'posts_dislikes'
         concerns :subscribable, controller: 'posts_subscriptions'
