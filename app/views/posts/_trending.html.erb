@@ -1,4 +1,4 @@
-<%= render layout: 'trending_box', locals: { posts: @posts, header: (t 'posts.trending.recently_updated') } do |post| %>
+<%= render layout: 'trending_box', locals: { posts: @course.most_recently_updated_posts(5), header: (t 'posts.trending.recently_updated') } do |post| %>
   <% if post.replies.any? %>
     <div class="level-left">
       <div class="level-item">

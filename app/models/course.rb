@@ -14,6 +14,14 @@ class Course < ApplicationRecord
   validates :year, uniqueness: true
   validates :year, format: { with: /(19|20)\d{2}/i, message: :invalid_course_year }
 
+  def most_recently_updated_posts(limit = nil)
+    recent_posts = posts.reorder(updated_at: :desc)
+
+    return recent_posts unless limit.present?
+
+    recent_posts.limit(limit)
+  end
+
   def attendants_for(test)
     students.select { |each| each.attended_to? test }.count
   end
