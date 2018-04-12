@@ -142,6 +142,17 @@ class CourseTest < ActiveSupport::TestCase
     assert_equal most_recently_updated, @current_course.most_recently_updated_posts.first
   end
 
+  test "it returns the most popular posts in correct order" do
+    10.times do |i|
+      @current_course.posts << Post.create(title: "test #{i}", body: "test #{i}", user: User.first)
+    end
+
+    most_popular = @current_course.posts.third
+    most_popular.replies << Reply.create(body: 'test', user: User.first)
+
+    assert_equal most_popular, @current_course.most_popular_posts.first
+  end
+
   test "sticky posts should take priority when ordering" do
     recent_post = Post.create(title: 'recent', body: 'recent', user: User.first, created_at: 5.days.ago)
     old_post = Post.create(title: 'old', body: 'old', user: User.first, created_at: 15.days.ago)

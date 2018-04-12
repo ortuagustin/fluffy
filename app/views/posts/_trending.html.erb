@@ -16,7 +16,7 @@
   <% end %>
 <% end %>
 
-<%= render layout: 'trending_box', locals: { posts: @posts, header: (t 'posts.trending.popular') } do |post| %>
+<%= render layout: 'trending_box', locals: { posts: @course.most_popular_posts(5), header: (t 'posts.trending.popular') } do |post| %>
   <div class="level-left">
     <div class="level-item">
       <p class="has-text-weight-bold is-size-7">

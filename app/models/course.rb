@@ -15,11 +15,11 @@ class Course < ApplicationRecord
   validates :year, format: { with: /(19|20)\d{2}/i, message: :invalid_course_year }
 
   def most_recently_updated_posts(limit = nil)
-    recent_posts = posts.reorder(updated_at: :desc)
+    posts_trending_by(:updated_at, :desc, limit)
+  end
 
-    return recent_posts unless limit.present?
-
-    recent_posts.limit(limit)
+  def most_popular_posts(limit = nil)
+    posts_trending_by(:replies_count, :desc, limit)
   end
 
   def attendants_for(test)
@@ -66,5 +66,13 @@ class Course < ApplicationRecord
 
   def add_post_path
     new_course_post_path(course_id: id)
+  end
+private
+  def posts_trending_by(field, direction, limit = nil)
+    trending = posts.reorder(field => direction)
+
+    return trending unless limit.present?
+
+    trending.limit(limit)
   end
 end
