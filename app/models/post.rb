@@ -32,6 +32,10 @@ class Post < ApplicationRecord
     Kaminari.paginate_array(replies.reject { |reply| is_best_reply?(reply) })
   end
 
+  def most_recent_reply
+    replies.reorder(updated_at: :desc).first
+  end
+
   def path
     post_path(id: id)
   end

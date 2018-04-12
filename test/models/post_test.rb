@@ -253,4 +253,18 @@ class PostTest < ActiveSupport::TestCase
     assert_equal 0, user.subscriptions.size
     refute user.subscribed_to? @post
   end
+
+  test "it returns the most recent reply" do
+    recently_updated_reply = Reply.create(body: 'test', user: User.first, created_at: 5.days.ago)
+    old_reply = Reply.create(body: 'test', user: User.first, created_at: 15.days.ago)
+
+    @post.replies << recently_updated_reply
+    @post.replies << old_reply
+
+    recently_updated_reply.touch
+
+    assert_equal recently_updated_reply, @post.most_recent_reply
+    assert_equal old_reply, @post.replies.first
+    assert_equal recently_updated_reply, @post.replies.second
+  end
 end
