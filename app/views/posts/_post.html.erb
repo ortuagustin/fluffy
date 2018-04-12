@@ -20,18 +20,22 @@
               </p>
             </div>
           </div>
+        </div>
+
+        <div class="level">
+          <div class="level-left">
+            <div class="level-item">
+              <p class="has-text-weight-light is-size-7"> <%= t('posts.like_score', score: post.like_score) %> </p>
+            </div>
+          </div>
 
           <div class="level-right">
             <div class="level-item">
-              <p class="has-text-weight-light"> <%= t('posts.like_score', score: post.like_score) %> </p>
+              <p class="has-text-weight-light is-size-7"> <%= t('posts.replies_count', count: post.replies_count) %> </p>
             </div>
 
             <div class="level-item">
-              <p class="has-text-weight-light"> <%= t('posts.replies_count', count: post.replies_count) %> </p>
-            </div>
-
-            <div class="level-item">
-              <p class="has-text-weight-light"> <%= time_since_posted(post) %> </p>
+              <p class="has-text-weight-light is-size-7"> <%= time_since_posted(post) %> </p>
             </div>
           </div>
         </div>
@@ -40,17 +44,17 @@
 
         <div class="level">
           <div class="level-left">
-            <%= render partial: 'subscribe_button', locals: { subscribable: post } %>
+            <%= render partial: 'subscribe_button', locals: { subscribable: post, button_size: 'is-small' } %>
           </div>
 
           <% unless policy(post).owner? %>
             <div class="level-right">
               <div class="level-item">
-                <%= render partial: 'like_button', locals: { likeable: post } %>
+                <%= render partial: 'like_button', locals: { likeable: post, button_size: 'is-small' } %>
               </div>
 
               <div class="level-item">
-                <%= render partial: 'dislike_button', locals: { likeable: post } %>
+                <%= render partial: 'dislike_button', locals: { likeable: post, button_size: 'is-small' } %>
               </div>
             </div>
           <% end %>
