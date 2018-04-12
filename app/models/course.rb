@@ -22,6 +22,17 @@ class Course < ApplicationRecord
     posts_trending_by(:replies_count, :desc, limit)
   end
 
+  def most_liked_posts(limit = nil)
+    most_liked = posts
+      .unscoped
+      .sort_by { |post| -post.like_score }
+      .select { |post| post.like_score > 0 }
+
+    return most_liked unless limit.present?
+
+    most_liked.first(limit)
+  end
+
   def attendants_for(test)
     students.select { |each| each.attended_to? test }.count
   end

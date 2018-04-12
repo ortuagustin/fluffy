@@ -132,7 +132,7 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test "it returns the most recently updated posts in correct order" do
-    10.times do |i|
+    5.times do |i|
       @current_course.posts << Post.create(title: "test #{i}", body: "test #{i}", user: User.first, updated_at: i.days.ago)
     end
 
@@ -143,7 +143,7 @@ class CourseTest < ActiveSupport::TestCase
   end
 
   test "it returns the most popular posts in correct order" do
-    10.times do |i|
+    5.times do |i|
       @current_course.posts << Post.create(title: "test #{i}", body: "test #{i}", user: User.first)
     end
 
@@ -151,6 +151,28 @@ class CourseTest < ActiveSupport::TestCase
     most_popular.replies << Reply.create(body: 'test', user: User.first)
 
     assert_equal most_popular, @current_course.most_popular_posts.first
+  end
+
+  test "it returns the most liked posts in correct order" do
+    5.times do |i|
+      @current_course.posts << Post.create(title: "test #{i}", body: "test #{i}", user: User.first)
+    end
+
+    most_liked = @current_course.posts.third
+    most_liked.liked_by User.first
+
+    assert_equal most_liked, @current_course.most_liked_posts.first
+  end
+
+  test "most liked posts does not include post without likes" do
+    5.times do |i|
+      @current_course.posts << Post.create(title: "test #{i}", body: "test #{i}", user: User.first)
+    end
+
+    most_liked = @current_course.posts.third
+    most_liked.liked_by User.first
+
+    assert_equal 1, @current_course.most_liked_posts.size
   end
 
   test "sticky posts should take priority when ordering" do
