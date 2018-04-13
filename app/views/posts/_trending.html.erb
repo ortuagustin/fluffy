@@ -1,4 +1,4 @@
-<%= render layout: 'trending_box', locals: { posts: @course.most_recently_updated_posts(5), header: (t 'posts.trending.recently_updated') } do |post| %>
+<%= render(layout: 'trending_box', locals: { posts: @course.most_recently_updated_posts(5), header: (t 'posts.trending.recently_updated') }) do |post| %>
   <% if post.replies.any? %>
     <div class="level-left">
       <div class="level-item">
@@ -16,7 +16,7 @@
   <% end %>
 <% end %>
 
-<%= render layout: 'trending_box', locals: { posts: @course.most_popular_posts(5), header: (t 'posts.trending.popular') } do |post| %>
+<%= render(layout: 'trending_box', locals: { posts: @course.most_popular_posts(5), header: (t 'posts.trending.popular') }) do |post| %>
   <div class="level-left">
     <div class="level-item">
       <p class="has-text-weight-bold is-size-7">
@@ -32,7 +32,7 @@
   </div>
 <% end %>
 
-<%= render layout: 'trending_box', locals: { posts: @course.most_liked_posts(5), header: (t 'posts.trending.most_liked') } do |post| %>
+<%= render(layout: 'trending_box', locals: { posts: @course.most_liked_posts(5), header: (t 'posts.trending.most_liked') }) do |post| %>
   <div class="level-left">
     <div class="level-item">
       <p class="has-text-weight-bold is-size-7">
