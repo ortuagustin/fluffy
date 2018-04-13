@@ -3,7 +3,7 @@ require 'test_helper'
 class PostsStickyControllerTest < ActionDispatch::IntegrationTest
   setup do
     @post = posts(:one)
-    @user = users(:teacher)
+    @user = users(:admin)
   end
 
   test "unauthorized users cannot set posts as sticky" do
