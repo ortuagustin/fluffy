@@ -16,6 +16,7 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
   - [acts_as_votable](https://github.com/ryanto/acts_as_votable)
   - [FontAwesome](https://github.com/bokmann/font-awesome-rails)
   - [Kaminari](https://github.com/kaminari/kaminari)
+  - [friendly_id](https://github.com/norman/friendly_id)
   - [Bulma](https://bulma.io)
   - **PostgreSQL** para producción; **SQLite3** para desarrollo y tests
 
