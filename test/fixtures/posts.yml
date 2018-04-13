@@ -6,9 +6,11 @@ one:
   body: 'Post One Body'
   user: teacher
   course: foo_course
+  slug: 'post-one-title'
 
 two:
   title: 'Post Two Title'
   body: 'Post Two Body'
   user: teacher
   course: foo_course
+  slug: 'post-two-title'

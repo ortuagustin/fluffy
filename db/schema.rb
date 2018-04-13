@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413033941) do
+ActiveRecord::Schema.define(version: 20180413034547) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "year"
@@ -42,8 +42,10 @@ ActiveRecord::Schema.define(version: 20180413033941) do
     t.integer "replies_count", default: 0
     t.boolean "is_sticky", default: false, null: false
     t.integer "best_reply_id"
+    t.string "slug"
     t.index ["best_reply_id"], name: "index_posts_on_best_reply_id"
     t.index ["course_id"], name: "index_posts_on_course_id"
+    t.index ["slug"], name: "index_posts_on_slug", unique: true
     t.index ["user_id"], name: "index_posts_on_user_id"
   end
 

@@ -1,6 +1,7 @@
 class PostsController < ApplicationController
   before_action :set_course, only: [:index, :new]
-  before_action :set_post, except: [:index, :create, :new]
+  before_action :set_post, only: [:show, :update, :delete]
+  before_action :set_replies, only: [:update, :delete, :show]
   helper_method :course_id, :user_id, :course, :has_best_reply?, :best_reply
 
   # GET /courses/:course_id/posts
@@ -70,7 +71,10 @@ private
   end
 
   def set_post
-    @post = Post.find post_id
+    @post = Post.find_by_slug post_id
+  end
+
+  def set_replies
     @replies = @post.replies_except_best.page(params[:replies_page])
   end
 

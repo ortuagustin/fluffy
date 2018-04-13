@@ -1,8 +1,11 @@
 class Post < ApplicationRecord
+  extend FriendlyId                       ## friendly_id
+
   include Likeable
   include Subscribable
 
-  paginates_per 10          ## Kaminari
+  paginates_per 10                        ## Kaminari
+  friendly_id :title, use: :slugged        ## friendly_id
 
   belongs_to :course
   belongs_to :user
@@ -13,6 +16,10 @@ class Post < ApplicationRecord
   validates :title, length: { maximum: 100 }
 
   alias_method :owner, :user
+
+  def self.find_by_slug(slug)
+    Post.friendly.find slug
+  end
 
   def sticky?
     is_sticky
@@ -49,7 +56,7 @@ class Post < ApplicationRecord
   end
 
   def path
-    post_path(id: id)
+    post_path(id: slug)
   end
 
   def replies_path

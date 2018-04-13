@@ -281,4 +281,16 @@ class PostTest < ActiveSupport::TestCase
     assert_equal old_reply, @post.replies.first
     assert_equal recently_updated_reply, @post.replies.second
   end
+
+  test "it can be found by a slug created from its title" do
+    Post.create(title: 'simple', body: 'test', course: Course.first, user: User.first)
+    Post.create(title: 'with-dashes', body: 'test', course: Course.first, user: User.first)
+    Post.create(title: 'with_underscores_too', body: 'test', course: Course.first, user: User.first)
+    Post.create(title: 'with spaces too', body: 'test', course: Course.first, user: User.first)
+
+    assert Post.find_by_slug 'simple'
+    assert Post.find_by_slug 'with-dashes'
+    assert Post.find_by_slug 'with_underscores_too'
+    assert Post.find_by_slug 'with-spaces-too'
+  end
 end
