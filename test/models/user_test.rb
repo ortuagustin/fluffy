@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class PostTest < ActiveSupport::TestCase
+class UserTest < ActiveSupport::TestCase
   setup do
     @teacher = users(:teacher)
     @student = users(:student)
@@ -16,5 +16,19 @@ class PostTest < ActiveSupport::TestCase
     @teacher.destroy
     posts = Post.where(user_id: user_id)
     assert posts.empty?
+  end
+
+  test "it has a default guest role" do
+    user = User.create!(email: 'foo@bar.com', username: 'foo', password: '1234')
+    assert user.role.present?
+    assert user.role? :guest
+    assert_equal user.role, :guest
+  end
+
+  test "it can be queried if it plays a given role" do
+    user = User.create!(email: 'foo@bar.com', username: 'foo', password: '1234')
+
+    assert user.role? :guest
+    refute user.role? :admin
   end
 end

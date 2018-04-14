@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20180413034547) do
+ActiveRecord::Schema.define(version: 20180413204112) do
 
   create_table "courses", force: :cascade do |t|
     t.integer "year"
@@ -57,6 +57,13 @@ ActiveRecord::Schema.define(version: 20180413034547) do
     t.datetime "updated_at", null: false
     t.index ["post_id"], name: "index_replies_on_post_id"
     t.index ["user_id"], name: "index_replies_on_user_id"
+  end
+
+  create_table "roles", force: :cascade do |t|
+    t.string "name", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["name"], name: "index_roles_on_name", unique: true
   end
 
   create_table "students", force: :cascade do |t|
@@ -115,8 +122,10 @@ ActiveRecord::Schema.define(version: 20180413034547) do
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
     t.string "username", default: "", null: false
+    t.integer "role_id"
     t.index ["email"], name: "index_users_on_email", unique: true
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
+    t.index ["role_id"], name: "index_users_on_role_id"
   end
 
   create_table "votes", force: :cascade do |t|
