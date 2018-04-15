@@ -7,23 +7,23 @@ class PostsLikesControllerTest < ActionDispatch::IntegrationTest
     @user = users(:student)
   end
 
-  test "unauthorized users cannot like posts" do
+  test "unauthenticated users cannot like posts" do
     post @post.like_path
     assert_redirected_to_login
   end
 
-  test "unauthorized users cannot unlike posts" do
+  test "unauthenticated users cannot unlike posts" do
     delete @post.like_path
     assert_redirected_to_login
   end
 
-  test "authorized users can like posts" do
+  test "authenticated users can like posts" do
     login_as @user
     post @post.like_path
     assert_response :redirect
   end
 
-  test "authorized users can unlike posts" do
+  test "authenticated users can unlike posts" do
     login_as @user
     delete @post.like_path
     assert_response :redirect
