@@ -1,6 +1,6 @@
 class PostPolicy < ApplicationPolicy
   def pin?
-    user.username == 'admin'       # to-do: chequear por el rol
+    user.role? :admin
   end
 
   def update?
