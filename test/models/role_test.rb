@@ -1,6 +1,6 @@
 require 'test_helper'
 
-class UserTest < ActiveSupport::TestCase
+class RoleTest < ActiveSupport::TestCase
   test "it has a name" do
     role = Role.create!(name: 'test')
     assert_equal 'test', role.name
@@ -26,19 +26,18 @@ class UserTest < ActiveSupport::TestCase
   end
 
   test "it can be found by its name as a symbol" do
-    Role.create!(name: 'test')
-    assert_equal 1, Role.count
-    assert_not_nil Role.find_by_sym :test
-    assert_not_nil Role.find_by_sym :TEST
+    assert_difference('Role.count') do
+      Role.create!(name: 'test')
+      assert_not_nil Role.find_by_sym :test
+      assert_not_nil Role.find_by_sym :TEST
+    end
   end
 
   test "it creates the guest Role if it does not exist" do
-    assert_nil Role.find_by_sym :guest
     assert_not_nil Role.guest
   end
 
   test "it creates the admin Role if it does not exist" do
-    assert_nil Role.find_by_sym :admin
     assert_not_nil Role.admin
   end
 end
