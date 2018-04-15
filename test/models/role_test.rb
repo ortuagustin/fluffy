@@ -36,4 +36,9 @@ class UserTest < ActiveSupport::TestCase
     assert_nil Role.find_by_sym :guest
     assert_not_nil Role.guest
   end
+
+  test "it creates the admin Role if it does not exist" do
+    assert_nil Role.find_by_sym :admin
+    assert_not_nil Role.admin
+  end
 end

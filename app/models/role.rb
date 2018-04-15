@@ -7,6 +7,10 @@ class Role < ApplicationRecord
     Role.find_or_create_by!(name: 'Guest')
   end
 
+  def self.admin
+    Role.find_or_create_by!(name: 'Admin')
+  end
+
   def ==(other)
     return super(other) if other.is_a? Role
 
