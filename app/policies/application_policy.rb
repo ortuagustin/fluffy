@@ -34,6 +34,18 @@ class ApplicationPolicy
     false
   end
 
+  def admin?
+    user.role? :admin
+  end
+
+  def owner?
+    record.user == user
+  end
+
+  def not_owner?
+    not owner?
+  end
+
   def scope
     Pundit.policy_scope!(user, record.class)
   end

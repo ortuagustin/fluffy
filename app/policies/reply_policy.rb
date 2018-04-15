@@ -1,14 +1,6 @@
 class ReplyPolicy < ApplicationPolicy
   def update?
-    owner? || user.role?(:admin)
-  end
-
-  def owner?
-    record.user == user
-  end
-
-  def not_owner?
-    not owner?
+    owner? || admin?
   end
 
   def select_best?
