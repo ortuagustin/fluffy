@@ -1,6 +1,6 @@
 class ReplyPolicy < ApplicationPolicy
   def update?
-    owner?
+    owner? || user.role?(:admin)
   end
 
   def owner?
