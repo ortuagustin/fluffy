@@ -1,18 +1,17 @@
 require 'faker'
 
-# delete all users
 User.destroy_all
 
-# create admin user
-admin = User.create(:username => 'admin', :password => 'admin', :email => 'admin@test.com')
+admin = User.create(username: 'admin', password: 'admin', email: 'admin@test.com', role: Role.admin)
+guest = User.create(username: 'guest', password: 'guest', email: 'guest@test.com')
 
 # empty database
 Course.destroy_all
 
 ActiveRecord::Base.transaction do
   # create courses
-  last_course = Course.create(year: 2016)
-  current_course = Course.create(year: 2017)
+  last_course = Course.create(year: 2017)
+  current_course = Course.create(year: 2018)
 
   # add test to courses
   10.times do |i|
