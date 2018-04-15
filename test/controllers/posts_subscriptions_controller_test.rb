@@ -6,23 +6,23 @@ class PostsSubscriptionsControllerTest < ActionDispatch::IntegrationTest
     @user = users(:student)
   end
 
-  test "unauthorized users cannot subscribe to posts" do
+  test "unauthenticated users cannot subscribe to posts" do
     post @post.subscribe_path
     assert_redirected_to_login
   end
 
-  test "unauthorized users cannot unsubscribe from posts" do
+  test "unauthenticated users cannot unsubscribe from posts" do
     delete @post.subscribe_path
     assert_redirected_to_login
   end
 
-  test "authorized users can subscribe to posts" do
+  test "authenticated users can subscribe to posts" do
     login_as @user
     post @post.subscribe_path
     assert_redirected_to @post.path
   end
 
-  test "authorized users can unsubscribe from posts" do
+  test "authenticated users can unsubscribe from posts" do
     login_as @user
     delete @post.subscribe_path
     assert_redirected_to @post.path
