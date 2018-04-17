@@ -10,7 +10,7 @@
 
 <div class="columns">
   <div class="column is-two-thirds">
-    <%= render(partial: 'post', collection: @posts, locals: { truncate_title: true, truncate_body: true }) || (t 'posts.index.empty') %>
+    <%= render(partial: 'post', collection: @posts, locals: { include_body: false, include_avatar: false }) || (t 'posts.index.empty') %>
   </div>
 
   <div class="column">

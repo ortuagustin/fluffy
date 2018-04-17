@@ -1,8 +1,10 @@
 <div class="box is-marginless">
   <article class="media">
-<%=  %>    <div class="media-left">
-      <%= render partial: 'user_avatar', locals: { user: post.user } %>
-    </div>
+    <% if local_assigns.fetch :include_avatar, true %>
+      <div class="media-left">
+        <%= render partial: 'user_avatar', locals: { user: post.user } %>
+      </div>
+    <% end %>
 
     <div class="media-content">
       <div class="content">
@@ -16,7 +18,7 @@
 
             <div class="level-item">
               <p class="subtitle is-6">
-                <%= link_to post_title(post, truncate_title), post.path %>
+                <%= link_to post_title(post, (local_assigns.fetch :truncate_title, false)), post.path %>
               </p>
             </div>
           </div>
@@ -40,7 +42,9 @@
           </div>
         </div>
 
-        <p> <%= post_body(post, truncate_body) %> </p>
+        <% if local_assigns.fetch :include_body, true %>
+          <p> <%= post.body %> </p>
+        <% end %>
 
         <div class="level">
           <div class="level-left">
