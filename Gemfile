@@ -69,6 +69,8 @@ gem "kaminari", "~> 1.1"
 gem "pundit", "~> 1.1"
 gem 'acts_as_votable', '~> 0.11.1'
 gem "friendly_id", "~> 5.2"
+gem 'elasticsearch-model'
+gem 'elasticsearch-rails'
 
 gem 'rails-assets-bulma', source: 'https://rails-assets.org'
 
