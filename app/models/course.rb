@@ -75,6 +75,10 @@ class Course < ApplicationRecord
     course_posts_path(course_id: id)
   end
 
+  def forum_search_path(query = '')
+    search_course_posts_path(course_id: id, q: query)
+  end
+
   def add_post_path
     new_course_post_path(course_id: id)
   end

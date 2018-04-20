@@ -38,6 +38,7 @@ Rails.application.routes.draw do
       end
 
       resources :posts, shallow: true do
+        get 'search/(:q)', to: 'posts_search#index', on: :collection, as: 'search'
         concerns :paginatable
         concerns :pinnable, controller: 'posts_sticky'
         concerns :likeable, controller: 'posts_likes'
