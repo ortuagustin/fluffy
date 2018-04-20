@@ -70,6 +70,7 @@ GEM
       activesupport (> 3)
       elasticsearch (~> 5)
       hashie
+    elasticsearch-rails (5.0.2)
     elasticsearch-transport (5.0.4)
       faraday
       multi_json
@@ -220,6 +221,7 @@ DEPENDENCIES
   contracts (~> 0.16.0)
   devise (~> 4.3)
   elasticsearch-model
+  elasticsearch-rails
   faker (~> 1.8)
   font-awesome-rails (~> 4.7)
   friendly_id (~> 5.2)
