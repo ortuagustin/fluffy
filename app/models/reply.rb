@@ -8,6 +8,8 @@ class Reply < ApplicationRecord
 
   validates :body, presence: true
 
+  after_create :notify_suscribers
+
   def is_best_reply?
     post.is_best_reply? self
   end
@@ -34,5 +36,11 @@ class Reply < ApplicationRecord
 
   def select_as_best_path
     select_best_reply_path(id: id)
+  end
+private
+  def notify_suscribers
+    post.subscribers_except(user).each do |subscriber|
+      Notification.create!(user: user, receiver: subscriber, action: "replied", notifiable: self)
+    end
   end
 end

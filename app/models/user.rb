@@ -5,6 +5,7 @@ class User < ApplicationRecord
   # :confirmable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable, :rememberable, :trackable, :validatable
 
+  has_many :notifications, dependent: :destroy, foreign_key: 'receiver_id'
   has_many :posts, dependent: :destroy
   has_many :subscriptions, dependent: :destroy, foreign_key: 'subscriber_id'
   belongs_to :role, optional: true
