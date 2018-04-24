@@ -22,6 +22,20 @@ class User < ApplicationRecord
   def role?(name)
     role == name
   end
+
+  def read_notifications
+    notifications.read
+  end
+
+  def unread_notifications
+    notifications.unread
+  end
+
+  def read_notifications!
+    unread = notifications.unread
+    unread.update(read_at: Time.zone.now)
+    unread
+  end
 private
   def missing_role?
     self.role.nil?
