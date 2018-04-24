@@ -55,6 +55,10 @@ class Post < ApplicationRecord
     replies.reorder(updated_at: :desc).first
   end
 
+  def subscribers_except(user)
+    subscribers.reject { |subscriber| subscriber == user }
+  end
+
   def path
     post_path(id: slug)
   end

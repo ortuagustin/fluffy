@@ -268,6 +268,14 @@ class PostTest < ActiveSupport::TestCase
     refute user.subscribed_to? @post
   end
 
+  test "it returns a collection of subscribed users" do
+    user = users(:student)
+    @post.add_subscription_for user
+
+    assert_equal 1, @post.subscribers.size
+    assert @post.subscribers_except(user).empty?
+  end
+
   test "it returns the most recent reply" do
     recently_updated_reply = Reply.create(body: 'test', user: User.first, created_at: 5.days.ago)
     old_reply = Reply.create(body: 'test', user: User.first, created_at: 15.days.ago)
