@@ -1,0 +1,14 @@
+<div class="navbar-item">
+  <p class="has-text-weight-bold">
+    <%= notification.user.screen_name %>
+  </p> &nbsp;
+
+  <p>
+    replied to
+    <%= link_to notification.notifiable.post.title, notification.notifiable.post.path %>
+  </p> &nbsp;
+
+  <p class="has-text-weight-light is-italic">
+    <%= time_ago_in_words notification.created_at %>
+  </p>
+</div>
