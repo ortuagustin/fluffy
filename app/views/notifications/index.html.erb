@@ -1,5 +1,5 @@
-<div class="navbar-item has-dropdown is-hoverable">
-  <div class="navbar-link">
+<div class="<%= notifications_class %>">
+  <div class="<%= bell_class %>" style="<%= bell_padding %>">
     <%=
       fa_icon 'bell',
       text: (t 'navigation.notifications', count: current_user.unread_notifications.size),
@@ -7,9 +7,11 @@
     %>
   </div>
 
-  <div class="navbar-dropdown is-right is-boxed">
-    <% current_user.notifications.each do |each| %>
-      <%= render partial: each.partial_path, locals: { notification: each } %>
-    <% end %>
-  </div>
+  <% if current_user.unread_notifications? %>
+    <div class="navbar-dropdown is-right is-boxed">
+      <% current_user.notifications.each do |each| %>
+        <%= render partial: each.partial_path, locals: { notification: each } %>
+      <% end %>
+    </div>
+  <% end %>
 </div>

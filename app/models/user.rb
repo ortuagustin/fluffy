@@ -40,6 +40,10 @@ class User < ApplicationRecord
   def screen_name
     "@#{username}"
   end
+
+  def unread_notifications?
+    notifications.unread.any?
+  end
 private
   def missing_role?
     self.role.nil?
