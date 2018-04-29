@@ -28,6 +28,8 @@
           <p> <%= t 'navigation.welcome', username: current_user.username %></p>
         </div>
 
+        <%= render template: 'notifications/index' %>
+
         <%= fa_link_to 'sign-out', html_spacing + (t 'navigation.logout_link_label'), destroy_user_session_path, size: 20, :method => 'delete', :class => 'navbar-item' %>
       <% end %>
     </div>

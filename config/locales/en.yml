@@ -17,6 +17,10 @@ en:
     welcome: "Welcome, %{username}"
     go_to: "Go to"
     change_locale: "Language (english)"
+    notifications:
+      zero: ""
+      one: "1"
+      other: "%{count}"
   login_form:
     title: "Login"
     subtitle: "Please login to proceed."

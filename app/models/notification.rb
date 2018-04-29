@@ -9,4 +9,8 @@ class Notification < ApplicationRecord
   def read?
     read_at.present?
   end
+
+  def partial_path
+    "notifications/#{notifiable_type.pluralize.downcase}/#{notifiable_action}"
+  end
 end

@@ -27,6 +27,10 @@ es:
     welcome: "Bienvenido, %{username}"
     go_to: "Ir a"
     change_locale: "Idioma (español)"
+    notifications:
+      zero: ""
+      one: "1"
+      other: "%{count}"
   login_form:
     title: "Login"
     subtitle: "Inicia sesión para continuar."
