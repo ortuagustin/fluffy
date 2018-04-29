@@ -5,6 +5,7 @@ class PostsControllerTest < ActionDispatch::IntegrationTest
     @course = courses(:foo_course)
     @post = posts(:one)
     @teacher = users(:teacher)
+    Reply.create!(body: 'test', user: @teacher, post: @post)
   end
 
   test "unauthorized users cannot see posts" do
