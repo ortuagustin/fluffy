@@ -134,6 +134,9 @@ en:
       passed_course?: "Passed Course?"
     summary:
       passed_course_count: "Students that passed the Course"
+  notifications:
+    actions:
+      mark_as_read: "Mark as read"
   posts:
     index:
       title: "%{year} Course Forum"

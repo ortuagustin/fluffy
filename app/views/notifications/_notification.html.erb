@@ -1,0 +1,25 @@
+<article class="media">
+  <div class="media-content">
+    <div class="content">
+      <div class="level">
+        <div class="level-left">
+          <div class="level-item">
+            <span class="has-text-weight-light is-italic">
+              <%= "#{time_ago_in_words notification.created_at}," %>
+            </span> &nbsp;
+
+            <%= render partial: notification.partial_path, locals: { notification: notification } %>
+          </div>
+        </div>
+
+        <% unless notification.read? %>
+          <div class="level-right">
+            <div class="level-item">
+              <%= render partial: 'read_button', locals: { notification: notification } %>
+            </div>
+          </div>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</article>

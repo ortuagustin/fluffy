@@ -144,6 +144,9 @@ es:
       passed_course?: "Cursada aprobada?"
     summary:
       passed_course_count: "Alumnos que aprobaron la Cursada"
+  notifications:
+    actions:
+      mark_as_read: "Marcar como leido"
   posts:
     index:
       title: "Foro cursada %{year}"

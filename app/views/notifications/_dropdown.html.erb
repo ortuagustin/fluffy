@@ -1,16 +1,24 @@
 <div class="<%= notifications_class %>">
-  <div class="<%= bell_class %>" style="<%= bell_padding %>">
+  <div class="navbar-link">
     <%=
-      fa_icon 'bell',
-      text: (t 'navigation.notifications', count: current_user.unread_notifications.size),
-      style: "font-size:20px;"
+      fa_link_to 'bell',
+      (t 'navigation.notifications', count: current_user.unread_notifications.size),
+      all_notifications_path,
+      class: 'has-text-white',
+      size: 20
     %>
   </div>
 
   <% if current_user.unread_notifications? %>
     <div class="navbar-dropdown is-right is-boxed">
       <% current_user.notifications.each do |each| %>
-        <%= render partial: each.partial_path, locals: { notification: each } %>
+        <div class="navbar-item">
+          <%= render partial: each.partial_path, locals: { notification: each } %> &nbsp;
+
+          <span class="has-text-weight-light is-italic">
+            <%= time_ago_in_words each.created_at %>
+          </span>
+        </div>
       <% end %>
     </div>
   <% end %>

@@ -1,12 +1,26 @@
 class NotificationsController < ApplicationController
-  def unread
-    render json: current_user.unread_notifications, status: :ok
-  end
 
+  # GET /notifications/all
   def all
-    render json: current_user.notifications, status: :ok
+    @notifications = current_user.notifications
+
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @notifications, status: :ok }
+    end
   end
 
+  # GET /notifications/unread
+  def unread
+    @notifications = current_user.unread_notifications
+
+    respond_to do |format|
+      format.html { }
+      format.json { render json: @notifications, status: :ok }
+    end
+  end
+
+  # POST /notifications/read
   def read
     render json: current_user.read_notifications!, status: :ok
   end
