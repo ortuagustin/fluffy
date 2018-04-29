@@ -40,7 +40,7 @@ class Reply < ApplicationRecord
 private
   def notify_suscribers
     post.subscribers_except(user).each do |subscriber|
-      Notification.create!(user: user, receiver: subscriber, action: "replied", notifiable: self)
+      Notification.create!(user: user, receiver: subscriber, notifiable_action: 'created', notifiable: self)
     end
   end
 end

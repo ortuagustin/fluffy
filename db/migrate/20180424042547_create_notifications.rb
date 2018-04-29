@@ -4,7 +4,7 @@ class CreateNotifications < ActiveRecord::Migration[5.1]
       t.integer :receiver_id
       t.belongs_to :user, foreign_key: true
       t.datetime :read_at
-      t.string :action
+      t.string :notifiable_action
       t.integer :notifiable_id
       t.string :notifiable_type
 

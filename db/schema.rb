@@ -36,7 +36,7 @@ ActiveRecord::Schema.define(version: 20180424042547) do
     t.integer "receiver_id"
     t.integer "user_id"
     t.datetime "read_at"
-    t.string "action"
+    t.string "notifiable_action"
     t.integer "notifiable_id"
     t.string "notifiable_type"
     t.datetime "created_at", null: false
