@@ -36,6 +36,10 @@ class User < ApplicationRecord
     unread.update(read_at: Time.zone.now)
     unread
   end
+
+  def screen_name
+    "@#{username}"
+  end
 private
   def missing_role?
     self.role.nil?

@@ -3,7 +3,7 @@
     <div class="level-left">
       <div class="level-item">
         <p class="has-text-weight-bold is-size-7">
-          <%= t('posts.trending.last_reply_by') %> @<%= post.most_recent_reply.user.username %>
+          <%= t('posts.trending.last_reply_by') + ' ' + post.most_recent_reply.user.screen_name %>
         </p>
       </div>
     </div>
@@ -20,7 +20,7 @@
   <div class="level-left">
     <div class="level-item">
       <p class="has-text-weight-bold is-size-7">
-        <%= t('posts.trending.post_created_by') %> @<%= post.user.username %>
+        <%= t('posts.trending.post_created_by') + ' ' + post.most_recent_reply.user.screen_name %>
       </p>
     </div>
   </div>
@@ -36,7 +36,7 @@
   <div class="level-left">
     <div class="level-item">
       <p class="has-text-weight-bold is-size-7">
-        <%= t('posts.trending.post_created_by') %> @<%= post.user.username %>
+        <%= t('posts.trending.post_created_by') + ' ' + post.most_recent_reply.user.screen_name %>
       </p>
     </div>
   </div>
