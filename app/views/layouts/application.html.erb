@@ -21,7 +21,17 @@
       </div>
     </div>
 
-    <%= render 'courses/navigation' if @course %>
+    <div class="hero-foot">
+      <nav class="tabs is-boxed is-fullwidth">
+        <ul>
+          <% if content_for?(:navigation) %>
+            <%= yield(:navigation) %>
+          <% else %>
+            <%= render 'courses/navigation' if @course %>
+          <% end %>
+        </ul>
+      </nav>
+    </div>
   </section>
 
   <%= render 'alerts' %>

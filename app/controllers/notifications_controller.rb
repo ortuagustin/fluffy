@@ -5,7 +5,7 @@ class NotificationsController < ApplicationController
     @notifications = current_user.notifications
 
     respond_to do |format|
-      format.html { }
+      format.html { render 'index' }
       format.json { render json: @notifications, status: :ok }
     end
   end
@@ -15,7 +15,7 @@ class NotificationsController < ApplicationController
     @notifications = current_user.unread_notifications
 
     respond_to do |format|
-      format.html { }
+      format.html { render 'index' }
       format.json { render json: @notifications, status: :ok }
     end
   end

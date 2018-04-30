@@ -1,10 +1,4 @@
-<div class="hero-foot">
-  <nav class="tabs is-boxed is-fullwidth">
-    <ul>
-      <%= navigation_link (t 'courses.actions.students'), course_students_path(@course)  %>
-      <%= navigation_link (t 'courses.actions.tests'), course_tests_path(@course)  %>
-      <%= navigation_link (t 'courses.actions.summary'), summary_course_path(@course)  %>
-      <%= navigation_link (t 'courses.actions.forum'), course_posts_path(@course)  %>
-    </ul>
-  </nav>
-</div>
+<%= navigation_link (t 'courses.actions.students'), course_students_path(@course) %>
+<%= navigation_link (t 'courses.actions.tests'), course_tests_path(@course) %>
+<%= navigation_link (t 'courses.actions.summary'), summary_course_path(@course) %>
+<%= navigation_link (t 'courses.actions.forum'), course_posts_path(@course) %>

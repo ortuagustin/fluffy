@@ -136,6 +136,8 @@ en:
       passed_course_count: "Students that passed the Course"
   notifications:
     actions:
+      unread: "View Unread Notifications"
+      all: "View All Notifications"
       mark_as_read: "Mark as read"
   posts:
     index:

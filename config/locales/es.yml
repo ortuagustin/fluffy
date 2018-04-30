@@ -146,6 +146,8 @@ es:
       passed_course_count: "Alumnos que aprobaron la Cursada"
   notifications:
     actions:
+      unread: "Notificaciones no leidas"
+      all: "Todas las Notificaciones"
       mark_as_read: "Marcar como leido"
   posts:
     index:

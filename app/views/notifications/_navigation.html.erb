@@ -1,0 +1,8 @@
+<% content_for(:navigation) do %>
+  <%= navigation_link (t 'notifications.actions.unread'), unread_notifications_path %>
+  <%= navigation_link (t 'notifications.actions.all'), all_notifications_path %>
+<% end %>
+
+<%= fa_link_to 'chevron-left', (t 'navigation.back_link_label'), home_path, size: 16, class: 'has-text-info' %>
+
+<hr>
