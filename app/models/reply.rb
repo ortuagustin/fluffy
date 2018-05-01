@@ -1,5 +1,6 @@
 class Reply < ApplicationRecord
   include Likeable
+  include Notifies
 
   paginates_per 15
 
@@ -8,18 +9,22 @@ class Reply < ApplicationRecord
 
   validates :body, presence: true
 
-  after_create :notify_suscribers
+  after_create :notify_new_reply_to_suscribers
+
+  alias_method :owner, :user
 
   def is_best_reply?
     post.is_best_reply? self
   end
 
   def mark_best_reply
-    post.update(best_reply: self)
+    post.update!(best_reply: self)
+    post.reload
+    notify_best_reply_to_suscribers
   end
 
   def unmark_best_reply
-    post.update(best_reply: nil)
+    post.update!(best_reply: nil)
   end
 
   def path
@@ -38,9 +43,11 @@ class Reply < ApplicationRecord
     select_best_reply_path(id: id)
   end
 private
-  def notify_suscribers
-    post.subscribers_except(user).each do |subscriber|
-      Notification.create!(user: user, receiver: subscriber, notifiable_action: 'created', notifiable: self)
-    end
+  def notify_new_reply_to_suscribers
+    notify(owner, post.subscribers_except(owner), 'created')
+  end
+
+  def notify_best_reply_to_suscribers
+    notify(nil, post.subscribers_except(post.owner), 'marked_best')
   end
 end

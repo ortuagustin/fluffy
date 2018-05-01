@@ -16,7 +16,7 @@ class RepliesNotificationsTest < ActiveSupport::TestCase
     @post.replies << Reply.new(user: User.last, body: 'test')
     @post.save
 
-    assert receiver.notifications.any?, 'receiver should have 1 notification'
+    assert receiver.notifications.any?, 'receiver should have notifications'
     assert_equal 1, receiver.notifications.size, 'receiver should have 1 notification'
 
     notification = receiver.notifications.first
@@ -49,5 +49,49 @@ class RepliesNotificationsTest < ActiveSupport::TestCase
     @post.save
 
     assert receiver.notifications.empty?, 'receiver notifications should still be empty'
+  end
+
+  test "user gets notification when a reply from a post he is suscribed is marked as best" do
+    receiver = User.last
+    reply = Reply.create!(user: @user, post: @post, body: 'test')
+    @post.add_subscription_for receiver
+
+    assert receiver.notifications.empty?, 'receiver notifications should be empty'
+    assert receiver.subscribed_to?(@post), 'receiver should be subscribed to the post'
+
+    reply.mark_best_reply
+
+    assert receiver.notifications.any?, 'receiver should have notifications'
+    assert_equal 1, receiver.notifications.size, 'receiver should have 1 notification'
+
+    notification = receiver.notifications.first
+
+    assert_equal receiver, notification.receiver, 'notification got unexpected receiver assigned'
+    assert_nil notification.user
+  end
+
+  test "user does not get a notification when a reply from a post he is NOT suscribed is marked as best" do
+    receiver = User.last
+    reply = Reply.create!(user: @user, post: @post, body: 'test')
+
+    assert receiver.notifications.empty?, 'receiver notifications should be empty'
+    refute receiver.subscribed_to?(@post), 'receiver should not be subscribed'
+
+    reply.mark_best_reply
+
+    assert receiver.notifications.empty?, 'receiver notifications should still be empty'
+  end
+
+  test "post owner shouldnt get a notification when he selects a reply as the best" do
+    owner = @post.owner
+    reply = Reply.create!(user: User.last, post: @post, body: 'test')
+    @post.add_subscription_for owner
+
+    assert owner.subscribed_to?(@post), 'post owner should be subscribed to the post'
+    assert owner.notifications.empty?, 'post owner notifications should be empty'
+
+    reply.mark_best_reply
+
+    assert owner.notifications.empty?, 'post owner notifications should be empty'
   end
 end
