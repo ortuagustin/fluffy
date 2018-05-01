@@ -149,6 +149,8 @@ es:
       unread: "Notificaciones no leidas"
       all: "Todas las Notificaciones"
       mark_as_read: "Marcar como leido"
+    replies:
+      created: "publicó una respuesta en"
   posts:
     index:
       title: "Foro cursada %{year}"

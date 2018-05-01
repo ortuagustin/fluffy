@@ -139,6 +139,8 @@ en:
       unread: "View Unread Notifications"
       all: "View All Notifications"
       mark_as_read: "Mark as read"
+    replies:
+      created: "replied to"
   posts:
     index:
       title: "%{year} Course Forum"
