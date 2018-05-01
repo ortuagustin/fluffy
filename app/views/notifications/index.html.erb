@@ -1,2 +1,6 @@
 <%= render 'navigation' %>
-<%= render @notifications %>
+
+<%= render @notifications %></br>
+
+<%= paginate @notifications %></br>
+<%= page_entries_info @notifications %>

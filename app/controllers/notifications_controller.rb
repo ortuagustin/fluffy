@@ -2,7 +2,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications/all
   def all
-    @notifications = current_user.notifications
+    @notifications = current_user.notifications.page(params[:page])
 
     respond_to do |format|
       format.html { render 'index' }
@@ -12,7 +12,7 @@ class NotificationsController < ApplicationController
 
   # GET /notifications/unread
   def unread
-    @notifications = current_user.unread_notifications
+    @notifications = current_user.unread_notifications.page(params[:page])
 
     respond_to do |format|
       format.html { render 'index' }
