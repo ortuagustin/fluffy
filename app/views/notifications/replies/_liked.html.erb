@@ -1,0 +1,8 @@
+<span class="has-text-weight-bold">
+  <%= notification.user.screen_name %>
+</span> &nbsp;
+
+<span>
+  <%= t 'notifications.replies.liked', user: notification.notifiable.user.screen_name %>
+  <%= link_to notification.notifiable.post.title, notification.notifiable.path %>
+</span>

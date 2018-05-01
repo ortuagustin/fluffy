@@ -142,6 +142,7 @@ en:
     replies:
       created: "replied to"
       marked_best: "'s reply was marked as best in"
+      liked: "liked %{user} reply in"
   posts:
     index:
       title: "%{year} Course Forum"

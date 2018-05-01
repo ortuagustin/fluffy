@@ -152,6 +152,7 @@ es:
     replies:
       created: "publicó una respuesta en"
       marked_best: "fue seleccionado como la mejor respuesta en"
+      liked: "le gusta la respuesta de %{user} en"
   posts:
     index:
       title: "Foro cursada %{year}"

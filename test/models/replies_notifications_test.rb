@@ -94,4 +94,49 @@ class RepliesNotificationsTest < ActiveSupport::TestCase
 
     assert owner.notifications.empty?, 'post owner notifications should be empty'
   end
+
+  test "user gets notification when a reply from a post he is suscribed gets a like" do
+    receiver = User.last
+    reply = Reply.create!(user: @user, post: @post, body: 'test')
+    @post.add_subscription_for receiver
+
+    assert receiver.notifications.empty?, 'receiver notifications should be empty'
+    assert receiver.subscribed_to?(@post), 'receiver should be subscribed to the post'
+
+    reply.liked_by @post.owner
+
+    assert receiver.notifications.any?, 'receiver should have notifications'
+    assert_equal 1, receiver.notifications.size, 'receiver should have 1 notification'
+
+    notification = receiver.notifications.first
+
+    assert_equal receiver, notification.receiver, 'notification got unexpected receiver assigned'
+    assert_equal @post.owner, notification.user, 'notification got unexpected user assigned'
+  end
+
+  test "user that likes a reply shouldnt get a notification" do
+    receiver = @user
+    user_that_likes = User.last
+    reply = Reply.create!(user: @user, post: @post, body: 'test')
+    @post.add_subscription_for user_that_likes
+
+    assert user_that_likes.subscribed_to?(@post), 'user that likes should be subscribed to the post'
+    assert user_that_likes.notifications.empty?, 'user that likes notifications should be empty'
+
+    reply.liked_by user_that_likes
+
+    assert user_that_likes.notifications.empty?, 'user that likes notifications should be empty'
+  end
+
+  test "user does not get a notification when a reply from a post he is NOT suscribed gets a like" do
+    receiver = User.last
+    reply = Reply.create!(user: @user, post: @post, body: 'test')
+
+    assert receiver.notifications.empty?, 'receiver notifications should be empty'
+    refute receiver.subscribed_to?(@post), 'receiver should NOT be subscribed to the post'
+
+    reply.liked_by @user
+
+    assert receiver.notifications.empty?, 'receiver notifications should still be empty'
+  end
 end
