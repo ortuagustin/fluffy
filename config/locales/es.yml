@@ -163,6 +163,8 @@ es:
       like_score: "%{count} Me Gusta"
     actions:
       new: "Crear un nuevo Post"
+      pin: "Anclar"
+      unpin: "Desanclar"
     fields:
       title: "Título"
       body: "Contenido"

@@ -156,6 +156,8 @@ en:
         other: "%{count} Likes"
     actions:
       new: "Create a new Post"
+      pin: "Pin"
+      unpin: "Unpin"
     fields:
       title: "Title"
       body: "Message"
