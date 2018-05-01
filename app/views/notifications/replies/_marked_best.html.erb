@@ -1,0 +1,8 @@
+<span class="has-text-weight-bold">
+  <%= notification.notifiable.user.screen_name %>
+</span> &nbsp;
+
+<span>
+  <%= t 'notifications.replies.marked_best' %>
+  <%= link_to notification.notifiable.post.title, notification.notifiable.path %>
+</span>

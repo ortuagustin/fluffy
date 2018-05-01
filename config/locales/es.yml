@@ -151,6 +151,7 @@ es:
       mark_as_read: "Marcar como leido"
     replies:
       created: "publicó una respuesta en"
+      marked_best: "fue seleccionado como la mejor respuesta en"
   posts:
     index:
       title: "Foro cursada %{year}"

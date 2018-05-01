@@ -141,6 +141,7 @@ en:
       mark_as_read: "Mark as read"
     replies:
       created: "replied to"
+      marked_best: "'s reply was marked as best in"
   posts:
     index:
       title: "%{year} Course Forum"

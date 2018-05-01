@@ -1,5 +1,10 @@
 class RepliesController < ApplicationController
-  before_action :set_reply, only: [:update, :destroy]
+  before_action :set_reply, only: [:show, :update, :destroy]
+
+  # GET /replies/:id
+  def show
+    redirect_to_reply @post, @reply
+  end
 
   # POST /posts/:post_id/replies
   # POST /posts/:post_id/replies.json
@@ -9,7 +14,7 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.save
-        format.html { redirect_to controller: "posts", action: "show", id: @post.id, replies_page: new_reply_page, anchor: @reply.id }
+        format.html { redirect_to_reply @post, @reply }
         format.json { render json: @reply, status: :created }
       else
         render_errors(@reply, format)
@@ -24,7 +29,7 @@ class RepliesController < ApplicationController
 
     respond_to do |format|
       if @reply.update(update_reply_params)
-        format.html { redirect_to controller: "posts", action: "show", id: @post.id, replies_page: new_reply_page, anchor: @reply.id }
+        format.html { redirect_to_reply @post, @reply }
         format.json { render json: @reply, status: :ok }
       else
         render_errors(@reply, format)
@@ -68,8 +73,13 @@ private
     params.require(:id)
   end
 
-  def new_reply_page
-    @post.replies.page.total_pages
+  def page_for(post, reply)
+    position = post.replies.where('id <= ?', reply.id).count
+    (position.to_f/Reply.default_per_page).ceil
+  end
+
+  def redirect_to_reply(post, reply)
+    redirect_to controller: "posts", action: "show", id: post.slug, replies_page: page_for(post, reply), anchor: reply.id
   end
 
   def render_errors(reply, format)

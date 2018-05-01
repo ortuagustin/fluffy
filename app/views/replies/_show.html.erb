@@ -1,4 +1,4 @@
-<article class="media">
+<article id="<%= reply.id %>" class="media">
   <div class="media-left">
     <%= render partial: 'user_avatar', locals: { user: reply.user } %>
   </div>
@@ -9,9 +9,11 @@
 
         <div class="level-left">
           <div class="level-item">
-            <% if defined? reply_counter %>
-              <p> <a id=<%= reply.id %> href="#<%= reply.id %>"> #<%= reply_counter + 1 %> </a> </p>
-            <% end %>
+            <a href="#<%= reply.id %>">
+              <% if defined? reply_counter %>
+                #<%= reply_counter + 1 %>
+              <% end %>
+            </a>
           </div>
         </div>
 
