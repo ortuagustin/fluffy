@@ -1,5 +1,7 @@
 require 'faker'
 
+Post.__elasticsearch__.create_index!
+
 User.destroy_all
 
 admin = User.create(username: 'admin', password: 'admin', email: 'admin@test.com', role: Role.admin)
@@ -40,16 +42,17 @@ ActiveRecord::Base.transaction do
   end
 
   # create some posts with some replies
-  Faker::Number.between(50, 150).times do |i|
+  Faker::Number.between(10, 30).times do |i|
     course = (i.odd? ? last_course : current_course)
-    post = Post.create(title: Faker::Lorem.sentence,
-                       body: Faker::Lorem.paragraph,
+    post = Post.create(title: Faker::ProgrammingLanguage.name,
+                       body: Faker::Lorem.sentence,
                        user: admin)
 
     course.posts << post
+    user = (i.odd? ? admin : guest)
 
-    Faker::Number.between(10, 50).times do |j|
-      post.replies << Reply.create(body: Faker::Lorem.paragraph, user: admin)
+    Faker::Number.between(1, 10).times do |j|
+      post.replies << Reply.create(body: Faker::Lorem.paragraph, user: user)
     end
   end
 end
