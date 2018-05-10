@@ -1,14 +1,16 @@
 <template>
-  <div id="app">
+  <div>
     <p>{{ message }}</p>
   </div>
 </template>
 
 <script>
 export default {
-  data: function () {
+  props: ['data-message'],
+
+  data() {
     return {
-      message: "Hello Vue!"
+      message: this.dataMessage
     }
   }
 }
