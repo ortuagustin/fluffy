@@ -12,29 +12,30 @@
 </head>
 
 <body>
-  <%= render 'layouts/navigation' %>
+  <div id="app">
+    <%= render 'layouts/navigation' %>
 
-  <section class="hero is-primary is-small">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title"><%= content_for?(:title) ? yield(:title) : "Fluffy" %></h1>
-        <h2 class="subtitle"><%= content_for?(:subtitle) ? yield(:subtitle) : '' %></h2>
+    <section class="hero is-primary is-small">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title"><%= content_for?(:title) ? yield(:title) : "Fluffy" %></h1>
+          <h2 class="subtitle"><%= content_for?(:subtitle) ? yield(:subtitle) : '' %></h2>
+        </div>
       </div>
-    </div>
 
-    <%= render 'courses/navigation' if @course %>
-  </section>
+      <%= render 'courses/navigation' if @course %>
+    </section>
 
-  <%= render 'alerts' %>
+    <%= render 'alerts' %>
 
-  <section class="section" id="app">
-    <app data-message="asd"> </app>
-    <%= yield %>
-  </section>
+    <section class="section" id="wrapper">
+      <%= yield %>
+    </section>
 
-  <footer class="footer" style="padding: 0;">
-    <%= render 'layouts/footer' %>
-  </footer>
+    <footer class="footer" style="padding: 0;">
+      <%= render 'layouts/footer' %>
+    </footer>
+  </div>
 </body>
 
 </html>
