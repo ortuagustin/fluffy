@@ -152,6 +152,7 @@ es:
       like_score: "%{count} Me Gusta"
     actions:
       new: "Crear un nuevo Post"
+      search: "Buscar"
     fields:
       title: "Título"
       body: "Contenido"

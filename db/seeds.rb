@@ -42,7 +42,7 @@ ActiveRecord::Base.transaction do
   end
 
   # create some posts with some replies
-  Faker::Number.between(10, 30).times do |i|
+  Faker::Number.between(30, 50).times do |i|
     course = (i.odd? ? last_course : current_course)
     post = Post.create(title: Faker::ProgrammingLanguage.name,
                        body: Faker::Lorem.sentence,

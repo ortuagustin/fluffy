@@ -145,6 +145,7 @@ en:
         other: "%{count} Likes"
     actions:
       new: "Create a new Post"
+      search: "Search"
     fields:
       title: "Title"
       body: "Message"

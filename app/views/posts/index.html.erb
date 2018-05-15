@@ -8,6 +8,8 @@
   </div>
 <% end %>
 
+<search-box placeholder="<%= t 'posts.actions.search' %>" route="<%= @course.forum_search_path %>"></search-box>
+
 <div class="columns">
   <div class="column is-two-thirds">
     <%= render(partial: 'post', collection: @posts, locals: { include_body: false, include_avatar: false }) || (t 'posts.index.empty') %>
