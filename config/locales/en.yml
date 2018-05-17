@@ -160,6 +160,7 @@ en:
       new: "Create a new Post"
       pin: "Pin"
       unpin: "Unpin"
+      search: "Search"
     fields:
       title: "Title"
       body: "Message"

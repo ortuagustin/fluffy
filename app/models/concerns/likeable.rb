@@ -19,7 +19,8 @@ module Likeable
   end
 
   def as_json(options = {})
-    super options.merge :methods => [:like_score]
+    options[:methods] ||= :like_score
+    super options
   end
 
   def like_path

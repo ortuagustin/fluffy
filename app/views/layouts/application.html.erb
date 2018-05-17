@@ -5,21 +5,23 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title><%= content_for?(:title) ? yield(:title) : "Fluffy" %></title>
   <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Open+Sans:300,400,700">
-  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track' => 'reload' %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => 'reload' %>
+  <%= stylesheet_link_tag 'application', media: 'all', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_include_tag 'application', 'data-turbolinks-track': 'reload' %>
+  <%= javascript_pack_tag 'application', 'data-turbolinks-track': 'reload' %>
   <%= csrf_meta_tags %>
 </head>
 
 <body>
-  <%= render 'layouts/navigation' %>
+  <div id="app">
+    <%= render 'layouts/navigation' %>
 
-  <section class="hero is-primary is-small">
-    <div class="hero-body">
-      <div class="container has-text-centered">
-        <h1 class="title"><%= content_for?(:title) ? yield(:title) : "Fluffy" %></h1>
-        <h2 class="subtitle"><%= content_for?(:subtitle) ? yield(:subtitle) : '' %></h2>
+    <section class="hero is-primary is-small">
+      <div class="hero-body">
+        <div class="container has-text-centered">
+          <h1 class="title"><%= content_for?(:title) ? yield(:title) : "Fluffy" %></h1>
+          <h2 class="subtitle"><%= content_for?(:subtitle) ? yield(:subtitle) : '' %></h2>
+        </div>
       </div>
-    </div>
 
     <div class="hero-foot">
       <nav class="tabs is-boxed is-fullwidth">
@@ -34,15 +36,16 @@
     </div>
   </section>
 
-  <%= render 'alerts' %>
+    <%= render 'alerts' %>
 
-  <section class="section" id="wrapper">
-    <%= yield %>
-  </section>
+    <section class="section" id="wrapper">
+      <%= yield %>
+    </section>
 
-  <footer class="footer" style="padding: 0;">
-    <%= render 'layouts/footer' %>
-  </footer>
+    <footer class="footer" style="padding: 0;">
+      <%= render 'layouts/footer' %>
+    </footer>
+  </div>
 </body>
 
 </html>

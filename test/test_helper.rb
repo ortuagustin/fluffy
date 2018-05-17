@@ -20,4 +20,8 @@ class ActionDispatch::IntegrationTest
   def assert_redirected_to_login
     assert_redirected_to new_user_session_path(locale: nil)
   end
+
+  def json_response
+    JSON.parse(response.body, object_class: OpenStruct)
+  end
 end

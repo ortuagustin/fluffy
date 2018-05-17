@@ -167,6 +167,7 @@ es:
       new: "Crear un nuevo Post"
       pin: "Anclar"
       unpin: "Desanclar"
+      search: "Buscar"
     fields:
       title: "Título"
       body: "Contenido"

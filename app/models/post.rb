@@ -1,11 +1,17 @@
 class Post < ApplicationRecord
-  extend FriendlyId                       ## friendly_id
+  extend FriendlyId                                                             ## friendly_id
 
   include Likeable
   include Subscribable
+  include ElasticSearchModel
+  mappings dynamic: 'false' do
+    indexes :title, type: 'text'
+    indexes :body, type: 'text'
+    indexes :path, type: 'text'
+  end
 
-  paginates_per 10                        ## Kaminari
-  friendly_id :title, use: :slugged        ## friendly_id
+  paginates_per 10                                                              ## Kaminari
+  friendly_id :title, use: :slugged                                             ## friendly_id
 
   belongs_to :course
   belongs_to :user
@@ -81,5 +87,12 @@ class Post < ApplicationRecord
 
   def pin_path
     pin_post_path(id: id)
+  end
+
+  def as_indexed_json(options={})
+    self.as_json({
+      only: [:title, :body],
+      methods: [:path],
+    })
   end
 end
