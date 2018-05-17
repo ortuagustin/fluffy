@@ -1,29 +1,31 @@
 <template>
-  <div class="field is-grouped dropdown" :class="hasResults() ? 'is-active' : ''">
-    <div class="control">
-      <input class="input" type="text" :placeholder="placeholder" v-model="query" autofocus>
+  <div class="field is-grouped dropdown" :class="shouldShowPosts() ? 'is-active' : ''">
+    <div class="control has-icons-left has-icons-right" :class="loading ? 'is-loading' : ''">
+      <input class="input is-loading" type="text" autofocus
+        :placeholder="placeholder"
+        v-model="query"
+        @input="fetchPosts"
+        @blur="hidePosts"
+        @focus="showPosts"
+      >
+
+      <span class="icon is-small is-left">
+        <i class="fa fa-search"></i>
+      </span>
     </div>
 
-    <div class="dropdown-menu" v-if="hasResults()">
+    <div class="dropdown-menu" v-if="shouldShowPosts()">
       <div class="dropdown-content">
-        <div v-for="(result, index) in results" :key="result._id" class="dropdown-item">
-          <a :href="result._source.path" class="dropdown-item">
-            <p class="has-text-weight-bold" v-text="result._source.title"></p>
-            <p class="has-text-weight-light" v-text="result._source.body"></p>
+        <div v-for="(post, index) in posts" :key="post._id" class="dropdown-item">
+          <a :href="post._source.path" class="dropdown-item">
+            <p class="has-text-weight-bold" v-html="highlight(post._source.title, query)"></p>
+            <p class="has-text-weight-light" v-html="highlight(post._source.body, query)"></p>
           </a>
 
-          <hr class="dropdown-divider" v-if="index != results.length - 1">
+          <hr class="dropdown-divider" v-if="index != posts.length - 1">
         </div>
       </div>
     </div>
-
-    <p class="control">
-      <a class="button is-white" :class="loading ? 'is-loading' : ''" :disabled="loading" @click="submit">
-        <span class="icon is-small">
-          <i class="fa fa-search"></i>
-        </span>
-      </a>
-    </p>
   </div>
 </template>
 
@@ -33,20 +35,37 @@ export default {
 
   data() {
     return {
-      loading: false,
       query: '',
-      results: []
+      posts: [],
+      loading: false,
+      displayPosts: false,
     };
   },
 
   methods: {
-    submit() {
+    highlight(text, substr) {
+      let index = text.toLowerCase().indexOf(substr);
+
+      if (index < 0) {
+        return text;
+      }
+
+      return `${text.substring(0, index)}<mark>${text.substring(index, index + substr.length)}</mark>${text.substring(index + substr.length)}`;
+    },
+
+    fetchPosts() {
+      this.posts = [];
+
+      if (this.query == '') {
+        return;
+      }
+
       this.loading = true;
 
       axios
         .get(`${this.route}/${this.query}`)
         .then(response => {
-          this.results = response.data;
+          this.posts = response.data;
           this.loading = false;
         })
         .catch(error => {
@@ -54,8 +73,22 @@ export default {
         });
     },
 
-    hasResults() {
-      return this.results.length > 0;
+    shouldShowPosts() {
+      return (this.hasPosts()) && (this.displayPosts);
+    },
+
+    hasPosts() {
+      return this.posts.length > 0;
+    },
+
+    showPosts() {
+      this.displayPosts = true;
+    },
+
+    hidePosts() {
+      setTimeout(() => {
+        this.displayPosts = false;
+      }, 150);
     }
   }
 }
