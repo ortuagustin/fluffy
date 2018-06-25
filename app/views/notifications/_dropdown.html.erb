@@ -11,12 +11,20 @@
 
   <% if current_user.unread_notifications? %>
     <div class="navbar-dropdown is-right is-boxed">
-      <% current_user.notifications.each do |each| %>
+      <% current_user.unread_notifications.take(15).each do |each| %>
         <div class="navbar-item">
           <%= render partial: each.partial_path, locals: { notification: each } %> &nbsp;
 
           <span class="has-text-weight-light is-italic">
             <%= time_ago_in_words each.created_at %>
+          </span>
+        </div>
+      <% end %>
+
+      <% if current_user.unread_notifications.size > 15 %>
+        <div class="navbar-item">
+          <span class="has-text-weight-light">
+            <%= link_to t('notifications.actions.unread'), unread_notifications_path %>
           </span>
         </div>
       <% end %>
