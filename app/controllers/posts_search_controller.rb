@@ -1,6 +1,13 @@
 class PostsSearchController < ApplicationController
   def index
-    @posts = Post.search(params[:q]).results.to_a
+    response = Post.search query: { fuzzy: { title: { value: query_param } } }
+
+    @posts = response.results.to_a
     render json: @posts
+  end
+
+private
+  def query_param
+    params[:q] || ''
   end
 end
