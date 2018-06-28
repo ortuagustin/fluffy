@@ -50,7 +50,7 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
   bundle
 ```
 
-> En desarrollo no es necesario instalar **postgres**: ´bundle install --without production´
+> En desarrollo no es necesario instalar **postgres**: `bundle install --without production`
 
 3. Ejecutar yarn para instalar las dependencias de JavaScript:
 
