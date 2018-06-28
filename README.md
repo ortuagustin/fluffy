@@ -13,9 +13,9 @@ Este proyecto consiste en una aplicacion web para gestionar cursos: se pueden ad
 
   >Para instalar ElasticSearch, lo mejor es referirse a su [documentación](https://www.elastic.co/guide/en/elasticsearch/reference/current/_installation.html). Para sistemas basados en Debian, se puede [usar un paquete o instalarlo por APT](https://www.elastic.co/guide/en/elasticsearch/reference/current/deb.html)
 
-  Tambien se requiere, para poder utilziar [Webpacker](https://github.com/rails/webpacker):
-    - Node.js 6.0.0+
-    - Yarn 0.25.2+
+Tambien se requiere, para poder utilizar [Webpacker](https://github.com/rails/webpacker):
+  * Node.js 6.0.0+
+  * Yarn 0.25.2+
 
 #### Ambiente Ruby
 
